@@ -9,7 +9,7 @@ android {
     }
 
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion "23.0.3"
 
     defaultConfig {
         applicationId "ca.com.androidbinnersproject"
@@ -42,22 +42,26 @@ dependencies {
 
     compile fileTree(include: ['*.jar'], dir: 'libs')
 
-    compile('com.twitter.sdk.android:twitter:1.12.0@aar') {
+    compile('com.twitter.sdk.android:twitter:1.13.0@aar') {
         transitive = true;
     }
 
+    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'com.android.support:design:23.3.0'
+    compile 'com.android.support:percent:23.3.0'
+    compile 'com.android.support:support-v4:23.3.0'
+    compile 'com.android.support:recyclerview-v7:23.3.0'
+
     compile 'com.google.android.gms:play-services-plus:8.4.0'
     compile 'com.google.android.gms:play-services-auth:8.4.0'
-    compile 'com.android.support:appcompat-v7:23.2.1'
-    compile 'com.android.support:design:23.2.1'
-    compile 'com.facebook.android:facebook-android-sdk:4.6.0'
-    compile 'com.squareup.retrofit2:retrofit:2.0.0-beta3'
-    compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta3'
+
+    compile 'com.facebook.android:facebook-android-sdk:4.11.0'
+
+    compile 'com.squareup.retrofit2:retrofit:2.0.1'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.1'
+
     compile 'com.scottyab:aes-crypto:0.0.4'
-    compile 'com.android.support:percent:23.2.1'
     compile 'com.github.citux:datetimepicker:0.2.0'
-    compile 'com.android.support:recyclerview-v7:23.2.1'
-    compile 'com.android.support:support-v4:23.2.1'
     compile 'com.github.bumptech.glide:glide:3.7.0'
 }
 
