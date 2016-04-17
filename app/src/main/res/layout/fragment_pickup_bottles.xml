@@ -11,7 +11,8 @@
         android:textColor="@android:color/black"
         android:gravity="center"
         android:text="BOTTLES"
-        android:textSize="35sp"/>
+        android:textSize="35sp"
+        android:layout_marginTop="10dp"/>
 
     <Space
         android:layout_width="wrap_content"
@@ -95,13 +96,52 @@
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/pickup_bottles_takePicture"
+        <TextView
+            android:id="@+id/pickup_bottles_takepicturetext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pickup_bottles_orSeparator"
+            android:text="@string/pickup_bottles_takepicture"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"/>
+
+        <android.support.percent.PercentRelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/pickup_bottles_takepicture"
-            android:layout_below="@id/pickup_bottles_orSeparator"
-            android:layout_marginTop="20dp"/>
+            android:layout_below="@id/pickup_bottles_takepicturetext"
+            android:layout_marginTop="20dp">
+
+            <FrameLayout
+                android:id="@+id/pickup_bottles_takePicture"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/box">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/camera_icon"/>
+
+            </FrameLayout>
+
+            <!--
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pickup_bottles_takepicture"
+                    android:layout_marginTop="20dp"/>
+
+                <Button
+                    android:id="@+id/pickup_bottles_uploadPicture"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pickup_bottles_uploadpicture"
+                    android:layout_below="@id/pickup_bottles_takePicture"
+                    android:layout_marginTop="20dp"/>
+            -->
+
+        </android.support.percent.PercentRelativeLayout>
 
     </android.support.percent.PercentRelativeLayout>
 

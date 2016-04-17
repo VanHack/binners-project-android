@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -33,7 +34,7 @@ public class PickupBottlesFragment extends Fragment {
 
 		View view = inflater.inflate(R.layout.fragment_pickup_bottles, container, false);
 
-		Button takePictureButton = (Button) view.findViewById(R.id.pickup_bottles_takePicture);
+		FrameLayout takePictureButton = (FrameLayout) view.findViewById(R.id.pickup_bottles_takePicture);
 
 		takePictureButton.setOnClickListener(new View.OnClickListener() {
 			 @Override
@@ -82,8 +83,6 @@ public class PickupBottlesFragment extends Fragment {
 
 		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.CANADA).format(new Date());
 
-		File mediaFile = new File(imagesDir.getPath() + File.separator + "IMG_" + timeStamp + ".jpg");
-
-		return mediaFile;
+		return new File(imagesDir.getPath() + File.separator + "IMG_" + timeStamp + ".jpg");
 	}
 }
