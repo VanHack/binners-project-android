@@ -44,7 +44,7 @@ public class CreateAccount {
 
 		call.enqueue(new Callback<Profile>() {
 			@Override
-			public void onResponse(Response<Profile> response) {
+			public void onResponse(Call<Profile> call, Response<Profile> response) {
 				if(response.code() == 200) {
 					Log.i(LOG_TAG, "User created!");
 
@@ -59,7 +59,7 @@ public class CreateAccount {
 			}
 
 			@Override
-			public void onFailure(Throwable t) {
+			public void onFailure(Call<Profile> call, Throwable t) {
 				if(mResponseListener != null)
 					mResponseListener.onFailed("Error, try again.");
 			}

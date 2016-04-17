@@ -1,7 +1,7 @@
 package ca.com.androidbinnersproject.apis;
 
-import retrofit2.GsonConverterFactory;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by jonathan_campos on 28/01/2016.

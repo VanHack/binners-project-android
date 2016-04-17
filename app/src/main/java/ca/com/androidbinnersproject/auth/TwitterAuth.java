@@ -80,11 +80,11 @@ public class TwitterAuth extends Authentication {
 
 		call.enqueue(new retrofit2.Callback<Profile>() {
 			@Override
-			public void onResponse(Response<Profile> response) {
+			public void onResponse(Call<Profile> call, Response<Profile> response) {
 
 				Logger.Info("Received Twitter.signInBackend response with code: " + response.code());
 
-				if(response.isSuccess()) {
+				if(response.isSuccessful()) {
 
 					Logger.Info("Server responded with success status");
 
@@ -119,7 +119,7 @@ public class TwitterAuth extends Authentication {
 			}
 
 			@Override
-			public void onFailure(Throwable t) {
+			public void onFailure(Call<Profile> call, Throwable t) {
 				Logger.Info("Twitter login failed");
 			}
 		});

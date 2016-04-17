@@ -126,13 +126,13 @@ public class GoogleAuth extends Authentication implements OnConnectionFailedList
 
             call.enqueue(new Callback<Profile>() {
                 @Override
-                public void onResponse(Response<Profile> response) {
+                public void onResponse(Call<Profile> call, Response<Profile> response) {
                     Log.i(LOG_TAG, "Backend login success!");
                     onAuthListener.onLoginSuccess(mProfile);
                 }
 
                 @Override
-                public void onFailure(Throwable t) {
+                public void onFailure(Call<Profile> call, Throwable t) {
                     Log.e(LOG_TAG, "Backend login failure!");
                     onAuthListener.onLoginError("Error on trying to log at the backend.");
                 }

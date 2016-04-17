@@ -1,7 +1,7 @@
 package ca.com.androidbinnersproject.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,7 +10,7 @@ import android.widget.Toast;
 import ca.com.androidbinnersproject.R;
 import ca.com.androidbinnersproject.apis.BaseAPI;
 import ca.com.androidbinnersproject.apis.ForgotPasswordService;
-import ca.com.androidbinnersproject.listeners.ResponseListener;
+import ca.com.androidbinnersproject.models.Profile;
 import ca.com.androidbinnersproject.models.User;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -61,8 +61,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 		Toast.makeText(ForgotPasswordActivity.this, "Sending", Toast.LENGTH_SHORT).show();
 		call.enqueue(new Callback<User>() {
 			@Override
-			public void onResponse(Response<User> response) {
-				if(response.isSuccess()) {
+			public void onResponse(Call<User> call, Response<User> response) {
+				if(response.isSuccessful()) {
 					Toast.makeText(ForgotPasswordActivity.this, "Request successfully sent", Toast.LENGTH_LONG).show();
 					finish();
 				} else {
@@ -71,7 +71,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 			}
 
 			@Override
-			public void onFailure(Throwable t) {
+			public void onFailure(Call<User> call, Throwable t) {
 				Toast.makeText(ForgotPasswordActivity.this, "There were a problem while sending request, please try again", Toast.LENGTH_LONG).show();
 			}
 		});
