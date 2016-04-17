@@ -43,7 +43,7 @@ public class AppAuth extends Authentication {
 
         call.enqueue(new Callback<Profile>() {
             @Override
-            public void onResponse(Response<Profile> response) {
+            public void onResponse(Call<Profile> call, Response<Profile> response) {
                 Logger.Info("Backend login success!");
 
                 if(response.code() == 200) {
@@ -54,7 +54,7 @@ public class AppAuth extends Authentication {
             }
 
             @Override
-            public void onFailure(Throwable t) {
+            public void onFailure(Call<Profile> call, Throwable t) {
                 Logger.Error("Backend login failure!");
             }
         });

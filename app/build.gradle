@@ -51,15 +51,13 @@ dependencies {
     compile 'com.android.support:percent:23.3.0'
     compile 'com.android.support:support-v4:23.3.0'
     compile 'com.android.support:recyclerview-v7:23.3.0'
-
     compile 'com.google.android.gms:play-services-plus:8.4.0'
     compile 'com.google.android.gms:play-services-auth:8.4.0'
-
+    compile 'com.google.android.gms:play-services-maps:8.4.0'
+    compile 'com.facebook.android:facebook-android-sdk:4.6.0'
     compile 'com.facebook.android:facebook-android-sdk:4.11.0'
-
-    compile 'com.squareup.retrofit2:retrofit:2.0.1'
-    compile 'com.squareup.retrofit2:converter-gson:2.0.1'
-
+    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
     compile 'com.scottyab:aes-crypto:0.0.4'
     compile 'com.github.citux:datetimepicker:0.2.0'
     compile 'com.github.bumptech.glide:glide:3.7.0'
