@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -98,11 +99,11 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
         super.onActivityCreated(savedInstanceState);
 
         FragmentManager fm = getChildFragmentManager();
-        mSupportMapFragment = (SupportMapFragment) fm.findFragmentById(R.id.map_container);
+        mSupportMapFragment = (SupportMapFragment) fm.findFragmentById(R.id.fragment_home_screen_map_container);
 
         if (mSupportMapFragment == null) {
             mSupportMapFragment = SupportMapFragment.newInstance();
-            fm.beginTransaction().replace(R.id.map_container, mSupportMapFragment).commit();
+            fm.beginTransaction().replace(R.id.fragment_home_screen_map_container, mSupportMapFragment).commit();
         }
     }
 

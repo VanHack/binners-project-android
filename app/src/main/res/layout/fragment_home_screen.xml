@@ -7,16 +7,31 @@
     android:orientation="vertical">
 
     <FrameLayout
-        android:id="@+id/map_container"
+        android:id="@+id/fragment_home_screen_map_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1">
 
         <fragment
-            android:id="@+id/map"
+            android:id="@+id/fragment_home_screen_map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/fragment_home_screen_search_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            android:background="@drawable/rounded_corners"
+            android:layout_margin="8dp">
+
+            <SearchView
+                android:id="@+id/fragment_home_screen_shvSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></SearchView>
+
+        </android.support.v7.widget.Toolbar>
 
     </FrameLayout>
 
