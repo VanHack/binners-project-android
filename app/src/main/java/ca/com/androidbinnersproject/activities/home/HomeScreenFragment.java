@@ -19,12 +19,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -32,6 +29,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
@@ -41,11 +39,11 @@ import java.util.Locale;
 import ca.com.androidbinnersproject.R;
 import ca.com.androidbinnersproject.activities.pickup.PickupActivity;
 
-public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
+public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
     private SupportMapFragment mSupportMapFragment;
     private GoogleMap mMapView;
 	private MarkerOptions markerOptions;
-	private LatLng latLng;
+	private LatLng mLatLng;
 
 	private SearchView edtSearch;
 	private Toolbar mToolbarBottom;
@@ -70,20 +68,39 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
 		// Assumes current activity is the searchable activity
 		edtSearch.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
 		edtSearch.setIconifiedByDefault(false);
-		edtSearch.setOnKeyListener(new View.OnKeyListener() {
+		edtSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 			@Override
-			public boolean onKey(View v, int keyCode, KeyEvent event) {
-				if(event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
-					onSearch(edtSearch.toString());
-				}
+			public boolean onQueryTextSubmit(String query) {
+				onSearch(query);
 
+				return true;
+			}
+
+			@Override
+			public boolean onQueryTextChange(String newText) {
 				return false;
 			}
 		});
 
 
+
 		super.onViewCreated(view, savedInstanceState);
 	}
+
+	/*
+	TODO
+	private void handleIntent(Intent intent) {
+		if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+			String query = intent.getStringExtra(SearchManager.QUERY);
+			SearchRecentSuggestions suggestions = new SearchRecentSuggestions(getActivity(),
+					SuggestionProvider.AUTHORITY, SuggestionProvider.MODE);
+			suggestions.saveRecentQuery(query, null);
+
+			edtSearch.setQuery(query, false);
+
+			onSearch(query);
+		}
+	}*/
 
 	private void setToolbatClickListener() {
 		mToolbarBottom.findViewById(R.id.toolbar_bottom_btnHistory).setOnClickListener(new View.OnClickListener() {
@@ -104,6 +121,9 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(getActivity(), PickupActivity.class);
+                intent.putExtra("LAT", mLatLng.latitude);
+                intent.putExtra("LON", mLatLng.longitude);
+
 				startActivity(intent);
 			}
 		});
@@ -154,7 +174,7 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
 
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mMapView.setMyLocationEnabled(true);
-
+            mMapView.setOnMarkerClickListener(this);
             showCurrentLocation();
         } else {
             // Show rationale and request permission.
@@ -176,13 +196,13 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
 
         if(location!=null) {
             // Creating a LatLng object for the current location
-            LatLng myPosition = new LatLng(location.getLatitude(), location.getLongitude());
+            mLatLng = new LatLng(location.getLatitude(), location.getLongitude());
 
             mMapView.clear();
 
-            mMapView.animateCamera(CameraUpdateFactory.newLatLngZoom(myPosition, 15));
+            mMapView.animateCamera(CameraUpdateFactory.newLatLngZoom(mLatLng, 15));
 
-            mMapView.addMarker(new MarkerOptions().position(myPosition).title(getActivity().getResources().getString(R.string.home_screen_map_marker_title))).showInfoWindow();
+            mMapView.addMarker(new MarkerOptions().position(mLatLng).title(getActivity().getResources().getString(R.string.home_screen_map_marker_title))).showInfoWindow();
         }
     }
 
@@ -205,25 +225,36 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
 				Address address = (Address) addresses.get(i);
 
 				// Creating an instance of GeoPoint, to display in Google Map
-				latLng = new LatLng(address.getLatitude(), address.getLongitude());
+				mLatLng = new LatLng(address.getLatitude(), address.getLongitude());
 
 				String addressText = String.format("%s, %s",
 						address.getMaxAddressLineIndex() > 0 ? address.getAddressLine(0) : "",
 						address.getCountryName());
 
 				markerOptions = new MarkerOptions();
-				markerOptions.position(latLng);
+				markerOptions.position(mLatLng);
 				markerOptions.title(addressText);
 
 				mMapView.addMarker(markerOptions);
 
 				// Locate the first location
 				if(i==0)
-					mMapView.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
+					mMapView.animateCamera(CameraUpdateFactory.newLatLngZoom(mLatLng, 14));
 			}
 
 		} catch (IOException e) {
 			Log.e("MAPSERROR", "");
 		}
 	}
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        Intent intent = new Intent(getActivity(), PickupActivity.class);
+        intent.putExtra("LAT", marker.getPosition().latitude);
+        intent.putExtra("LON", marker.getPosition().longitude);
+
+        startActivity(intent);
+
+        return false;
+    }
 }
