@@ -79,6 +79,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/PickupNoActionTheme"/>
 
+        <activity
+            android:name=".activities.ongoing.OngoingPickupsFragment"
+            android:screenOrientation="portrait"
+            android:theme="@style/PickupNoActionTheme"/>
+
     </application>
 
 </manifest>

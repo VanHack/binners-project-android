@@ -25,10 +25,13 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import ca.com.androidbinnersproject.R;
+import ca.com.androidbinnersproject.activities.ongoing.OngoingPickupsFragment;
 import ca.com.androidbinnersproject.activities.pickup.PickupActivity;
 
 public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
-    private SupportMapFragment mSupportMapFragment;
+	private FragmentManager fm;
+
+	private SupportMapFragment mSupportMapFragment;
     private GoogleMap mMapView;
 
 	private Toolbar mToolbarBottom;
@@ -61,7 +64,7 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
 		mToolbarBottom.findViewById(R.id.toolbar_bottom_btnOngoing).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-
+				fm.beginTransaction().replace(R.id.map_container, OngoingPickupsFragment.newInstance()).commit();
 			}
 		});
 
@@ -97,8 +100,8 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        FragmentManager fm = getChildFragmentManager();
-        mSupportMapFragment = (SupportMapFragment) fm.findFragmentById(R.id.map_container);
+		fm = getChildFragmentManager();
+		//mSupportMapFragment = (SupportMapFragment) fm.findFragmentById(R.id.map);
 
         if (mSupportMapFragment == null) {
             mSupportMapFragment = SupportMapFragment.newInstance();
