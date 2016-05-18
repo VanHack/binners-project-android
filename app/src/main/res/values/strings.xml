@@ -81,5 +81,6 @@
     <string name="home_screen_toolbar_pickup_title">New Pickup</string>
     <string name="home_screen_toolbar_notifications_title">Notifications</string>
     <string name="home_screen_toolbar_donate_title">Donate</string>
+    <string name="search_hint">Search on Maps</string>
 
 </resources>
