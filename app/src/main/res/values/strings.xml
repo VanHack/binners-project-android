@@ -82,5 +82,10 @@
     <string name="home_screen_toolbar_notifications_title">Notifications</string>
     <string name="home_screen_toolbar_donate_title">Donate</string>
     <string name="search_hint">Search on Maps</string>
+    <string name="pickup_activity_title_date">Set Date</string>
+    <string name="pickup_activity_title_time">Set Time</string>
+    <string name="pickup_activity_title_bottles">Quantity</string>
+    <string name="pickup_activity_title_instructions">Instructions</string>
+    <string name="pickup_activity_title_confirm">Review your information</string>
 
 </resources>

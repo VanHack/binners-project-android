@@ -13,26 +13,25 @@ import android.widget.Toast;
 
 import ca.com.androidbinnersproject.R;
 import ca.com.androidbinnersproject.util.Logger;
+import ca.com.androidbinnersproject.util.Util;
 
 public class PickupActivity extends AppCompatActivity {
 
 	private Toolbar mToolbar;
+	private Button btnNextButton;
+    private Button btnBackButton;
+    private FrameLayout container;
 
     private double mLatitude;
     private double mLongitude;
+    private int currentStage;
 
-    public static final int	Stage_Date = 0;
-	public static final int	Stage_Time = 1;
-	public static final int	Stage_Bottles = 2;
-	public static final int	Stage_Instructions = 3;
-	public static final int	Stage_Confirm = 4;
-	public static final int Stage_Last = 4; //value of last stage
-
-	private int currentStage;
-
-	private Button btnNextButton;
-	private Button btnBackButton;
-	private FrameLayout container;
+    public static final int stageDate = 0;
+    public static final int stageTime = 1;
+    public static final int stageBottles = 2;
+    public static final int stageInstructions = 3;
+    public static final int stageConfirm = 4;
+    public static final int stageLast = 4; //value of last stage
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +55,7 @@ public class PickupActivity extends AppCompatActivity {
 
                 if(v.getId() == R.id.activity_pickup_next_button) {
 
-                    if(currentStage > Stage_Last)
+                    if(currentStage > stageLast)
                         finishedPickUp();
                     else
                         setFragmentStage(currentStage + 1);
@@ -80,7 +79,7 @@ public class PickupActivity extends AppCompatActivity {
         super.onStart();
 
         currentStage = -1;
-        setFragmentStage(Stage_Date);
+        setFragmentStage(stageDate);
     }
 
     private void setFragmentStage(int stage) {
@@ -98,24 +97,24 @@ public class PickupActivity extends AppCompatActivity {
 
 		//TODO cache fragment state to avoid state loss between stage switches
 		switch(currentStage) {
-			case Stage_Date:
+			case stageDate:
 				transaction.add(R.id.activity_pickup_container, new SelectDateFragment());
-                mToolbar.setTitle("Set Date");
+                mToolbar.setTitle(Util.getStringResource(this, R.string.pickup_activity_title_date));
 			break;
-			case Stage_Time:
+			case stageTime:
 				transaction.add(R.id.activity_pickup_container, new TimePickerFragment());
-                mToolbar.setTitle("Set Time");
+                mToolbar.setTitle(Util.getStringResource(this, R.string.pickup_activity_title_time));
 			break;
-			case Stage_Bottles:
+			case stageBottles:
 				transaction.add(R.id.activity_pickup_container, new PickupBottlesFragment());
-                mToolbar.setTitle("Quantity");
+                mToolbar.setTitle(Util.getStringResource(this, R.string.pickup_activity_title_bottles));
 			break;
-			case Stage_Instructions:
+			case stageInstructions:
 				transaction.add(R.id.activity_pickup_container, new PickupInstructionsFragment());
-                mToolbar.setTitle("Additional Notes");
+                mToolbar.setTitle(Util.getStringResource(this, R.string.pickup_activity_title_instructions));
 			break;
-			case Stage_Confirm:
-                mToolbar.setTitle("Review your information");
+			case stageConfirm:
+                mToolbar.setTitle(Util.getStringResource(this, R.string.pickup_activity_title_confirm));
 			break;
 		}
 		transaction.commit();
