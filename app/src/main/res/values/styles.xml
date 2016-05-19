@@ -27,7 +27,9 @@
 
     <style name="PickupNoActionTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:calendarViewStyle">@style/Widget.CalendarView.Custom</item>
-        <item name="android:background">@color/pickupBgColor</item>
+        <item name="android:windowBackground">@color/pickupBgColor</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="colorPrimary">@color/textColorPrimary</item>
     </style>
 
     <style name="Widget.CalendarView.Custom" parent="android:Widget.Holo.CalendarView">

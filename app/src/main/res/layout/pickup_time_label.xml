@@ -45,7 +45,7 @@
             android:layout_gravity="center"
             android:gravity="center_horizontal"
             android:text="@string/time_placeholder"
-            android:textColor="@color/blue"
+            android:textColor="@color/backgroundApp"
             android:background="@color/circle_background"/>
     </FrameLayout>
 
@@ -59,7 +59,7 @@
         android:layout_centerVertical="true"
         android:paddingLeft="@dimen/separator_padding"
         android:paddingRight="@dimen/separator_padding"
-        android:textColor="#006de8"
+        android:textColor="@color/backgroundApp"
         android:text="@string/time_separator"
         android:background="@color/circle_background"/>
 
@@ -94,6 +94,7 @@
             android:layout_gravity="center"
             android:gravity="center_horizontal"
             android:text="@string/time_placeholder"
+            android:textColor="@color/backgroundApp"
             android:background="@color/circle_background"/>
     </FrameLayout>
 
@@ -107,6 +108,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/pickup_timepicker_ampm_label"
         android:layout_alignEnd="@+id/pickup_timepicker_ampm_label"
+        android:textColor="@color/backgroundApp"
         android:background="@color/circle_background"/>
 
     <TextView

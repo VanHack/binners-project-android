@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -15,21 +16,22 @@ import ca.com.androidbinnersproject.util.Logger;
 
 public class PickupActivity extends AppCompatActivity {
 
+	private Toolbar mToolbar;
+
     private double mLatitude;
     private double mLongitude;
 
     public static final int	Stage_Date = 0;
 	public static final int	Stage_Time = 1;
-	public static final int	Stage_Location = 2;
-	public static final int	Stage_Bottles = 3;
-	public static final int	Stage_Instructions = 4;
-	public static final int	Stage_Confirm = 5;
-	public static final int Stage_Last = 5; //value of last stage
+	public static final int	Stage_Bottles = 2;
+	public static final int	Stage_Instructions = 3;
+	public static final int	Stage_Confirm = 4;
+	public static final int Stage_Last = 4; //value of last stage
 
 	private int currentStage;
 
-	private Button nextButton;
-	private Button backButton;
+	private Button btnNextButton;
+	private Button btnBackButton;
 	private FrameLayout container;
 
 	@Override
@@ -42,40 +44,46 @@ public class PickupActivity extends AppCompatActivity {
 
 		Toast.makeText(PickupActivity.this, "Latitude: " + mLatitude + " Longitude: " + mLongitude, Toast.LENGTH_LONG).show();
 
-		currentStage = -1;
-		setFragmentStage(Stage_Date);
 
-		nextButton = (Button) findViewById(R.id.pickup_next_button);
-		backButton = (Button) findViewById(R.id.pickup_back_button);
-		container = (FrameLayout) findViewById(R.id.pickup_container);
+        mToolbar   = (Toolbar) findViewById(R.id.activity_pickup_toolbar);
+        btnNextButton = (Button) findViewById(R.id.activity_pickup_next_button);
+        btnBackButton = (Button) findViewById(R.id.activity_pickup_back_button);
+        container = (FrameLayout) findViewById(R.id.activity_pickup_container);
 
-		View.OnClickListener buttonListener = new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
+        View.OnClickListener buttonListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-			if(v.getId() == R.id.pickup_next_button) {
+                if(v.getId() == R.id.activity_pickup_next_button) {
 
-				if(currentStage > Stage_Last)
-					finishedPickUp();
-				else
-					setFragmentStage(currentStage + 1);
+                    if(currentStage > Stage_Last)
+                        finishedPickUp();
+                    else
+                        setFragmentStage(currentStage + 1);
 
-			} else {
+                } else {
 
-				if(currentStage <= 0)
-					abortPickUp();
-				else
-					setFragmentStage(currentStage - 1);
+                    if(currentStage <= 0)
+                        abortPickUp();
+                    else
+                        setFragmentStage(currentStage - 1);
 
-			}
-			}
-		};
-
-		nextButton.setOnClickListener(buttonListener);
-		backButton.setOnClickListener(buttonListener);
+                }
+            }
+        };
+        btnNextButton.setOnClickListener(buttonListener);
+		btnBackButton.setOnClickListener(buttonListener);
 	}
 
-	private void setFragmentStage(int stage) {
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        currentStage = -1;
+        setFragmentStage(Stage_Date);
+    }
+
+    private void setFragmentStage(int stage) {
 
 		if(currentStage == stage)
 			return;
@@ -91,28 +99,25 @@ public class PickupActivity extends AppCompatActivity {
 		//TODO cache fragment state to avoid state loss between stage switches
 		switch(currentStage) {
 			case Stage_Date:
-				transaction.add(R.id.pickup_container, new SelectDateFragment());
+				transaction.add(R.id.activity_pickup_container, new SelectDateFragment());
+                mToolbar.setTitle("Set Date");
 			break;
-
 			case Stage_Time:
-				transaction.add(R.id.pickup_container, new TimePickerFragment());
+				transaction.add(R.id.activity_pickup_container, new TimePickerFragment());
+                mToolbar.setTitle("Set Time");
 			break;
-
-			case Stage_Location:
-			break;
-
 			case Stage_Bottles:
-				transaction.add(R.id.pickup_container, new PickupBottlesFragment());
+				transaction.add(R.id.activity_pickup_container, new PickupBottlesFragment());
+                mToolbar.setTitle("Quantity");
 			break;
-
 			case Stage_Instructions:
-				transaction.add(R.id.pickup_container, new PickupInstructionsFragment());
+				transaction.add(R.id.activity_pickup_container, new PickupInstructionsFragment());
+                mToolbar.setTitle("Additional Notes");
 			break;
-
 			case Stage_Confirm:
+                mToolbar.setTitle("Review your information");
 			break;
 		}
-
 		transaction.commit();
 	}
 
