@@ -103,6 +103,7 @@ public class PickupActivity extends AppCompatActivity {
 			break;
 
 			case Stage_Confirm:
+				transaction.add(R.id.pickup_container, new PickupReviewFragment());
 			break;
 		}
 
