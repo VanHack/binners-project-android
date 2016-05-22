@@ -81,5 +81,14 @@
     <string name="home_screen_toolbar_pickup_title">New Pickup</string>
     <string name="home_screen_toolbar_notifications_title">Notifications</string>
     <string name="home_screen_toolbar_donate_title">Donate</string>
+    <string name="search_hint">Search on Maps</string>
+    <string name="pickup_activity_title_date">Set Date</string>
+    <string name="pickup_activity_title_time">Set Time</string>
+    <string name="pickup_activity_title_bottles">Quantity</string>
+    <string name="pickup_activity_title_instructions">Instructions</string>
+    <string name="pickup_activity_title_confirm">Review your information</string>
+    <string name="pickup_review_label_location">Pick-Up Location</string>
+    <string name="pickup_review_label_time">Time</string>
+    <string name="pickup_review_label_date">Date</string>
 
 </resources>

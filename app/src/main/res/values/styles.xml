@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
     </style>
 
     <!-- Facebook applied theme to hide the transparent progressbar-->
@@ -27,7 +28,9 @@
 
     <style name="PickupNoActionTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:calendarViewStyle">@style/Widget.CalendarView.Custom</item>
-        <item name="android:background">@color/pickupBgColor</item>
+        <item name="android:windowBackground">@color/pickupBgColor</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="colorPrimary">@color/textColorPrimary</item>
     </style>
 
     <style name="Widget.CalendarView.Custom" parent="android:Widget.Holo.CalendarView">

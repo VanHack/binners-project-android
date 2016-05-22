@@ -71,8 +71,8 @@ public class TimePickerFragment extends Fragment implements RadialPickerLayout.O
 
 		View view = inflater.inflate(R.layout.pickup_timepicker, container, false);
 
-		selectedColor = Color.parseColor("#006de8");
-		unselectedColor = Color.parseColor("#7fb6f3");
+		selectedColor = Color.parseColor("#369a3f");
+		unselectedColor = Color.parseColor("#a5c7a6");
 
 		radialPickerLayout = (RadialPickerLayout) view.findViewById(R.id.pickup_time_picker);
 		hoursView = (TextView) view.findViewById(R.id.pickup_timepicker_hours);

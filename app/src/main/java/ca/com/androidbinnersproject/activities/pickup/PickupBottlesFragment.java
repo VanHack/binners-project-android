@@ -5,16 +5,21 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.Spinner;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import ca.com.androidbinnersproject.R;
@@ -22,11 +27,31 @@ import ca.com.androidbinnersproject.util.Logger;
 
 public class PickupBottlesFragment extends Fragment {
 
+	private Spinner spnNumberOfCans;
+
 	public static final int PictureRequestCode = 1;
 
 	private static final String PictureFolder = "BinnersApp";
 
+	private List<String> listCansInfo;
+
 	public PickupBottlesFragment() {
+	}
+
+	@Override
+	public void onCreate(@Nullable Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		listCansInfo = new ArrayList<>();
+
+		fillCansList();
+	}
+
+	private void fillCansList() {
+		listCansInfo.add("15 - 25 (about 2 grocery bags)");
+		listCansInfo.add("25 - 35 (about 4 grocery bags)");
+		listCansInfo.add("35 - 50 (1/2 garbage bag)");
+		listCansInfo.add("50+ (1 black garbage bag)");
 	}
 
 	@Override
@@ -44,6 +69,17 @@ public class PickupBottlesFragment extends Fragment {
 		});
 
 		return view;
+	}
+
+	@Override
+	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+
+		spnNumberOfCans = (Spinner) view.findViewById(R.id.fragment_pickup_bottles_spnNumberOfCans);
+
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, listCansInfo);
+
+		spnNumberOfCans.setAdapter(adapter);
 	}
 
 	private void takePicture() {

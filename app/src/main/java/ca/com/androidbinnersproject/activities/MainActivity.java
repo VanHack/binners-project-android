@@ -17,8 +17,6 @@ import ca.com.androidbinnersproject.util.Util;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, LeftNavigationDrawerMenu.FragmentDrawerListener {
 
-    private ImageButton btnSetDate;
-
     private Toolbar mToolbar;
     private LeftNavigationDrawerMenu mFragmentDrawer;
     private FrameLayout containerBody;
@@ -37,8 +35,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mFragmentDrawer = (LeftNavigationDrawerMenu) getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         mFragmentDrawer.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar, userLogged);
         mFragmentDrawer.setDrawerListener(this);
-
-        containerBody = (FrameLayout) findViewById(R.id.main_container_body);
 
         HomeScreenFragment homeScreenFragment = new HomeScreenFragment();
 

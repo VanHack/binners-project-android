@@ -49,4 +49,8 @@ public class Util
 
 		return preferences.getString(LoginActivity.PROFILE_EMAIL, "<>");
 	}
+
+	public static String getStringResource(Context context, int resId) {
+        return context.getString(resId);
+    }
 }
