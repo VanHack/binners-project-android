@@ -42,7 +42,6 @@ import ca.com.androidbinnersproject.activities.pickup.PickupActivity;
 
 public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 	private FragmentManager fm;
-
 	private SupportMapFragment mSupportMapFragment;
     private GoogleMap mMapView;
 	private MarkerOptions markerOptions;

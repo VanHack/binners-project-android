@@ -25,17 +25,24 @@
 
     </style>
 
-    <style name="PickupNoActionTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="PickupNoActionTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
         <item name="android:calendarViewStyle">@style/Widget.CalendarView.Custom</item>
-        <item name="android:windowBackground">@color/pickupBgColor</item>
-        <item name="android:textColorPrimary">@color/textColorPrimary</item>
-        <item name="colorPrimary">@color/textColorPrimary</item>
+        <item name="editTextStyle">@style/EditTextStyle</item>
     </style>
 
     <style name="Widget.CalendarView.Custom" parent="android:Widget.Holo.CalendarView">
         <item name="android:focusedMonthDateColor">@color/mediumGray</item>
         <item name="android:unfocusedMonthDateColor">@color/mediumGray</item>
         <item name="android:selectedDateVerticalBar">@color/backgroundApp</item>
+    </style>
+
+    <style name="EditTextStyle" parent="@android:style/Widget.EditText">
+        <item name="android:background">@color/whiteBackground</item>
+        <item name="android:textColor">#aae68a13</item>
+        <item name="android:textSize">14dp</item>
     </style>
 
 </resources>

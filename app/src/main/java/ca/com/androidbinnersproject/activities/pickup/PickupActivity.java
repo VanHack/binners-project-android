@@ -114,7 +114,8 @@ public class PickupActivity extends AppCompatActivity {
                 mToolbar.setTitle(Util.getStringResource(this, R.string.pickup_activity_title_instructions));
 			break;
 			case stageConfirm:
-                mToolbar.setTitle(Util.getStringResource(this, R.string.pickup_activity_title_confirm));
+				transaction.add(R.id.activity_pickup_container, new PickupReviewFragment());
+				mToolbar.setTitle(Util.getStringResource(this, R.string.pickup_activity_title_confirm));
 			break;
 		}
 		transaction.commit();

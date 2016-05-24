@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1">
 
+
         <RelativeLayout
             android:id="@+id/fragment_home_screen_map_container"
             android:layout_width="match_parent"

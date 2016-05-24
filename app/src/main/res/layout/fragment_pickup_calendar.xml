@@ -13,7 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/pickup_calendar_info"
-        android:textColor="@color/mediumGray"
         android:gravity="center_horizontal"
         android:textStyle="bold"/>
 
