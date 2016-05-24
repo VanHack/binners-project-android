@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="@string/pickup_additional_notes_infoOne"
-        android:textAppearance="?android:attr/textAppearanceMedium"
         android:textStyle="bold"
         app:layout_marginLeftPercent="6%"
         app:layout_marginRightPercent="6%"

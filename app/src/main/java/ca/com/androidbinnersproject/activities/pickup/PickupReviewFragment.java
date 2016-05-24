@@ -3,6 +3,8 @@ package ca.com.androidbinnersproject.activities.pickup;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,8 +39,24 @@ public class PickupReviewFragment extends Fragment {
     private void inicializarMapa() {
         String latEiffelTower = "48.858235";
         String lngEiffelTower = "2.294571";
-        String url = "http://maps.google.com/maps/api/staticmap?center=" + latEiffelTower + "," + lngEiffelTower + "&zoom=15&size=200x200&sensor=true";
 
-        Glide.with(getContext()).load(url).into(imgStaticMap);
+        DisplayMetrics metrics = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        int widthPixels = metrics.widthPixels; // Always 100%
+        int heightPixels = (metrics.heightPixels * 40) / 100 ; // 40%
+
+        StringBuilder sbMapRequestRender = new StringBuilder();
+        sbMapRequestRender.append("http://maps.google.com/maps/api/staticmap?center=")
+                .append(latEiffelTower)
+                .append(",")
+                .append(lngEiffelTower)
+                .append("&zoom=15")
+                .append("&size=")
+                .append(widthPixels)
+                .append("x")
+                .append(heightPixels)
+                .append("&sensor=true");
+
+        Glide.with(getContext()).load(sbMapRequestRender.toString()).into(imgStaticMap);
     }
 }

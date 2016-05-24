@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.android.datetimepicker.HapticFeedbackController;
 import com.android.datetimepicker.Utils;
 import com.android.datetimepicker.time.RadialPickerLayout;
-import com.android.datetimepicker.time.TimePickerDialog;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -69,7 +68,7 @@ public class TimePickerFragment extends Fragment implements RadialPickerLayout.O
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-		View view = inflater.inflate(R.layout.pickup_timepicker, container, false);
+		View view = inflater.inflate(R.layout.fragment_pickup_timepicker, container, false);
 
 		selectedColor = Color.parseColor("#369a3f");
 		unselectedColor = Color.parseColor("#a5c7a6");

@@ -4,16 +4,6 @@
              android:layout_height="match_parent"
              tools:context="ca.com.androidbinnersproject.activities.pickup.PickupBottlesFragment"
              android:orientation="vertical">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        android:gravity="center"
-        android:text="BOTTLES"
-        android:textSize="35sp"
-        android:layout_marginTop="10dp"/>
-
     <Space
         android:layout_width="wrap_content"
         android:layout_height="20dp"/>
@@ -21,22 +11,19 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
         android:gravity="center"
         android:text="@string/pickup_bottles_top"
-        android:textSize="18sp"/>
+        android:textStyle="bold" />
 
     <Space
         android:layout_width="wrap_content"
-        android:layout_height="20dp"/>
+        android:layout_height="5dp"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
         android:gravity="center"
-        android:text="@string/pickup_bottles_advice"
-        android:textSize="15sp"/>
+        android:text="@string/pickup_bottles_advice" />
 
     <Space
         android:layout_width="wrap_content"
@@ -50,7 +37,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
             android:gravity="left"
             android:text="@string/pickup_bottles_numberofbottles"
             android:textSize="15sp"/>
@@ -80,7 +66,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="or"
-                android:textColor="@android:color/black"
+
                 android:gravity="center"
                 android:layout_weight="1"
                 android:textSize="20sp"/>
