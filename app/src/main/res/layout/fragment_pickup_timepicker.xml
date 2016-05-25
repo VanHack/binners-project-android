@@ -5,23 +5,12 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@color/circle_background">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TIME"
-        android:gravity="center"
-        android:background="@color/circle_background"
-        android:textColor="@android:color/black"
-        android:textSize="40sp"/>
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:text="@string/pickup_time_instructions"
+        android:textStyle="bold"
         android:background="@color/circle_background"
-        android:textColor="@android:color/black"
-        android:textSize="15sp"
         android:gravity="center"/>
 
     <FrameLayout

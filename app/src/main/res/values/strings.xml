@@ -70,7 +70,7 @@
     <string name="pickup_instructions_hint">E.g. Hey! I\'ve left my bottles and cans for you by the recycling bin in the alleyway</string>
 
     <string name="pickup_bottles_top">Give us a rough estimate of how many\nredeemables you have for pick-up</string>
-    <string name="pickup_bottles_advice">No less than 15 bottles please</string>
+    <string name="pickup_bottles_advice">(No less than 15 bottles please)</string>
     <string name="pickup_bottles_numberofbottles">Number of bottles</string>
     <string name="pickup_bottles_takepicture">Take a picture</string>
     <string name="pickup_bottles_uploadpicture">Upload a picture</string>
@@ -81,5 +81,17 @@
     <string name="home_screen_toolbar_pickup_title">New Pickup</string>
     <string name="home_screen_toolbar_notifications_title">Notifications</string>
     <string name="home_screen_toolbar_donate_title">Donate</string>
+    <string name="search_hint">Search on Maps</string>
+    <string name="pickup_activity_title_date">Set Date</string>
+    <string name="pickup_activity_title_time">Set Time</string>
+    <string name="pickup_activity_title_bottles">Quantity</string>
+    <string name="pickup_activity_title_instructions">Instructions</string>
+    <string name="pickup_activity_title_confirm">Review your information</string>
+    <string name="pickup_review_label_location">Pick-Up Location</string>
+    <string name="pickup_review_label_time">Time</string>
+    <string name="pickup_review_label_date">Date</string>
+    <string name="pickup_review_label_canAndBottles">Number of Cans and Bottles</string>
+    <string name="pickup_review_label_instructions">Instructions</string>
+    <string name="pickup_review_btnPostPickup">Post your pick-up!</string>
 
 </resources>

@@ -3,7 +3,6 @@ package ca.com.androidbinnersproject.activities.pickup;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
@@ -12,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,7 +41,7 @@ public class SelectDateFragment extends Fragment implements View.OnClickListener
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.pickup_calendar, container, false);
+        View view = inflater.inflate(R.layout.fragment_pickup_calendar, container, false);
 
         txtDayOfWeek = (TextView) view.findViewById(R.id.select_date_activity_txtDayOfWeek);
         txtDayOfMonth = (TextView) view.findViewById(R.id.select_date_activity_txtDayOfMonth);
