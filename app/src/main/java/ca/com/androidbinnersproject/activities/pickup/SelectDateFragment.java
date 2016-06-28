@@ -1,8 +1,8 @@
 package ca.com.androidbinnersproject.activities.pickup;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
@@ -17,11 +17,13 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 import ca.com.androidbinnersproject.R;
+import ca.com.androidbinnersproject.models.Pickup;
+import ca.com.androidbinnersproject.util.Util;
 
 /**
  * Created by jonathan_campos on 02/03/2016.
  */
-public class SelectDateFragment extends Fragment implements View.OnClickListener {
+public class SelectDateFragment extends PickupBaseFragment implements View.OnClickListener {
 
     private TextView txtDayOfWeek;
     private TextView txtDayOfMonth;
@@ -37,6 +39,16 @@ public class SelectDateFragment extends Fragment implements View.OnClickListener
     private String[] months;
 
     private Calendar superCalendar = Calendar.getInstance();
+
+    private Pickup mPickup;
+
+    public static PickupBaseFragment newInstance(Context context, Pickup pickupModel) {
+        PickupBaseFragment fragment = new SelectDateFragment();
+        fragment.setPickupModel(pickupModel);
+        fragment.setTitle(Util.getStringResource(context, R.string.pickup_activity_title_date));
+
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -165,4 +177,8 @@ public class SelectDateFragment extends Fragment implements View.OnClickListener
         }
     }
 
+    @Override
+    protected boolean isValid() {
+        return true;
+    }
 }
