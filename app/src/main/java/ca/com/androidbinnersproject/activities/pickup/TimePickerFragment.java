@@ -2,9 +2,9 @@
 package ca.com.androidbinnersproject.activities.pickup;
 
 import android.animation.ObjectAnimator;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +18,10 @@ import java.util.Calendar;
 import java.util.Locale;
 
 import ca.com.androidbinnersproject.R;
+import ca.com.androidbinnersproject.models.Pickup;
+import ca.com.androidbinnersproject.util.Util;
 
-public class TimePickerFragment extends Fragment implements RadialPickerLayout.OnValueSelectedListener {
+public class TimePickerFragment extends PickupBaseFragment implements RadialPickerLayout.OnValueSelectedListener {
 
 	private final String TimeFormat = "HH:mm";
 	private static final String AM_Text = "AM";
@@ -47,6 +49,14 @@ public class TimePickerFragment extends Fragment implements RadialPickerLayout.O
 	private boolean allowAutoAdvance = true;
 
 	public TimePickerFragment() {
+	}
+
+	public static PickupBaseFragment newInstance(Context context, Pickup pickupModel) {
+		PickupBaseFragment fragment = new TimePickerFragment();
+		fragment.setPickupModel(pickupModel);
+		fragment.setTitle(Util.getStringResource(context, R.string.pickup_activity_title_time));
+
+		return fragment;
 	}
 
 	public static TimePickerFragment newInstance(int hourOfDay, int minute, boolean is24HourMode) {
@@ -225,5 +235,10 @@ public class TimePickerFragment extends Fragment implements RadialPickerLayout.O
 			checkedMaxMinute = (value <= 59);
 
 		return checkedMinMinute && checkedMaxMinute;
+	}
+
+	@Override
+	protected boolean isValid() {
+		return true;
 	}
 }

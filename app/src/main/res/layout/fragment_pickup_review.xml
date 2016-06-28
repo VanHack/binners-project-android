@@ -150,7 +150,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/pickup_review_btnPostPickup"
-                android:background="@drawable/rounded_corners_background_app"
+                android:background="@drawable/green_button_selector"
                 android:textColor="@color/whiteBackground"
                 android:textSize="14sp"
                 android:layout_marginTop="25dp"/>
