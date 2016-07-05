@@ -3,12 +3,14 @@ package ca.com.androidbinnersproject.activities;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 import android.widget.ViewSwitcher;
@@ -42,8 +44,6 @@ public class LoginActivity extends AppCompatActivity implements OnAuthListener, 
 
 	private Authentication authentication;
 
-	private ViewSwitcher vsBinnerResident;
-
 	private Button btnGoogle;
 	private Button btnFacebook;
 	private Button btnTwitter;
@@ -54,16 +54,12 @@ public class LoginActivity extends AppCompatActivity implements OnAuthListener, 
 	private EditText edtEmail;
 	private EditText edtPassword;
 
-	private ToggleButton binnerResidentSelector;
-
 	private ProgressDialog mProgressDialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
-
-		vsBinnerResident = (ViewSwitcher) findViewById(R.id.login_vs_binner_resident);
 
 		btnGoogle = (Button) findViewById(R.id.login_button_google);
 		btnFacebook = (Button) findViewById(R.id.login_button_fb);
@@ -75,7 +71,15 @@ public class LoginActivity extends AppCompatActivity implements OnAuthListener, 
 		edtEmail = (EditText) findViewById(R.id.login_email_field);
 		edtPassword = (EditText) findViewById(R.id.login_password_field);
 
-		binnerResidentSelector = (ToggleButton) findViewById(R.id.login_binner_resident_selector);
+		Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/oxygen.otf");
+
+		if(typeface != null)
+		{
+			TextView residentLabel = (TextView) findViewById(R.id.login_binners_resident_label);
+
+			if(residentLabel != null)
+				residentLabel.setTypeface(typeface);
+		}
 
 		keyManager = new KeyManager(getResources());
 
@@ -87,6 +91,12 @@ public class LoginActivity extends AppCompatActivity implements OnAuthListener, 
 		showAboutAppUI();
 	}
 
+	@Override
+	protected void onResume() {
+		super.onResume();
+		dismissPDialog();
+	}
+
 	/**
 	 * The intent AboutAppActivity will be shown before the login UI
 	 */
@@ -96,17 +106,6 @@ public class LoginActivity extends AppCompatActivity implements OnAuthListener, 
 	}
 
 	private void initListeners() {
-
-		binnerResidentSelector.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-			@Override
-			public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
-				if(checked) {
-					vsBinnerResident.showPrevious();
-				} else {
-					vsBinnerResident.showNext();
-				}
-			}
-		});
 
 		btnGoogle.setOnClickListener(this);
 		btnFacebook.setOnClickListener(this);
@@ -203,9 +202,9 @@ public class LoginActivity extends AppCompatActivity implements OnAuthListener, 
 
 	@Override
 	public void onClick(View view) {
+
 		if(!Util.hasInternetConnection(LoginActivity.this)) {
 			Toast.makeText(LoginActivity.this, R.string.has_no_connection, Toast.LENGTH_SHORT).show();
-
 			return;
 		}
 
@@ -214,32 +213,27 @@ public class LoginActivity extends AppCompatActivity implements OnAuthListener, 
 		switch(view.getId()) {
 
 			case R.id.login_button_fb:
-				if(authentication == null && !(authentication instanceof FacebookAuth))
+				if(authentication == null || !(authentication instanceof FacebookAuth))
 					authentication = new FacebookAuth(LoginActivity.this, LoginActivity.this, keyManager);
-				authentication.login();
-				break;
+			break;
 
 			case R.id.login_button_twitter:
-				if(authentication == null && !(authentication instanceof TwitterAuth))
+				if(authentication == null || !(authentication instanceof TwitterAuth))
 					authentication = new TwitterAuth(LoginActivity.this, LoginActivity.this, keyManager);
-				authentication.login();
-				break;
+			break;
 
 			case R.id.login_button_google:
-				if(authentication == null && !(authentication instanceof GoogleAuth))
+				if(authentication == null || !(authentication instanceof GoogleAuth))
 					authentication = new GoogleAuth(LoginActivity.this, LoginActivity.this, keyManager);
-				authentication.login();
-				break;
+			break;
 
 			case R.id.login_login_button:
 				if(isEditFilled()) {
 					if(Util.isEmailValid(edtEmail.getText().toString())) {
 						authentication = new AppAuth(LoginActivity.this, edtEmail.getText().toString(), edtPassword.getText().toString(), LoginActivity.this);
-
-						authentication.login();
 					} else {
-						Toast.makeText(LoginActivity.this, getApplicationContext().getString(R.string.invalid_email), Toast.LENGTH_SHORT).show();
 						dismissPDialog();
+						Toast.makeText(LoginActivity.this, getApplicationContext().getString(R.string.invalid_email), Toast.LENGTH_SHORT).show();
 					}
 				} else {
 					dismissPDialog();
@@ -247,5 +241,7 @@ public class LoginActivity extends AppCompatActivity implements OnAuthListener, 
 				}
 				break;
 		}
+
+		authentication.login();
 	}
 }
