@@ -1,26 +1,34 @@
 package ca.com.androidbinnersproject.activities.pickup;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.BitmapImageViewTarget;
 
 import ca.com.androidbinnersproject.R;
+import ca.com.androidbinnersproject.models.Pickup;
+import ca.com.androidbinnersproject.util.Util;
 
 /**
  * Created by jonathan_campos on 22/05/2016.
  */
-public class PickupReviewFragment extends Fragment {
+public class PickupReviewFragment extends PickupBaseFragment {
 
     private ImageView imgStaticMap;
+
+    public static PickupBaseFragment newInstance(Context context, Pickup pickupModel) {
+        PickupBaseFragment fragment = new PickupReviewFragment();
+        fragment.setPickupModel(pickupModel);
+        fragment.setTitle(Util.getStringResource(context, R.string.pickup_activity_title_confirm));
+
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -58,5 +66,12 @@ public class PickupReviewFragment extends Fragment {
                 .append("&sensor=true");
 
         Glide.with(getContext()).load(sbMapRequestRender.toString()).into(imgStaticMap);
+    }
+
+
+
+    @Override
+    protected boolean isValid() {
+        return false;
     }
 }

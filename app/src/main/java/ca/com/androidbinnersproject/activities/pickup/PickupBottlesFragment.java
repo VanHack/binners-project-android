@@ -1,17 +1,16 @@
 package ca.com.androidbinnersproject.activities.pickup;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Spinner;
 
@@ -23,9 +22,11 @@ import java.util.List;
 import java.util.Locale;
 
 import ca.com.androidbinnersproject.R;
+import ca.com.androidbinnersproject.models.Pickup;
 import ca.com.androidbinnersproject.util.Logger;
+import ca.com.androidbinnersproject.util.Util;
 
-public class PickupBottlesFragment extends Fragment {
+public class PickupBottlesFragment extends PickupBaseFragment {
 
 	private Spinner spnNumberOfCans;
 
@@ -36,6 +37,14 @@ public class PickupBottlesFragment extends Fragment {
 	private List<String> listCansInfo;
 
 	public PickupBottlesFragment() {
+	}
+
+	public static PickupBaseFragment newInstance(Context context, Pickup pickupModel) {
+		PickupBaseFragment fragment = new PickupBottlesFragment();
+		fragment.setPickupModel(pickupModel);
+		fragment.setTitle(Util.getStringResource(context, R.string.pickup_activity_title_bottles));
+
+		return fragment;
 	}
 
 	@Override
@@ -120,5 +129,10 @@ public class PickupBottlesFragment extends Fragment {
 		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.CANADA).format(new Date());
 
 		return new File(imagesDir.getPath() + File.separator + "IMG_" + timeStamp + ".jpg");
+	}
+
+	@Override
+	protected boolean isValid() {
+		return true;
 	}
 }

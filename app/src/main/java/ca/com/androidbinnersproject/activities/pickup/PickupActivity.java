@@ -11,114 +11,85 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ca.com.androidbinnersproject.R;
+import ca.com.androidbinnersproject.models.Pickup;
 import ca.com.androidbinnersproject.util.Logger;
 import ca.com.androidbinnersproject.util.Util;
 
-public class PickupActivity extends AppCompatActivity {
+public class PickupActivity extends AppCompatActivity implements View.OnClickListener {
 
 	private Toolbar mToolbar;
 	private Button btnNextButton;
     private Button btnBackButton;
     private FrameLayout container;
 
-    private double mLatitude;
-    private double mLongitude;
-    private int currentStage;
+	private List<PickupBaseFragment> mFragments;
 
-    public static final int stageDate = 0;
-    public static final int stageTime = 1;
-    public static final int stageBottles = 2;
-    public static final int stageInstructions = 3;
-    public static final int stageConfirm = 4;
-    public static final int stageLast = 4; //value of last stage
+	private int indexFragment = -1;
+
+	private Pickup mPickupModel;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_pickup);
 
-		mLatitude = getIntent().getDoubleExtra("LAT", 0);
-		mLongitude = getIntent().getDoubleExtra("LON", 0);
 
-		Toast.makeText(PickupActivity.this, "Latitude: " + mLatitude + " Longitude: " + mLongitude, Toast.LENGTH_LONG).show();
+		mToolbar   = (Toolbar) findViewById(R.id.activity_pickup_toolbar);
+		btnNextButton = (Button) findViewById(R.id.activity_pickup_next_button);
+		btnBackButton = (Button) findViewById(R.id.activity_pickup_back_button);
+		container = (FrameLayout) findViewById(R.id.activity_pickup_container);
 
+		btnNextButton.setOnClickListener(this);
+		btnBackButton.setOnClickListener(this);
 
-        mToolbar   = (Toolbar) findViewById(R.id.activity_pickup_toolbar);
-        btnNextButton = (Button) findViewById(R.id.activity_pickup_next_button);
-        btnBackButton = (Button) findViewById(R.id.activity_pickup_back_button);
-        container = (FrameLayout) findViewById(R.id.activity_pickup_container);
+		initializePickupModel(getIntent().getDoubleExtra("LAT", 0), getIntent().getDoubleExtra("LON", 0));
 
-        View.OnClickListener buttonListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(v.getId() == R.id.activity_pickup_next_button) {
-
-                    if(currentStage > stageLast)
-                        finishedPickUp();
-                    else
-                        setFragmentStage(currentStage + 1);
-
-                } else {
-
-                    if(currentStage <= 0)
-                        abortPickUp();
-                    else
-                        setFragmentStage(currentStage - 1);
-
-                }
-            }
-        };
-        btnNextButton.setOnClickListener(buttonListener);
-		btnBackButton.setOnClickListener(buttonListener);
+		initializeFragments(mPickupModel);
 	}
 
-    @Override
-    protected void onStart() {
-        super.onStart();
+	private void initializePickupModel(double mLatitude, double mLongitude) {
+		mPickupModel = new Pickup();
+		mPickupModel.setLatitude(mLatitude);
+		mPickupModel.setLongitude(mLongitude);
+	}
 
-        currentStage = -1;
-        setFragmentStage(stageDate);
-    }
+	private void initializeFragments(Pickup pickupModel) {
+		mFragments = new ArrayList<>();
+		mFragments.add(SelectDateFragment.newInstance(this, pickupModel));
+		mFragments.add(TimePickerFragment.newInstance(this, pickupModel));
+		mFragments.add(PickupBottlesFragment.newInstance(this, pickupModel));
+		mFragments.add(PickupInstructionsFragment.newInstance(this, pickupModel));
+		mFragments.add(PickupReviewFragment.newInstance(this, pickupModel));
 
-    private void setFragmentStage(int stage) {
+		changeFragment(Action.NEXT);
+	}
 
-		if(currentStage == stage)
-			return;
+	private void changeFragment(Action action) {
+		boolean hasChanged = false;
 
-		currentStage = stage;
-
-		if(container != null && container.getChildCount() > 0)
-			container.removeAllViews();
-
-		FragmentManager fragmentManager = getSupportFragmentManager();
-		FragmentTransaction transaction = fragmentManager.beginTransaction();
-
-		//TODO cache fragment state to avoid state loss between stage switches
-		switch(currentStage) {
-			case stageDate:
-				transaction.add(R.id.activity_pickup_container, new SelectDateFragment());
-                mToolbar.setTitle(Util.getStringResource(this, R.string.pickup_activity_title_date));
-			break;
-			case stageTime:
-				transaction.add(R.id.activity_pickup_container, new TimePickerFragment());
-                mToolbar.setTitle(Util.getStringResource(this, R.string.pickup_activity_title_time));
-			break;
-			case stageBottles:
-				transaction.add(R.id.activity_pickup_container, new PickupBottlesFragment());
-                mToolbar.setTitle(Util.getStringResource(this, R.string.pickup_activity_title_bottles));
-			break;
-			case stageInstructions:
-				transaction.add(R.id.activity_pickup_container, new PickupInstructionsFragment());
-                mToolbar.setTitle(Util.getStringResource(this, R.string.pickup_activity_title_instructions));
-			break;
-			case stageConfirm:
-				transaction.add(R.id.activity_pickup_container, new PickupReviewFragment());
-				mToolbar.setTitle(Util.getStringResource(this, R.string.pickup_activity_title_confirm));
-			break;
+		if (action.ordinal() == Action.NEXT.ordinal()) {
+			if (indexFragment < (mFragments.size() - 1)) {
+				incrementIndex();
+				hasChanged = true;
+			}
+		} else {
+			if (indexFragment > 0) {
+				decrementIndex();
+				hasChanged = true;
+			}
 		}
-		transaction.commit();
+
+		if (hasChanged) {
+			mToolbar.setTitle(mFragments.get(indexFragment).getTitle());
+
+			FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+			ft.replace(R.id.activity_pickup_container, mFragments.get(indexFragment));
+			ft.commit();
+		}
 	}
 
 	private void finishedPickUp() {
@@ -141,5 +112,46 @@ public class PickupActivity extends AppCompatActivity {
 		}
 
 		super.onActivityResult(requestCode, resultCode, data);
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+			case R.id.activity_pickup_back_button: {
+				changeFragment(Action.BACK);
+			}
+			break;
+			case R.id.activity_pickup_next_button: {
+				PickupBaseFragment currentFragment = mFragments.get(indexFragment);
+
+				if(currentFragment.isValid()) {
+					changeFragment(Action.NEXT);
+				} else {
+					Toast.makeText(PickupActivity.this, "Cannot change!", Toast.LENGTH_SHORT).show();
+				}
+			}
+			break;
+		}
+	}
+
+	private void decrementIndex() {
+		indexFragment--;
+
+		if(indexFragment >= mFragments.size() -2) {
+			btnNextButton.setText("Next");
+		}
+	}
+
+	private void incrementIndex() {
+		indexFragment++;
+
+		if(indexFragment >= mFragments.size() -1) {
+			btnNextButton.setText("Finish");
+		}
+	}
+
+	public enum Action {
+		BACK,
+		NEXT;
 	}
 }
