@@ -14,13 +14,13 @@ public class StartAppActivity extends Activity {
 
 		Intent intent = new Intent();
 
-		if(isLogged()) {
+//		if(isLogged()) {
 			intent.setClass(this, MainActivity.class);
-		}  else {
-			intent.setClass(this, LoginActivity.class);
-			startActivityForResult(intent, LoginActivity.FROM_LOGIN);
-			return;
-		}
+//		}  else {
+//			intent.setClass(this, LoginActivity.class);
+//			startActivityForResult(intent, LoginActivity.FROM_LOGIN);
+//			return;
+//		}
 
 		startActivity(intent);
     }
