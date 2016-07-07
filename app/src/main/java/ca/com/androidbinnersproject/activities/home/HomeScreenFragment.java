@@ -115,7 +115,9 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, 
 		mToolbarBottom.findViewById(R.id.toolbar_bottom_btnOngoing).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				fm.beginTransaction().replace(R.id.fragment_home_screen_map_container, OngoingPickupsFragment.newInstance()).commit();
+				fm.beginTransaction()
+						.replace(R.id.fragment_home_screen_map_container, OngoingPickupsFragment.newInstance())
+						.commit();
 			}
 		});
 

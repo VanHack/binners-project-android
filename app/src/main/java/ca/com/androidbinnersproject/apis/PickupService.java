@@ -39,14 +39,14 @@ public class PickupService extends BaseAPI {
         return null;
     }
 
-    public List<Pickup> getPickupsDataTest(User user) {
-        List<Pickup> pickups = new ArrayList<Pickup>();
+    public ArrayList<Pickup> getPickupsDataTest() {
+        ArrayList<Pickup> pickups = new ArrayList<Pickup>();
         Pickup pickup1 = new Pickup();
         pickup1.setDateTime(Calendar.getInstance());
         pickup1.setInstructions("Pickup em Salvador-BA.");
         pickup1.setLatitude(-12.9243275);
         pickup1.setLongitude(-38.4863661);
-        pickup1.setUserID(user.getId());
+//        pickup1.setUserID(user.getId());
         pickups.add(pickup1);
         
         Pickup pickup2 = new Pickup();
@@ -54,7 +54,7 @@ public class PickupService extends BaseAPI {
         pickup2.setInstructions("Pickup em Barreiras-BA.");
         pickup2.setLatitude(-12.14966578);
         pickup2.setLongitude(-44.99842627);
-        pickup2.setUserID(user.getId());
+//        pickup2.setUserID(user.getId());
         pickups.add(pickup2);
 
         return pickups;
