@@ -33,7 +33,7 @@ public class PickupInstructionsFragment extends PickupBaseFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_pickup_additional_notes, container, false);
 
-		EditText edtAdditionalInformation = (EditText) view.findViewById(R.id.pickup_additional_notes_edtInformation);
+		edtAdditionalInformation = (EditText) view.findViewById(R.id.pickup_additional_notes_edtInformation);
 
 		return view;
 	}
@@ -55,7 +55,8 @@ public class PickupInstructionsFragment extends PickupBaseFragment {
 
 			@Override
 			public void afterTextChanged(Editable s) {
-				setInstructions(s.toString());
+				if(s != null)
+					setInstructions(s.toString());
 			}
 		});
 	}

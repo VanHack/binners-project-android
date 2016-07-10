@@ -22,6 +22,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -60,6 +61,8 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, 
 
 	@Override
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+
 		mToolbarBottom = (Toolbar) view.findViewById(R.id.home_screen_include_toolbar);
 		edtSearch      = (SearchView) view.findViewById(R.id.fragment_home_screen_edtSearch);
 
@@ -84,9 +87,7 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, 
 			}
 		});
 
-
-
-		super.onViewCreated(view, savedInstanceState);
+		getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 	}
 
 	/*

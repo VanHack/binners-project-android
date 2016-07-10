@@ -51,7 +51,8 @@
 
         <activity
             android:name=".activities.MainActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden"/>
 
         <activity
             android:name=".activities.LoginActivity"
