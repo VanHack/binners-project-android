@@ -38,9 +38,7 @@ public class SelectDateFragment extends PickupBaseFragment implements View.OnCli
     private String[] daysOfWeek;
     private String[] months;
 
-    private Calendar superCalendar = Calendar.getInstance();
-
-    private Pickup mPickup;
+    private Calendar mCalendar = Calendar.getInstance();
 
     public static PickupBaseFragment newInstance(Context context, Pickup pickupModel) {
         PickupBaseFragment fragment = new SelectDateFragment();
@@ -80,7 +78,14 @@ public class SelectDateFragment extends PickupBaseFragment implements View.OnCli
     @Override
     public void onStart() {
         super.onStart();
-        updateViews(superCalendar);
+
+        if(super.getDate() == null) {
+            super.setDate(mCalendar);
+            updateViews(mCalendar);
+
+        } else {
+            updateViews(super.getDate());
+        }
     }
 
     private void initializeCalendar() {
@@ -105,11 +110,11 @@ public class SelectDateFragment extends PickupBaseFragment implements View.OnCli
             @Override
             public void onSelectedDayChange(CalendarView calendarView, int year, int month, int day) {
                 if (isValid(year, month, day)) {
-                    superCalendar.set(year, month, day);
-                    updateViews(superCalendar);
+                    mCalendar.set(year, month, day);
+                    updateViews(mCalendar);
 
                 } else {
-                    calendarView.setDate(superCalendar.getTime().getTime());
+                    calendarView.setDate(mCalendar.getTime().getTime());
                     Toast.makeText(getActivity(), "Not Allowed", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -125,6 +130,8 @@ public class SelectDateFragment extends PickupBaseFragment implements View.OnCli
         txtDayOfWeek.setText(dayOfWeek);
         txtDayOfMonth.setText(String.valueOf(day));
         txtMonth.setText(getFormattedMonth(month, year));
+
+        mCalendarView.setDate(calendar.getTime().getTime());
     }
 
     public SpannableString getFormattedMonth(String month, int year) {
@@ -151,7 +158,7 @@ public class SelectDateFragment extends PickupBaseFragment implements View.OnCli
 
     @Override
     public void onClick(View view) {
-        Calendar calClone = (Calendar) superCalendar.clone();
+        Calendar calClone = (Calendar) mCalendar.clone();
 
         switch(view.getId()) {
             case R.id.select_date_activity_btnPreviousDay:{
@@ -169,10 +176,10 @@ public class SelectDateFragment extends PickupBaseFragment implements View.OnCli
         }
 
         if(isValid(calClone.get(Calendar.YEAR), calClone.get(Calendar.MONTH), calClone.get(Calendar.DAY_OF_MONTH))) {
-            superCalendar = calClone;
-            mCalendarView.setDate(superCalendar.getTime().getTime());
+            mCalendar = calClone;
+            mCalendarView.setDate(mCalendar.getTime().getTime());
         } else {
-            mCalendarView.setDate(superCalendar.getTime().getTime());
+            mCalendarView.setDate(mCalendar.getTime().getTime());
             Toast.makeText(getActivity(), "Not Allowed", Toast.LENGTH_SHORT).show();
         }
     }
