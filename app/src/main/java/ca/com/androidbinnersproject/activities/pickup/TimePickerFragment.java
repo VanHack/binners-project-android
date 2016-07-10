@@ -136,9 +136,11 @@ public class TimePickerFragment extends PickupBaseFragment implements RadialPick
 		if (amOrPm == AM) {
 			ampmLabel.setText(AM_Text);
 			ampmHitspace.setContentDescription(AM_Text);
+			super.getDate().set(Calendar.AM_PM, Calendar.AM);
 		} else if (amOrPm == PM){
 			ampmLabel.setText(PM_Text);
 			ampmHitspace.setContentDescription(PM_Text);
+			super.getDate().set(Calendar.AM_PM, Calendar.PM);
 		} else {
 			ampmLabel.setText("--");
 		}
@@ -203,8 +205,15 @@ public class TimePickerFragment extends PickupBaseFragment implements RadialPick
 		if (value == 0)
 			value = 12;
 
+		updateBaseHourCalendar(value);
+
 		CharSequence text = String.format(format, value);
 		hoursView.setText(text);
+	}
+
+	private void updateBaseHourCalendar(final int hour) {
+		Calendar cal = super.getDate();
+		cal.set(Calendar.HOUR, hour);
 	}
 
 	private void setMinute(int value) {
@@ -212,9 +221,16 @@ public class TimePickerFragment extends PickupBaseFragment implements RadialPick
 		if (value == 60)
 			value = 0;
 
+		updateBaseMinuteCalendar(value);
+
 		CharSequence text = String.format(Locale.getDefault(), "%02d", value);
 
 		minutesView.setText(text);
+	}
+
+	private void updateBaseMinuteCalendar(int minute) {
+		Calendar cal = super.getDate();
+		cal.set(Calendar.MINUTE, minute);
 	}
 
 	private boolean valueRespectsHoursConstraint(int value) {
@@ -239,6 +255,11 @@ public class TimePickerFragment extends PickupBaseFragment implements RadialPick
 
 	@Override
 	protected boolean isValid() {
-		return true;
+		Calendar baseCal = super.getDate();
+
+		if(baseCal != null)
+			return true;
+
+		return false;
 	}
 }
