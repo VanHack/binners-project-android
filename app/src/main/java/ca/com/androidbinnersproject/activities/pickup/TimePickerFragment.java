@@ -136,10 +136,12 @@ public class TimePickerFragment extends PickupBaseFragment implements RadialPick
 		if (amOrPm == AM) {
 			ampmLabel.setText(AM_Text);
 			ampmHitspace.setContentDescription(AM_Text);
+			radialPickerLayout.setAmOrPm(amOrPm);
 			super.getDate().set(Calendar.AM_PM, Calendar.AM);
 		} else if (amOrPm == PM){
 			ampmLabel.setText(PM_Text);
 			ampmHitspace.setContentDescription(PM_Text);
+			radialPickerLayout.setAmOrPm(amOrPm);
 			super.getDate().set(Calendar.AM_PM, Calendar.PM);
 		} else {
 			ampmLabel.setText("--");

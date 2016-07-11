@@ -7,9 +7,12 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+
+import java.util.Calendar;
 
 import ca.com.androidbinnersproject.R;
 import ca.com.androidbinnersproject.models.Pickup;
@@ -21,6 +24,10 @@ import ca.com.androidbinnersproject.util.Util;
 public class PickupReviewFragment extends PickupBaseFragment {
 
     private ImageView imgStaticMap;
+    private EditText edtLocation;
+    private EditText edtTime;
+    private EditText edtDate;
+    private EditText edtInstructions;
 
     public static PickupBaseFragment newInstance(Context context, Pickup pickupModel) {
         PickupBaseFragment fragment = new PickupReviewFragment();
@@ -38,13 +45,31 @@ public class PickupReviewFragment extends PickupBaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         imgStaticMap = (ImageView) view.findViewById(R.id.fragment_pickup_review_imgStaticMap);
+        edtLocation  = (EditText) view.findViewById(R.id.fragment_pickup_review_edtLocation);
+        edtTime      = (EditText) view.findViewById(R.id.fragment_pickup_review_edtTime);
+        edtDate      = (EditText) view.findViewById(R.id.fragment_pickup_review_edtDate);
+        edtInstructions= (EditText) view.findViewById(R.id.fragment_pickup_review_edtInstructions);
 
-        inicializarMapa();
+        initializeStaticMap();
 
         super.onViewCreated(view, savedInstanceState);
     }
 
-    private void inicializarMapa() {
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        fillPickupInformation();
+    }
+
+    private void fillPickupInformation() {
+        edtLocation.setText("");
+        edtTime.setText(Util.getTimeFormated(getDate()));
+        edtDate.setText(Util.getDateFormated(getDate()));
+        edtInstructions.setText(getInstructions());
+    }
+
+    private void initializeStaticMap() {
         String latEiffelTower = "48.858235";
         String lngEiffelTower = "2.294571";
 
