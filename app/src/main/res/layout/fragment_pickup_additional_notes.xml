@@ -37,7 +37,6 @@
         android:hint="@string/pickup_additional_notes_hint"
         android:inputType="textMultiLine"
         android:background="@color/whiteBackground"
-        android:textSize="14sp"
         app:layout_marginBottomPercent="10%"
         app:layout_marginLeftPercent="6%"
         app:layout_marginRightPercent="6%"

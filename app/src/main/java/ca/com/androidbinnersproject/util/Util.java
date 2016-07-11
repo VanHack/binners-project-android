@@ -8,6 +8,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import ca.com.androidbinnersproject.activities.LoginActivity;
 
 public class Util
@@ -53,4 +56,18 @@ public class Util
 	public static String getStringResource(Context context, int resId) {
         return context.getString(resId);
     }
+
+	public static String getTimeFormated(Calendar cal) {
+		if(cal != null) {
+			return new SimpleDateFormat("HH:mm").format(cal.getTime());
+		}
+		return "";
+	}
+
+	public static String getDateFormated(Calendar cal) {
+		if(cal != null) {
+			return new SimpleDateFormat("dd/MM/yyyy").format(cal.getTime());
+		}
+		return "";
+	}
 }
