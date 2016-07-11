@@ -21,6 +21,16 @@
         android:src="@drawable/logo"
         app:layout_marginTopPercent="2%" />
 
+    <TextView
+        android:id="@+id/login_binners_resident_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login_binners_logo"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:text="Resident" />
+
+    <!--
     <ToggleButton
         android:id="@+id/login_binner_resident_selector"
         android:layout_width="wrap_content"
@@ -36,12 +46,13 @@
         app:layout_marginRightPercent="10%"
         app:layout_marginTopPercent="8%"
         app:layout_widthPercent="80%" />
+    -->
 
     <ViewSwitcher
         android:id="@+id/login_vs_binner_resident"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/login_binner_resident_selector">
+        android:layout_below="@id/login_binners_logo">
 
         <android.support.percent.PercentRelativeLayout
             android:layout_width="match_parent"
