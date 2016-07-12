@@ -1,5 +1,7 @@
 package ca.com.androidbinnersproject.models;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.Calendar;
 
 /**
@@ -11,6 +13,7 @@ public class Pickup {
     private String instructions;
     private double latitude;
     private double longitude;
+    private LatLng center;
 
     public String getUserID() {
         return userID;
@@ -50,5 +53,13 @@ public class Pickup {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public LatLng getCenter(){
+        if (this.getLatitude() != 0 && this.getLongitude() != 0){
+            return new LatLng(getLongitude(), getLatitude());
+        }
+
+        return null;
     }
 }
