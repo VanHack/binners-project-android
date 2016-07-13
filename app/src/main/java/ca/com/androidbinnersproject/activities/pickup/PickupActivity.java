@@ -1,6 +1,8 @@
 package ca.com.androidbinnersproject.activities.pickup;
 
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -11,8 +13,10 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import ca.com.androidbinnersproject.R;
 import ca.com.androidbinnersproject.models.Pickup;
@@ -55,6 +59,23 @@ public class PickupActivity extends AppCompatActivity implements View.OnClickLis
 		mPickupModel = new Pickup();
 		mPickupModel.setLatitude(mLatitude);
 		mPickupModel.setLongitude(mLongitude);
+
+		/**
+		 * Get Address information based on latitude and longitude
+		 */
+		Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
+		try {
+			List<Address> fromLocation = geocoder.getFromLocation(mLatitude, mLongitude, 1);
+			for (Address address : fromLocation) {
+				mPickupModel.setStreet(address.getThoroughfare() + ", " + address.getSubThoroughfare() + " - " + address.getSubLocality());
+				mPickupModel.setCity(address.getLocality());
+				mPickupModel.setState(address.getAdminArea());
+				mPickupModel.setZip(address.getPostalCode());
+			}
+
+		} catch (IOException e) {
+			Logger.Error("Error on initialize pickup model with address from Geocoder.");
+		}
 	}
 
 	private void initializeFragments(Pickup pickupModel) {
