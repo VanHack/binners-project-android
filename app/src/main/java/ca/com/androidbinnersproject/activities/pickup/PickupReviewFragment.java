@@ -63,32 +63,32 @@ public class PickupReviewFragment extends PickupBaseFragment {
     }
 
     private void fillPickupInformation() {
-        edtLocation.setText("");
+        edtLocation.setText(getStreet() + " - " + getCity());
         edtTime.setText(Util.getTimeFormated(getDate()));
         edtDate.setText(Util.getDateFormated(getDate()));
         edtInstructions.setText(getInstructions());
     }
 
     private void initializeStaticMap() {
-        String latEiffelTower = "48.858235";
-        String lngEiffelTower = "2.294571";
-
         DisplayMetrics metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
         int widthPixels = metrics.widthPixels; // Always 100%
-        int heightPixels = (metrics.heightPixels * 40) / 100 ; // 40%
 
         StringBuilder sbMapRequestRender = new StringBuilder();
         sbMapRequestRender.append("http://maps.google.com/maps/api/staticmap?center=")
-                .append(latEiffelTower)
+                .append(getLatitude())
                 .append(",")
-                .append(lngEiffelTower)
-                .append("&zoom=15")
+                .append(getLongitude())
+                .append("&zoom=16")
                 .append("&size=")
                 .append(widthPixels)
                 .append("x")
-                .append(heightPixels)
-                .append("&sensor=true");
+                .append(260)
+                .append("&markers=color:blue%7Clabel:Pickup%7C")
+                .append(getLatitude())
+                .append(",")
+                .append(getLongitude())
+                .append("&sensor=false");
 
         Glide.with(getContext()).load(sbMapRequestRender.toString()).into(imgStaticMap);
     }
