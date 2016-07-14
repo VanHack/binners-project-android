@@ -14,15 +14,24 @@ public abstract class PickupBaseFragment extends Fragment {
     protected String mTitle;
     protected Pickup mPickupModel;
 
-    protected void setTitle(final String title){
+    protected void setTitle(final String title) {
         this.mTitle = title;
     }
+
     protected String getTitle() {
         return mTitle;
     }
 
     protected void setPickupModel(final Pickup pickupModel) {
         this.mPickupModel = pickupModel;
+    }
+
+    protected double getLatitude() {
+        return mPickupModel.getLatitude();
+    }
+
+    protected double getLongitude() {
+        return mPickupModel.getLongitude();
     }
 
     protected void setDate(Calendar calendar) {
@@ -39,6 +48,14 @@ public abstract class PickupBaseFragment extends Fragment {
 
     protected String getInstructions() {
         return mPickupModel.getInstructions();
+    }
+
+    protected String getStreet() {
+        return mPickupModel.getStreet();
+    }
+
+    protected String getCity() {
+        return mPickupModel.getCity();
     }
 
     protected abstract boolean isValid();

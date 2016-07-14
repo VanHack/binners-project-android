@@ -49,7 +49,6 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, 
 	private LatLng mLatLng;
 
 	private SearchView edtSearch;
-	private Toolbar mToolbarBottom;
 
 	public HomeScreenFragment() {
 	}
@@ -63,10 +62,7 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, 
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
-		mToolbarBottom = (Toolbar) view.findViewById(R.id.home_screen_include_toolbar);
 		edtSearch      = (SearchView) view.findViewById(R.id.fragment_home_screen_edtSearch);
-
-		setToolbatClickListener();
 
 		// Get the SearchView and set the searchable configuration
 		SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
@@ -104,47 +100,6 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, 
 			onSearch(query);
 		}
 	}*/
-
-	private void setToolbatClickListener() {
-		mToolbarBottom.findViewById(R.id.toolbar_bottom_btnHistory).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-
-			}
-		});
-
-		mToolbarBottom.findViewById(R.id.toolbar_bottom_btnOngoing).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				fm.beginTransaction().replace(R.id.fragment_home_screen_map_container, OngoingPickupsFragment.newInstance()).commit();
-			}
-		});
-
-		mToolbarBottom.findViewById(R.id.toolbar_bottom_btnPickup).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(getActivity(), PickupActivity.class);
-                intent.putExtra("LAT", mLatLng.latitude);
-                intent.putExtra("LON", mLatLng.longitude);
-
-				startActivity(intent);
-			}
-		});
-
-		mToolbarBottom.findViewById(R.id.toolbar_bottom_btnNotifications).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-
-			}
-		});
-
-		mToolbarBottom.findViewById(R.id.toolbar_bottom_btnDonate).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-
-			}
-		});
-	}
 
 	@Override
     public void onStart() {
@@ -260,4 +215,8 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, 
 
         return false;
     }
+
+	public LatLng getmLatLng() {
+		return mLatLng;
+	}
 }

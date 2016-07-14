@@ -1,7 +1,7 @@
 
 package ca.com.androidbinnersproject.activities;
 
-import android.content.SharedPreferences;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
@@ -9,22 +9,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
 
 import ca.com.androidbinnersproject.R;
 import ca.com.androidbinnersproject.activities.home.HomeScreenFragment;
+import ca.com.androidbinnersproject.activities.ongoing.OngoingPickupsFragment;
+import ca.com.androidbinnersproject.activities.pickup.PickupActivity;
 import ca.com.androidbinnersproject.util.Util;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, LeftNavigationDrawerMenu.FragmentDrawerListener {
-
+    private FragmentManager mFragmentManager;
     private Toolbar mToolbar;
     private LeftNavigationDrawerMenu mFragmentDrawer;
-    private FrameLayout containerBody;
+    private Toolbar mToolbarBottom;
+
+    private HomeScreenFragment mHomeScreenMapFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mFragmentManager = getSupportFragmentManager();
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
@@ -36,19 +41,73 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mFragmentDrawer.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar, userLogged);
         mFragmentDrawer.setDrawerListener(this);
 
-        HomeScreenFragment homeScreenFragment = new HomeScreenFragment();
+        mToolbarBottom = (Toolbar) findViewById(R.id.home_screen_include_toolbar);
+
+        mHomeScreenMapFragment = new HomeScreenFragment();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         fragmentManager.beginTransaction()
-                .add(R.id.main_container_body, homeScreenFragment)
+                .add(R.id.main_container_body, mHomeScreenMapFragment)
                 .commit();
+
+        setToolbatClickListener();
+    }
+
+    private void setToolbatClickListener() {
+        mToolbarBottom.findViewById(R.id.toolbar_bottom_btnHistory).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        mToolbarBottom.findViewById(R.id.toolbar_bottom_btnOngoing).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_home_screen_map_container, OngoingPickupsFragment.newInstance())
+                        .addToBackStack("ongoing")
+                        .commit();
+            }
+        });
+
+        mToolbarBottom.findViewById(R.id.toolbar_bottom_btnPickup).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mHomeScreenMapFragment != null) {
+
+                    Intent intent = new Intent(MainActivity.this, PickupActivity.class);
+                    intent.putExtra("LAT", mHomeScreenMapFragment.getmLatLng().latitude);
+                    intent.putExtra("LON", mHomeScreenMapFragment.getmLatLng().longitude);
+
+                    startActivity(intent);
+                }
+            }
+        });
+
+        mToolbarBottom.findViewById(R.id.toolbar_bottom_btnNotifications).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        mToolbarBottom.findViewById(R.id.toolbar_bottom_btnDonate).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         super.onBackPressed();
+
+        if (mFragmentManager.getBackStackEntryCount() > 0) {
+            mFragmentManager.popBackStack();
+        }
     }
 
     @Override
