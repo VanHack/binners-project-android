@@ -1,5 +1,7 @@
 package ca.com.androidbinnersproject.models;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.Calendar;
 
 /**

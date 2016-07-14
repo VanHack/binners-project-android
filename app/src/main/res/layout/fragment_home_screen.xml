@@ -45,8 +45,4 @@
 
         </android.support.v7.widget.Toolbar>
     </FrameLayout>
-
-    <include
-        android:id="@+id/home_screen_include_toolbar"
-        layout="@layout/toolbar_bottom"></include>
 </LinearLayout>
