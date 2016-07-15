@@ -44,16 +44,14 @@ public class PickupService extends BaseAPI {
         Pickup pickup1 = new Pickup();
         pickup1.setDateTime(Calendar.getInstance());
         pickup1.setInstructions("Pickup em Salvador-BA.");
-        pickup1.setLatitude(-12.9243275);
-        pickup1.setLongitude(-38.4863661);
+        pickup1.getPickupAddress().getLocation().setCoordinates(new double[]{-12.9243275, -38.4863661});
 //        pickup1.setUserID(user.getId());
         pickups.add(pickup1);
         
         Pickup pickup2 = new Pickup();
         pickup2.setDateTime(Calendar.getInstance());
         pickup2.setInstructions("Pickup em Barreiras-BA.");
-        pickup2.setLatitude(-12.14966578);
-        pickup2.setLongitude(-44.99842627);
+        pickup2.getPickupAddress().getLocation().setCoordinates(new double[]{-12.14966578, -44.99842627});
 //        pickup2.setUserID(user.getId());
         pickups.add(pickup2);
 

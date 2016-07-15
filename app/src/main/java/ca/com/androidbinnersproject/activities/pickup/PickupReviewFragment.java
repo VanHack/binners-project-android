@@ -7,6 +7,7 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -28,6 +29,7 @@ public class PickupReviewFragment extends PickupBaseFragment {
     private EditText edtTime;
     private EditText edtDate;
     private EditText edtInstructions;
+    private Button btnFinish;
 
     public static PickupBaseFragment newInstance(Context context, Pickup pickupModel) {
         PickupBaseFragment fragment = new PickupReviewFragment();
@@ -49,6 +51,7 @@ public class PickupReviewFragment extends PickupBaseFragment {
         edtTime      = (EditText) view.findViewById(R.id.fragment_pickup_review_edtTime);
         edtDate      = (EditText) view.findViewById(R.id.fragment_pickup_review_edtDate);
         edtInstructions= (EditText) view.findViewById(R.id.fragment_pickup_review_edtInstructions);
+        btnFinish    = (Button) view.findViewById(R.id.fragment_pickup_review_btnFinishPickup);
 
         initializeStaticMap();
 
@@ -98,5 +101,9 @@ public class PickupReviewFragment extends PickupBaseFragment {
     @Override
     protected boolean isValid() {
         return false;
+    }
+
+    public void finishPickup(View view) {
+        //
     }
 }

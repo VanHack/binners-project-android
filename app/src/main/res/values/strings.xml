@@ -92,6 +92,6 @@
     <string name="pickup_review_label_date">Date</string>
     <string name="pickup_review_label_canAndBottles">Number of Cans and Bottles</string>
     <string name="pickup_review_label_instructions">Instructions</string>
-    <string name="pickup_review_btnPostPickup">Post your pick-up!</string>
+    <string name="pickup_review_btnPostPickup">Finish your Pick-Up!</string>
 
 </resources>

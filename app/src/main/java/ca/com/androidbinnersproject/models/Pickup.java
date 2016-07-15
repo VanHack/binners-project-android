@@ -1,7 +1,5 @@
 package ca.com.androidbinnersproject.models;
 
-import com.google.android.gms.maps.model.LatLng;
-
 import java.util.Calendar;
 
 /**
@@ -9,14 +7,13 @@ import java.util.Calendar;
  */
 public class Pickup {
     private String userID;
+    private PickupAddress pickupAddress;
     private Calendar dateTime;
     private String instructions;
-    private double latitude;
-    private double longitude;
-    private String street;
-    private String city;
-    private String state;
-    private String zip;
+
+    public Pickup() {
+        pickupAddress = new PickupAddress();
+    }
 
     public String getUserID() {
         return userID;
@@ -42,51 +39,11 @@ public class Pickup {
         this.instructions = instructions;
     }
 
-    public double getLatitude() {
-        return latitude;
+    public PickupAddress getPickupAddress() {
+        return pickupAddress;
     }
 
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getZip() {
-        return zip;
-    }
-
-    public void setZip(String zip) {
-        this.zip = zip;
+    public void setPickupAddress(PickupAddress pickupAddress) {
+        this.pickupAddress = pickupAddress;
     }
 }

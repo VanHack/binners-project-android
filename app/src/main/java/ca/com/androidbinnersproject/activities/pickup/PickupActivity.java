@@ -57,8 +57,10 @@ public class PickupActivity extends AppCompatActivity implements View.OnClickLis
 
 	private void initializePickupModel(double mLatitude, double mLongitude) {
 		mPickupModel = new Pickup();
-		mPickupModel.setLatitude(mLatitude);
-		mPickupModel.setLongitude(mLongitude);
+
+		double[] location = new double[]{mLatitude, mLongitude};
+
+		mPickupModel.getPickupAddress().getLocation().setCoordinates(location);
 
 		/**
 		 * Get Address information based on latitude and longitude
@@ -67,10 +69,10 @@ public class PickupActivity extends AppCompatActivity implements View.OnClickLis
 		try {
 			List<Address> fromLocation = geocoder.getFromLocation(mLatitude, mLongitude, 1);
 			for (Address address : fromLocation) {
-				mPickupModel.setStreet(address.getThoroughfare() + ", " + address.getSubThoroughfare() + " - " + address.getSubLocality());
-				mPickupModel.setCity(address.getLocality());
-				mPickupModel.setState(address.getAdminArea());
-				mPickupModel.setZip(address.getPostalCode());
+				mPickupModel.getPickupAddress().setStreet(address.getThoroughfare() + ", " + address.getSubThoroughfare() + " - " + address.getSubLocality());
+				mPickupModel.getPickupAddress().setCity(address.getLocality());
+				mPickupModel.getPickupAddress().setState(address.getAdminArea());
+				mPickupModel.getPickupAddress().setZip(address.getPostalCode());
 			}
 
 		} catch (IOException e) {

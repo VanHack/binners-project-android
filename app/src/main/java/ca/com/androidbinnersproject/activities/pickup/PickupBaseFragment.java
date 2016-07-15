@@ -27,11 +27,11 @@ public abstract class PickupBaseFragment extends Fragment {
     }
 
     protected double getLatitude() {
-        return mPickupModel.getLatitude();
+        return mPickupModel.getPickupAddress().getLocation().getCoordinates()[0];
     }
 
     protected double getLongitude() {
-        return mPickupModel.getLongitude();
+        return mPickupModel.getPickupAddress().getLocation().getCoordinates()[1];
     }
 
     protected void setDate(Calendar calendar) {
@@ -51,11 +51,11 @@ public abstract class PickupBaseFragment extends Fragment {
     }
 
     protected String getStreet() {
-        return mPickupModel.getStreet();
+        return mPickupModel.getPickupAddress().getStreet();
     }
 
     protected String getCity() {
-        return mPickupModel.getCity();
+        return mPickupModel.getPickupAddress().getCity();
     }
 
     protected abstract boolean isValid();
