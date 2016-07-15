@@ -14,10 +14,9 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,13 +37,13 @@ import java.util.List;
 import java.util.Locale;
 
 import ca.com.androidbinnersproject.R;
-import ca.com.androidbinnersproject.activities.ongoing.OngoingPickupsFragment;
 import ca.com.androidbinnersproject.activities.pickup.PickupActivity;
 
 public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
-	private FragmentManager fm;
+	private View mViewHomeScreen;
+
 	private SupportMapFragment mSupportMapFragment;
-    private GoogleMap mMapView;
+	private GoogleMap mMapView;
 	private MarkerOptions markerOptions;
 	private LatLng mLatLng;
 
@@ -55,7 +54,19 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, 
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.fragment_home_screen, container, false);
+		if(mViewHomeScreen == null)
+			mViewHomeScreen = inflater.inflate(R.layout.fragment_home_screen, container, false);
+
+		mSupportMapFragment = (SupportMapFragment)getChildFragmentManager().findFragmentById(R.id.fragment_home_screen_map);
+
+		if (mSupportMapFragment == null) {
+			mSupportMapFragment = SupportMapFragment.newInstance();
+		}
+
+		FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+		transaction.replace(R.id.fragment_home_screen_map, mSupportMapFragment).commit();
+
+		return mViewHomeScreen;
 	}
 
 	@Override
@@ -109,15 +120,7 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-		fm = getChildFragmentManager();
-		mSupportMapFragment = (SupportMapFragment) fm.findFragmentById(R.id.fragment_home_screen_map_container);
-
-        if (mSupportMapFragment == null) {
-            mSupportMapFragment = SupportMapFragment.newInstance();
-            fm.beginTransaction().replace(R.id.fragment_home_screen_map_container, mSupportMapFragment).commit();
-        }
-    }
+	}
 
     @Override
     public void onResume() {

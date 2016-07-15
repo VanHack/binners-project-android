@@ -45,13 +45,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mHomeScreenMapFragment = new HomeScreenFragment();
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-
-        fragmentManager.beginTransaction()
-                .add(R.id.main_container_body, mHomeScreenMapFragment)
-                .commit();
-
         setToolbatClickListener();
+
+        showHomeScreen();
+    }
+
+    private void showHomeScreen() {
+        mFragmentManager.beginTransaction()
+                .add(R.id.main_container_body, mHomeScreenMapFragment)
+                .addToBackStack("home")
+                .commit();
     }
 
     private void setToolbatClickListener() {
@@ -66,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
                 mFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_home_screen_map_container, OngoingPickupsFragment.newInstance())
+                        .replace(R.id.main_container_body, OngoingPickupsFragment.newInstance())
                         .addToBackStack("ongoing")
                         .commit();
             }
@@ -103,11 +106,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-
         if (mFragmentManager.getBackStackEntryCount() > 0) {
             mFragmentManager.popBackStack();
-        }
+        } else
+            super.onBackPressed();
     }
 
     @Override
