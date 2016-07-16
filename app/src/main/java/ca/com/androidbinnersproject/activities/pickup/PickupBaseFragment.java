@@ -1,6 +1,5 @@
 package ca.com.androidbinnersproject.activities.pickup;
 
-import android.content.Context;
 import android.support.v4.app.Fragment;
 
 import java.util.Calendar;
@@ -27,11 +26,11 @@ public abstract class PickupBaseFragment extends Fragment {
     }
 
     protected double getLatitude() {
-        return mPickupModel.getLatitude();
+        return mPickupModel.getAddress().getLocation().getCoordinates()[0];
     }
 
     protected double getLongitude() {
-        return mPickupModel.getLongitude();
+        return mPickupModel.getAddress().getLocation().getCoordinates()[1];
     }
 
     protected void setDate(Calendar calendar) {
@@ -40,6 +39,10 @@ public abstract class PickupBaseFragment extends Fragment {
 
     protected Calendar getDate() {
         return mPickupModel.getDateTime();
+    }
+
+    protected String getItems() {
+        return mPickupModel.getItems().get(0).getType();
     }
 
     protected void setInstructions(final String instructions) {
@@ -51,11 +54,11 @@ public abstract class PickupBaseFragment extends Fragment {
     }
 
     protected String getStreet() {
-        return mPickupModel.getStreet();
+        return mPickupModel.getAddress().getStreet();
     }
 
     protected String getCity() {
-        return mPickupModel.getCity();
+        return mPickupModel.getAddress().getCity();
     }
 
     protected abstract boolean isValid();

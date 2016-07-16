@@ -23,7 +23,6 @@ import ca.com.androidbinnersproject.util.Util;
 
 public class TimePickerFragment extends PickupBaseFragment implements RadialPickerLayout.OnValueSelectedListener {
 
-	private final String TimeFormat = "HH:mm";
 	private static final String AM_Text = "AM";
 	private static final String PM_Text = "PM";
 
@@ -32,8 +31,6 @@ public class TimePickerFragment extends PickupBaseFragment implements RadialPick
 	public static final int AMPM_INDEX = 2;
 	public static final int AM = 0;
 	public static final int PM = 1;
-
-	private Calendar calendar;
 
 	private RadialPickerLayout radialPickerLayout;
 	private TextView hoursView;
@@ -71,8 +68,6 @@ public class TimePickerFragment extends PickupBaseFragment implements RadialPick
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		calendar = Calendar.getInstance(Locale.CANADA);
 	}
 
 	@Override
@@ -92,7 +87,7 @@ public class TimePickerFragment extends PickupBaseFragment implements RadialPick
 		hapticFeedbackController = new HapticFeedbackController(getActivity());
 
 		radialPickerLayout.setOnValueSelectedListener(this);
-		radialPickerLayout.initialize(getActivity(), hapticFeedbackController, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), false, 0, 12, 0, 59);
+		radialPickerLayout.initialize(getActivity(), hapticFeedbackController, super.getDate().get(Calendar.HOUR), super.getDate().get(Calendar.MINUTE), false, 0, 12, 0, 59);
 
 		setCurrentItemShowing(HOUR_INDEX, true, true);
 
@@ -112,7 +107,7 @@ public class TimePickerFragment extends PickupBaseFragment implements RadialPick
 			}
 		});
 
-		updateAmPmDisplay(calendar.get(Calendar.HOUR_OF_DAY) < 12 ? AM : PM);
+		updateAmPmDisplay(super.getDate().get(Calendar.HOUR_OF_DAY) < 12 ? AM : PM);
 
 		ampmHitspace.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -236,7 +231,7 @@ public class TimePickerFragment extends PickupBaseFragment implements RadialPick
 	}
 
 	private boolean valueRespectsHoursConstraint(int value) {
-		return (value >= 0 && value <= 12);
+		return (value >= 0 && value <= 23);
 	}
 
 	private boolean valueRespectsMinutesConstraint(int value) {
@@ -259,9 +254,13 @@ public class TimePickerFragment extends PickupBaseFragment implements RadialPick
 	protected boolean isValid() {
 		Calendar baseCal = super.getDate();
 
-		if(baseCal != null)
-			return true;
+		return baseCal != null;
+	}
 
-		return false;
+	@Override
+	public void onResume() {
+		super.onResume();
+		setHour(super.getDate().get(Calendar.HOUR));
+		setMinute(super.getDate().get(Calendar.MINUTE));
 	}
 }

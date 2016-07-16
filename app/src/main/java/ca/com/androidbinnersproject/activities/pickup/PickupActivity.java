@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -21,7 +20,6 @@ import java.util.Locale;
 import ca.com.androidbinnersproject.R;
 import ca.com.androidbinnersproject.models.Pickup;
 import ca.com.androidbinnersproject.util.Logger;
-import ca.com.androidbinnersproject.util.Util;
 
 public class PickupActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -57,8 +55,10 @@ public class PickupActivity extends AppCompatActivity implements View.OnClickLis
 
 	private void initializePickupModel(double mLatitude, double mLongitude) {
 		mPickupModel = new Pickup();
-		mPickupModel.setLatitude(mLatitude);
-		mPickupModel.setLongitude(mLongitude);
+
+		double[] location = new double[]{mLatitude, mLongitude};
+
+		mPickupModel.getAddress().getLocation().setCoordinates(location);
 
 		/**
 		 * Get Address information based on latitude and longitude
@@ -67,10 +67,10 @@ public class PickupActivity extends AppCompatActivity implements View.OnClickLis
 		try {
 			List<Address> fromLocation = geocoder.getFromLocation(mLatitude, mLongitude, 1);
 			for (Address address : fromLocation) {
-				mPickupModel.setStreet(address.getThoroughfare() + ", " + address.getSubThoroughfare() + " - " + address.getSubLocality());
-				mPickupModel.setCity(address.getLocality());
-				mPickupModel.setState(address.getAdminArea());
-				mPickupModel.setZip(address.getPostalCode());
+				mPickupModel.getAddress().setStreet(address.getThoroughfare() + ", " + address.getSubThoroughfare() + " - " + address.getSubLocality());
+				mPickupModel.getAddress().setCity(address.getLocality());
+				mPickupModel.getAddress().setState(address.getAdminArea());
+				mPickupModel.getAddress().setZip(address.getPostalCode());
 			}
 
 		} catch (IOException e) {

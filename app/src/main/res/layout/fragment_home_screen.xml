@@ -18,11 +18,13 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <fragment xmlns:map="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/fragment_home_screen_map"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+        <fragment
+            android:id="@+id/fragment_home_screen_map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.google.android.gms.maps.SupportMapFragment"/>
+
+            <!---->
 
         </RelativeLayout>
 

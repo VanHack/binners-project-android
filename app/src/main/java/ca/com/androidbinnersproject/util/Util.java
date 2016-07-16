@@ -2,6 +2,7 @@
 package ca.com.androidbinnersproject.util;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
@@ -13,8 +14,9 @@ import java.util.Calendar;
 
 import ca.com.androidbinnersproject.activities.LoginActivity;
 
-public class Util
-{
+public class Util {
+	private static ProgressDialog pDialog;
+
 	public static byte[] HexStringToByteArray(String s)
 	{
 		int len = s.length();
@@ -69,5 +71,18 @@ public class Util
 			return new SimpleDateFormat("dd/MM/yyyy").format(cal.getTime());
 		}
 		return "";
+	}
+
+	public static void showProgressDialog(final Context context, final String title, final String message) {
+		pDialog  = new ProgressDialog(context);
+		pDialog.setTitle(title);
+		pDialog.setMessage(message);
+		pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+		pDialog.show();
+	}
+
+	public static void dismissProgressDialog() {
+		if(pDialog != null && pDialog.isShowing())
+			pDialog.dismiss();
 	}
 }

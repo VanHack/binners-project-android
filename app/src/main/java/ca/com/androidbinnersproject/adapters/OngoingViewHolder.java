@@ -69,9 +69,12 @@ public class OngoingViewHolder extends RecyclerView.ViewHolder implements OnMapR
     protected void updateMapContents() {
         this.googleMap.clear();
 
-        if (pickup.getLatitude() != 0 && pickup.getLongitude() != 0) {
+        double latitude = pickup.getAddress().getLocation().getCoordinates()[0];
+        double longitude= pickup.getAddress().getLocation().getCoordinates()[1];
+
+        if (latitude != 0 && longitude != 0) {
             LatLng latLng;
-            latLng = new LatLng(pickup.getLatitude(), pickup.getLongitude());
+            latLng = new LatLng(latitude, longitude);
 
             this.googleMap.addMarker(new MarkerOptions().position(latLng));
 
