@@ -57,4 +57,12 @@ public class Pickup {
     public void setAddress(Address address) {
         this.address = address;
     }
+
+    public List<Items> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Items> items) {
+        this.items = items;
+    }
 }

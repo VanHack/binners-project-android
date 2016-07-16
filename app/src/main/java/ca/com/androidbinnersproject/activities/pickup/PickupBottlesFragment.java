@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Locale;
 
 import ca.com.androidbinnersproject.R;
+import ca.com.androidbinnersproject.models.Items;
 import ca.com.androidbinnersproject.models.Pickup;
 import ca.com.androidbinnersproject.util.Logger;
 import ca.com.androidbinnersproject.util.Util;
@@ -87,14 +88,20 @@ public class PickupBottlesFragment extends PickupBaseFragment {
 
 		spnNumberOfCans = (Spinner) view.findViewById(R.id.fragment_pickup_bottles_spnNumberOfCans);
 
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, listCansInfo);
+		ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.spinner_item, listCansInfo);
 
 		spnNumberOfCans.setAdapter(adapter);
 
 		spnNumberOfCans.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+				Items items = new Items();
+				items.setType(listCansInfo.get(position));
 
+				if(mPickupModel.getItems().size() > 0)
+					mPickupModel.getItems().set(0,items); // Just one per Pickup
+				else
+					mPickupModel.getItems().add(items); // Just one per Pickup
 			}
 
 			@Override

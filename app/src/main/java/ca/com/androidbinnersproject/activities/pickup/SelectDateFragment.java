@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 import ca.com.androidbinnersproject.R;
 import ca.com.androidbinnersproject.models.Pickup;
@@ -38,7 +39,7 @@ public class SelectDateFragment extends PickupBaseFragment implements View.OnCli
     private String[] daysOfWeek;
     private String[] months;
 
-    private Calendar mCalendar = Calendar.getInstance();
+    private Calendar mCalendar = Calendar.getInstance(Locale.CANADA);
 
     public static PickupBaseFragment newInstance(Context context, Pickup pickupModel) {
         PickupBaseFragment fragment = new SelectDateFragment();
@@ -94,7 +95,7 @@ public class SelectDateFragment extends PickupBaseFragment implements View.OnCli
         View subView = vg.getChildAt(0);
 
         if(subView instanceof TextView) {
-            ((TextView)subView).setVisibility(View.GONE);
+            subView.setVisibility(View.GONE);
         }
 
         mCalendarView.setShowWeekNumber(false);

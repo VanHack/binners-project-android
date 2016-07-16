@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="new_pickup_progress_title" type="id">New Pick-Up</item>
+    <item name="new_pickup_progress_message" type="id">Saving Pick-Up</item>
+</resources>

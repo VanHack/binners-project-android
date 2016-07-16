@@ -41,6 +41,10 @@ public abstract class PickupBaseFragment extends Fragment {
         return mPickupModel.getDateTime();
     }
 
+    protected String getItems() {
+        return mPickupModel.getItems().get(0).getType();
+    }
+
     protected void setInstructions(final String instructions) {
         mPickupModel.setInstructions(instructions);
     }
