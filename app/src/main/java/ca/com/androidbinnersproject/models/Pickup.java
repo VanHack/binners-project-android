@@ -1,18 +1,28 @@
 package ca.com.androidbinnersproject.models;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+
+import ca.com.androidbinnersproject.util.Util;
 
 /**
  * Created by jonathan_campos on 27/06/2016.
  */
 public class Pickup {
+    @SerializedName(value = "requester")
     private String userID;
-    private PickupAddress pickupAddress;
-    private Calendar dateTime;
+    private Address address;
+    private transient Calendar dateTime;
+    private long time;
     private String instructions;
+    private List<Items> items;
 
     public Pickup() {
-        pickupAddress = new PickupAddress();
+        address = new Address();
+        items   = new ArrayList<>();
     }
 
     public String getUserID() {
@@ -29,6 +39,7 @@ public class Pickup {
 
     public void setDateTime(Calendar dateTime) {
         this.dateTime = dateTime;
+        this.time     = dateTime.getTimeInMillis();
     }
 
     public String getInstructions() {
@@ -39,11 +50,11 @@ public class Pickup {
         this.instructions = instructions;
     }
 
-    public PickupAddress getPickupAddress() {
-        return pickupAddress;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setPickupAddress(PickupAddress pickupAddress) {
-        this.pickupAddress = pickupAddress;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }

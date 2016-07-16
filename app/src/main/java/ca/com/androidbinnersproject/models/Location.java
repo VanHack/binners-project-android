@@ -3,11 +3,11 @@ package ca.com.androidbinnersproject.models;
 /**
  * Created by jonathan_campos on 15/07/2016.
  */
-public class PickupLocation {
+public class Location {
     private String type;
     private double[] coordinates;
 
-    public PickupLocation() {}
+    public Location() {}
 
     public String getType() {
         return type;

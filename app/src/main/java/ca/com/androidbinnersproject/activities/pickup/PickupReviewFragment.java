@@ -12,17 +12,24 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 
 import java.util.Calendar;
 
 import ca.com.androidbinnersproject.R;
+import ca.com.androidbinnersproject.apis.BaseAPI;
+import ca.com.androidbinnersproject.apis.PickupApi;
 import ca.com.androidbinnersproject.models.Pickup;
 import ca.com.androidbinnersproject.util.Util;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 /**
  * Created by jonathan_campos on 22/05/2016.
  */
-public class PickupReviewFragment extends PickupBaseFragment {
+public class PickupReviewFragment extends PickupBaseFragment implements View.OnClickListener{
 
     private ImageView imgStaticMap;
     private EditText edtLocation;
@@ -52,6 +59,8 @@ public class PickupReviewFragment extends PickupBaseFragment {
         edtDate      = (EditText) view.findViewById(R.id.fragment_pickup_review_edtDate);
         edtInstructions= (EditText) view.findViewById(R.id.fragment_pickup_review_edtInstructions);
         btnFinish    = (Button) view.findViewById(R.id.fragment_pickup_review_btnFinishPickup);
+
+        btnFinish.setOnClickListener(this);
 
         initializeStaticMap();
 
@@ -103,7 +112,26 @@ public class PickupReviewFragment extends PickupBaseFragment {
         return false;
     }
 
-    public void finishPickup(View view) {
-        //
+    @Override
+    public void onClick(View v) {
+
+        if (v.getId() == R.id.fragment_pickup_review_btnFinishPickup) {
+            Retrofit retrofit = BaseAPI.getRetroInstance();
+
+            PickupApi service = retrofit.create(PickupApi.class);
+            Call<Pickup> call = service.createPickup(mPickupModel, "");
+
+            call.enqueue(new Callback<Pickup>() {
+                @Override
+                public void onResponse(Call<Pickup> call, Response<Pickup> response) {
+                    //TODO finish Activity
+                }
+
+                @Override
+                public void onFailure(Call<Pickup> call, Throwable t) {
+                    // TODO
+                }
+            });
+        }
     }
 }

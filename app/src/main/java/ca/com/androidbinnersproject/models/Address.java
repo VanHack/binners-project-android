@@ -3,15 +3,15 @@ package ca.com.androidbinnersproject.models;
 /**
  * Created by jonathan_campos on 15/07/2016.
  */
-public class PickupAddress {
+public class Address {
     private String street;
     private String city;
     private String state;
     private String zip;
-    private PickupLocation location;
+    private Location location;
 
-    public PickupAddress() {
-        location = new PickupLocation();
+    public Address() {
+        location = new Location();
     }
 
     public String getStreet() {
@@ -46,11 +46,11 @@ public class PickupAddress {
         this.zip = zip;
     }
 
-    public PickupLocation getLocation() {
+    public Location getLocation() {
         return location;
     }
 
-    public void setLocation(PickupLocation location) {
+    public void setLocation(Location location) {
         this.location = location;
     }
 }

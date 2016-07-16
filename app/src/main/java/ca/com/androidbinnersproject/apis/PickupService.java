@@ -6,7 +6,6 @@ import java.util.Calendar;
 import java.util.List;
 
 import ca.com.androidbinnersproject.models.Pickup;
-import ca.com.androidbinnersproject.models.User;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -44,14 +43,14 @@ public class PickupService extends BaseAPI {
         Pickup pickup1 = new Pickup();
         pickup1.setDateTime(Calendar.getInstance());
         pickup1.setInstructions("Pickup em Salvador-BA.");
-        pickup1.getPickupAddress().getLocation().setCoordinates(new double[]{-12.9243275, -38.4863661});
+        pickup1.getAddress().getLocation().setCoordinates(new double[]{-12.9243275, -38.4863661});
 //        pickup1.setUserID(user.getId());
         pickups.add(pickup1);
         
         Pickup pickup2 = new Pickup();
         pickup2.setDateTime(Calendar.getInstance());
         pickup2.setInstructions("Pickup em Barreiras-BA.");
-        pickup2.getPickupAddress().getLocation().setCoordinates(new double[]{-12.14966578, -44.99842627});
+        pickup2.getAddress().getLocation().setCoordinates(new double[]{-12.14966578, -44.99842627});
 //        pickup2.setUserID(user.getId());
         pickups.add(pickup2);
 

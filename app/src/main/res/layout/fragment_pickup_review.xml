@@ -162,8 +162,7 @@
                 android:background="@drawable/green_button_selector"
                 android:textColor="@color/whiteBackground"
                 android:textSize="14sp"
-                android:layout_marginTop="25dp"
-                android:onClick="finishPickup"/>
+                android:layout_marginTop="25dp" />
 
         </LinearLayout>
     </ScrollView>
