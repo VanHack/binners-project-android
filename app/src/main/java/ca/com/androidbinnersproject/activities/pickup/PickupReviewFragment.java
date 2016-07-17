@@ -17,10 +17,11 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.Gson;
 
 import ca.com.androidbinnersproject.R;
 import ca.com.androidbinnersproject.apis.BaseAPI;
-import ca.com.androidbinnersproject.apis.PickupApi;
+import ca.com.androidbinnersproject.apis.PickupService;
 import ca.com.androidbinnersproject.models.Pickup;
 import ca.com.androidbinnersproject.util.Util;
 import retrofit2.Call;
@@ -114,8 +115,11 @@ public class PickupReviewFragment extends PickupBaseFragment implements View.OnC
         if (v.getId() == R.id.fragment_pickup_review_btnFinishPickup) {
             Retrofit retrofit = BaseAPI.getRetroInstance();
 
-            PickupApi service = retrofit.create(PickupApi.class);
-            Call<Pickup> call = service.createPickup(mPickupModel, "");
+            PickupService service = retrofit.create(PickupService.class);
+            Call<Pickup> call = service.createPickup(mPickupModel, "AUTHORIZATION_GOES_HERE");
+
+            Gson gson = new Gson();
+            String json = gson.toJson(mPickupModel);
 
             call.enqueue(new Callback<Pickup>() {
                 @Override

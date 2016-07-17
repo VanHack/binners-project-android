@@ -96,7 +96,7 @@ public class PickupBottlesFragment extends PickupBaseFragment {
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 				Items items = new Items();
-				items.setType(listCansInfo.get(position));
+				items.setQuantity(listCansInfo.get(position));
 
 				if(mPickupModel.getItems().size() > 0)
 					mPickupModel.getItems().set(0,items); // Just one per Pickup
