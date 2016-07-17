@@ -1,9 +1,9 @@
 package ca.com.androidbinnersproject.activities.ongoing;
 
-import android.support.v4.app.Fragment;
-
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,32 +11,31 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.MapView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import ca.com.androidbinnersproject.R;
 import ca.com.androidbinnersproject.adapters.OngoingAdapter;
-import ca.com.androidbinnersproject.apis.PickupService;
+import ca.com.androidbinnersproject.bll.OngoingBll;
 import ca.com.androidbinnersproject.models.Pickup;
-import ca.com.androidbinnersproject.util.Util;
 
 /**
  * Created by Pedro Henrique on 17/05/2016.
  */
-public class OngoingPickupsFragment extends Fragment {
+public class OngoingPickupsFragment extends Fragment implements OngoingBll.OngoingListener {
 
     private static final String TAG = OngoingPickupsFragment.class.getSimpleName();
 
     private CardView cardView;
     protected OngoingAdapter ongoingAdapter;
     protected RecyclerView recyclerView;
+    private OngoingBll service;
 
 
-    public static OngoingPickupsFragment newInstance() {
+    public static OngoingPickupsFragment newInstance(Context context) {
         OngoingPickupsFragment fragment = new OngoingPickupsFragment();
+        fragment.service = new OngoingBll(context, fragment);
         return fragment;
     }
 
@@ -47,16 +46,6 @@ public class OngoingPickupsFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-    }
-
-    private OngoingAdapter createAdapter() {
-        PickupService service = new PickupService();
-        Util.getUserLogged(getActivity());
-        ArrayList<Pickup> pickups = service.getPickupsDataTest();
-
-        OngoingAdapter adapter = new OngoingAdapter(pickups);
-
-        return adapter;
     }
 
     @Nullable
@@ -70,8 +59,6 @@ public class OngoingPickupsFragment extends Fragment {
 
         cardView = (CardView) v.findViewById(R.id.cardViewOnGoingPickups);
 
-        this.ongoingAdapter = createAdapter();
-
         recyclerView.setHasFixedSize(true);
 
         return v;
@@ -81,19 +68,7 @@ public class OngoingPickupsFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getActivity());
-
-        if (resultCode == ConnectionResult.SUCCESS) {
-            recyclerView.setAdapter(ongoingAdapter);
-        } else {
-            GooglePlayServicesUtil.getErrorDialog(resultCode, getActivity(), 1).show();
-        }
-
-        if (ongoingAdapter != null) {
-            for (MapView m : ongoingAdapter.getMapViews()) {
-                m.onResume();
-            }
-        }
+        service.getPickups("AUTHORIZATION_GOES_HERE");
     }
 
     @Override
@@ -128,5 +103,24 @@ public class OngoingPickupsFragment extends Fragment {
         }
 
         super.onDestroy();
+    }
+
+    @Override
+    public void onSucessRetrievingList(List<Pickup> pickupList) {
+        ongoingAdapter = new OngoingAdapter(pickupList);
+        ongoingAdapter.notifyDataSetChanged();
+
+        if (ongoingAdapter != null) {
+            for (MapView m : ongoingAdapter.getMapViews()) {
+                m.onResume();
+            }
+        }
+
+        recyclerView.setAdapter(ongoingAdapter);
+    }
+
+    @Override
+    public void onErrorRetrievingList(String message) {
+        String message1 = message;
     }
 }

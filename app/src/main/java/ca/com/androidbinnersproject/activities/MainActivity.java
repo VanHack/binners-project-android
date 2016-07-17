@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
                 mFragmentManager.beginTransaction()
-                        .replace(R.id.main_container_body, OngoingPickupsFragment.newInstance())
+                        .replace(R.id.main_container_body, OngoingPickupsFragment.newInstance(MainActivity.this))
                         .addToBackStack("ongoing")
                         .commit();
             }

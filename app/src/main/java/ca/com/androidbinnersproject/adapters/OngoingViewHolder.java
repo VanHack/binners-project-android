@@ -16,6 +16,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import ca.com.androidbinnersproject.R;
 import ca.com.androidbinnersproject.models.Pickup;
+import ca.com.androidbinnersproject.util.Logger;
 
 /**
  * Created by Pedro Henrique on 06/07/2016.
@@ -69,8 +70,15 @@ public class OngoingViewHolder extends RecyclerView.ViewHolder implements OnMapR
     protected void updateMapContents() {
         this.googleMap.clear();
 
-        double latitude = pickup.getAddress().getLocation().getCoordinates()[0];
-        double longitude= pickup.getAddress().getLocation().getCoordinates()[1];
+        double latitude = 0;
+        double longitude= 0;
+
+        try {
+            latitude = pickup.getAddress().getLocation().getCoordinates()[0];
+            longitude = pickup.getAddress().getLocation().getCoordinates()[1];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            Logger.Error("Latitude or Longitude with no value!");
+        }
 
         if (latitude != 0 && longitude != 0) {
             LatLng latLng;

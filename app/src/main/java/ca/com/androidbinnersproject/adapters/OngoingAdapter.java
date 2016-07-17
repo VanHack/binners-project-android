@@ -10,6 +10,7 @@ import com.google.android.gms.maps.MapView;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 import ca.com.androidbinnersproject.R;
 import ca.com.androidbinnersproject.models.Pickup;
@@ -19,9 +20,9 @@ import ca.com.androidbinnersproject.models.Pickup;
  */
 public class OngoingAdapter extends RecyclerView.Adapter<OngoingViewHolder> {
     protected HashSet<MapView> mapViews = new HashSet<>();
-    protected ArrayList<Pickup> pickups;
+    protected List<Pickup> pickups;
 
-    public OngoingAdapter(ArrayList<Pickup> pickups) {
+    public OngoingAdapter(List<Pickup> pickups) {
         this.pickups = pickups;
     }
 
@@ -43,8 +44,8 @@ public class OngoingAdapter extends RecyclerView.Adapter<OngoingViewHolder> {
 
         SimpleDateFormat sdfTime = new SimpleDateFormat("hh:MM");
         SimpleDateFormat sdfDate = new SimpleDateFormat("dd/MM/yyyy");
-        viewHolder.timeTv.setText( sdfTime.format(pickup.getDateTime().getTime()) );
-        viewHolder.dateTv.setText( sdfDate.format(pickup.getDateTime().getTime()) );
+        viewHolder.timeTv.setText( sdfTime.format(pickup.getTime()) );
+        viewHolder.dateTv.setText( sdfDate.format(pickup.getTime()) );
         //TODO: Change binnerTV and statusTV to data model.
         viewHolder.binnerTv.setText("Binner Sample"); // Waiting for change in the model
         viewHolder.statusTv.setText("Completed (Sample)"); // Waiting for change in the model

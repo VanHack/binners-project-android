@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import ca.com.androidbinnersproject.util.Util;
@@ -13,10 +14,10 @@ import ca.com.androidbinnersproject.util.Util;
  */
 public class Pickup {
     @SerializedName(value = "requester")
-    private String userID;
+    private String userID = "REQUESTER_GOES_HERE";
     private Address address;
     private transient Calendar dateTime;
-    private long time;
+    private Date time;
     private String instructions;
     private List<Items> items;
 
@@ -39,7 +40,7 @@ public class Pickup {
 
     public void setDateTime(Calendar dateTime) {
         this.dateTime = dateTime;
-        this.time     = dateTime.getTimeInMillis();
+        this.time = dateTime.getTime();
     }
 
     public String getInstructions() {
@@ -64,5 +65,14 @@ public class Pickup {
 
     public void setItems(List<Items> items) {
         this.items = items;
+    }
+
+    /**
+     * Return a date/time from the server
+     *
+     * @return
+     */
+    public Date getTime() {
+        return time;
     }
 }
