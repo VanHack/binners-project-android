@@ -8,4 +8,10 @@
     <dimen name="tab_label">14sp</dimen>
     <dimen name="custom_tab_layout_height">72dp</dimen>
     <dimen name="timepicker_dimen">320dp</dimen>
+    <dimen name="cardview_corner_radius">4dp</dimen>
+    <dimen name="cardview_elevation">4dp</dimen>
+    <dimen name="margin_left">16dp</dimen>
+    <dimen name="margin_right">16dp</dimen>
+    <dimen name="ongoing_mapview_height">100dp</dimen>
+
 </resources>

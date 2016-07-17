@@ -78,7 +78,7 @@ public class OngoingViewHolder extends RecyclerView.ViewHolder implements OnMapR
 
             this.googleMap.addMarker(new MarkerOptions().position(latLng));
 
-            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 10f);
+            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 16f);
             this.googleMap.moveCamera(cameraUpdate);
         }
     }
