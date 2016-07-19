@@ -4,7 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -26,12 +26,11 @@ import ca.com.androidbinnersproject.models.Pickup;
 public class OngoingPickupsFragment extends Fragment implements OngoingBll.OngoingListener {
 
     private static final String TAG = OngoingPickupsFragment.class.getSimpleName();
-
-    private CardView cardView;
     protected OngoingAdapter ongoingAdapter;
     protected RecyclerView recyclerView;
     private OngoingBll service;
 
+    private FragmentManager fm;
 
     public static OngoingPickupsFragment newInstance(Context context) {
         OngoingPickupsFragment fragment = new OngoingPickupsFragment();
@@ -46,22 +45,26 @@ public class OngoingPickupsFragment extends Fragment implements OngoingBll.Ongoi
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewOngoigPickups);
+
+        int rows = getResources().getInteger(R.integer.map_grid_cols);
+        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), rows, GridLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+
+        initializeFragmentManager();
+    }
+
+    private void initializeFragmentManager() {
+        if(fm == null)
+            fm = getFragmentManager();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.activity_ongoing_list, container, false);
-        recyclerView = (RecyclerView) v.findViewById(R.id.recyclerViewOngoigPickups);
-        int rows = getResources().getInteger(R.integer.map_grid_cols);
-        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), rows, GridLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(layoutManager);
-
-        cardView = (CardView) v.findViewById(R.id.cardViewOnGoingPickups);
-
-        recyclerView.setHasFixedSize(true);
-
-        return v;
+        return inflater.inflate(R.layout.activity_ongoing_list, container, false);
     }
 
     @Override
