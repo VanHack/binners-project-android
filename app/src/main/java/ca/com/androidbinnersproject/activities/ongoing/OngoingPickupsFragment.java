@@ -3,6 +3,7 @@ package ca.com.androidbinnersproject.activities.ongoing;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.GridLayoutManager;
@@ -19,6 +20,7 @@ import ca.com.androidbinnersproject.R;
 import ca.com.androidbinnersproject.adapters.OngoingAdapter;
 import ca.com.androidbinnersproject.bll.OngoingBll;
 import ca.com.androidbinnersproject.models.Pickup;
+import ca.com.androidbinnersproject.util.RecyclerTouchListener;
 
 /**
  * Created by Pedro Henrique on 17/05/2016.
@@ -52,6 +54,19 @@ public class OngoingPickupsFragment extends Fragment implements OngoingBll.Ongoi
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), rows, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
+
+        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                DialogFragment dlg = new OngoingDetailsDlg();
+                dlg.show(fm, "");
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
 
         initializeFragmentManager();
     }

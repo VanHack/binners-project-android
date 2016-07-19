@@ -13,5 +13,8 @@
     <dimen name="margin_left">16dp</dimen>
     <dimen name="margin_right">16dp</dimen>
     <dimen name="ongoing_mapview_height">100dp</dimen>
+    <dimen name="popup_width">350dp</dimen>
+    <dimen name="popup_height">500dp</dimen>
+
 
 </resources>
