@@ -12,5 +12,7 @@
     <color name="whiteBackground">#FFFFFF</color>
     <color name="pickupBgColor">#EFEFEE</color>
     <color name="mediumGray">#7e7d7d</color>
+    <color name="light_gray">#bbbbbb</color>
     <color name="green_button_pressed">#58c462</color>
+    <color name="black">#000000</color>
 </resources>

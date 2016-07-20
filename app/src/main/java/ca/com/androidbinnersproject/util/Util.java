@@ -10,6 +10,7 @@ import android.net.NetworkInfo;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import ca.com.androidbinnersproject.activities.LoginActivity;
 
@@ -68,6 +69,20 @@ public class Util {
 	public static String getDateFormated(Calendar cal) {
 		if(cal != null) {
 			return new SimpleDateFormat("dd/MM/yyyy").format(cal.getTime());
+		}
+		return "";
+	}
+
+	public static String getTimeFormated(Date date) {
+		if(date != null) {
+			return new SimpleDateFormat("HH:mm").format(date);
+		}
+		return "";
+	}
+
+	public static String getDateFormated(Date date) {
+		if(date != null) {
+			return new SimpleDateFormat("dd/MM/yyyy").format(date);
 		}
 		return "";
 	}

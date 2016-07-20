@@ -61,4 +61,8 @@ public class OngoingAdapter extends RecyclerView.Adapter<OngoingViewHolder> {
     public HashSet<MapView> getMapViews() {
         return mapViews;
     }
+
+    public List<Pickup> getPickupList() {
+        return pickups;
+    }
 }

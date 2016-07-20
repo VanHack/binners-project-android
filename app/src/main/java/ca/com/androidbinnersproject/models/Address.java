@@ -53,4 +53,9 @@ public class Address {
     public void setLocation(Location location) {
         this.location = location;
     }
+
+    @Override
+    public String toString() {
+        return street + ", " + city;
+    }
 }

@@ -58,7 +58,9 @@ public class OngoingPickupsFragment extends Fragment implements OngoingBll.Ongoi
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                DialogFragment dlg = new OngoingDetailsDlg();
+                Pickup pickup = ongoingAdapter.getPickupList().get(position);
+
+                DialogFragment dlg = OngoingDetailsDlg.newInstance(pickup);
                 dlg.show(fm, "");
             }
 
@@ -87,6 +89,7 @@ public class OngoingPickupsFragment extends Fragment implements OngoingBll.Ongoi
         super.onResume();
 
         service.getPickups("AUTHORIZATION_GOES_HERE");
+
     }
 
     @Override
@@ -126,7 +129,6 @@ public class OngoingPickupsFragment extends Fragment implements OngoingBll.Ongoi
     @Override
     public void onSucessRetrievingList(List<Pickup> pickupList) {
         ongoingAdapter = new OngoingAdapter(pickupList);
-        ongoingAdapter.notifyDataSetChanged();
 
         if (ongoingAdapter != null) {
             for (MapView m : ongoingAdapter.getMapViews()) {

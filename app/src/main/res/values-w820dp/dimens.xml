@@ -2,6 +2,23 @@
     <!-- Example customization of dimensions originally defined in res/values/dimens.xml
          (such as screen margins) for screens with more than 820dp of available width. This
          would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively). -->
-    <dimen name="activity_horizontal_margin">64dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_drawer_width">260dp</dimen>
+    <dimen name="tab_max_width">264dp</dimen>
+    <dimen name="tab_padding_bottom">16dp</dimen>
+    <dimen name="tab_label">14sp</dimen>
+    <dimen name="custom_tab_layout_height">72dp</dimen>
+    <dimen name="timepicker_dimen">320dp</dimen>
+    <dimen name="cardview_corner_radius">4dp</dimen>
+    <dimen name="cardview_elevation">4dp</dimen>
+    <dimen name="margin_left">16dp</dimen>
+    <dimen name="margin_right">16dp</dimen>
     <dimen name="ongoing_mapview_height">200dp</dimen>
+    <dimen name="ongoing_mapview_details_height">160dp</dimen>
+    <dimen name="ongoing_mapview_details_margin_left">50dp</dimen>
+    <dimen name="ongoing_mapview_details_label_width">60dp</dimen>
+    <dimen name="ongoing_mapview_details_label_margin_bottom">30dp</dimen>
+    <dimen name="popup_width">350dp</dimen>
+    <dimen name="popup_height">500dp</dimen>
 </resources>
