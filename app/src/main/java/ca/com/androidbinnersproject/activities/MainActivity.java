@@ -3,12 +3,12 @@ package ca.com.androidbinnersproject.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.FrameLayout;
 
 import ca.com.androidbinnersproject.R;
 import ca.com.androidbinnersproject.activities.home.HomeScreenFragment;
@@ -20,8 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private FragmentManager mFragmentManager;
     private Toolbar mToolbar;
     private LeftNavigationDrawerMenu mFragmentDrawer;
-    private Toolbar mToolbarBottom;
-
+    private TabLayout mTabLayout;
     private HomeScreenFragment mHomeScreenMapFragment;
 
     @Override
@@ -41,13 +40,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mFragmentDrawer.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar, userLogged);
         mFragmentDrawer.setDrawerListener(this);
 
-        mToolbarBottom = (Toolbar) findViewById(R.id.home_screen_include_toolbar);
+        mTabLayout = (TabLayout) findViewById(R.id.home_screen_include_tabLayoutBottom);
 
         mHomeScreenMapFragment = new HomeScreenFragment();
 
-        setToolbatClickListener();
+
+        selectDefaultTabIndex();
+        setTabLayoutClickListener();
 
         showHomeScreen();
+    }
+
+    private void selectDefaultTabIndex() {
+        //Select Pickup Tab by default
+        TabLayout.Tab tabAt = mTabLayout.getTabAt(2);
+        tabAt.select();
     }
 
     private void showHomeScreen() {
@@ -57,27 +64,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .commit();
     }
 
-    private void setToolbatClickListener() {
-        mToolbarBottom.findViewById(R.id.toolbar_bottom_btnHistory).setOnClickListener(new View.OnClickListener() {
+    private void setTabLayoutClickListener() {
+        mTabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onClick(View v) {
+            public void onTabSelected(TabLayout.Tab tab) {
+                 showSelectedUI(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
 
             }
         });
 
-        mToolbarBottom.findViewById(R.id.toolbar_bottom_btnOngoing).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    }
+
+    private void showSelectedUI(final int position) {
+        switch (position) {
+            case 0:
+                break;
+            case 1:
                 mFragmentManager.beginTransaction()
                         .replace(R.id.main_container_body, OngoingPickupsFragment.newInstance(MainActivity.this))
                         .addToBackStack("ongoing")
                         .commit();
-            }
-        });
-
-        mToolbarBottom.findViewById(R.id.toolbar_bottom_btnPickup).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                break;
+            case 2:
                 if(mHomeScreenMapFragment != null) {
 
                     Intent intent = new Intent(MainActivity.this, PickupActivity.class);
@@ -86,22 +103,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     startActivity(intent);
                 }
-            }
-        });
-
-        mToolbarBottom.findViewById(R.id.toolbar_bottom_btnNotifications).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        mToolbarBottom.findViewById(R.id.toolbar_bottom_btnDonate).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+        }
     }
 
     @Override

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardview_ongoing_pickup_detail_cardViewOnGoingPickups"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/cardview_corner_radius"
+    app:cardElevation="@dimen/cardview_elevation">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.gms.maps.MapView xmlns:map="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/cardview_ongoing_pickup_detail_map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ongoing_mapview_details_height"
+            map:liteMode="true" />
+
+        <ImageButton
+            android:id="@+id/cardview_ongoing_pickup_detail_btnClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@id/cardview_ongoing_pickup_detail_map"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_close"
+            android:paddingTop="@dimen/buttom_padding_top_default"
+            android:paddingBottom="@dimen/buttom_padding_bottom_default"/>
+
+        <LinearLayout
+            android:id="@+id/cardview_ongoing_pickup_detail_lnlButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cardview_ongoing_pickup_detail_map"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/cardview_ongoing_pickup_detail_btnEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_edit"
+                android:paddingTop="@dimen/buttom_padding_top_default"
+                android:paddingBottom="@dimen/buttom_padding_bottom_default"/>
+
+            <ImageButton
+                android:id="@+id/cardview_ongoing_pickup_detail_btnMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_message"
+                android:paddingTop="@dimen/buttom_padding_top_default"
+                android:paddingBottom="@dimen/buttom_padding_bottom_default"/>
+
+            <ImageButton
+                android:id="@+id/cardview_ongoing_pickup_detail_btnCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/cardview_ongoing_pickup_detail_map"
+                android:layout_toEndOf="@+id/cardview_ongoing_pickup_detail_btnMessage"
+                android:layout_toRightOf="@+id/cardview_ongoing_pickup_detail_btnMessage"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_cancel"
+                android:paddingTop="@dimen/buttom_padding_top_default"
+                android:paddingBottom="@dimen/buttom_padding_bottom_default"/>
+
+            <ImageButton
+                android:id="@+id/cardview_ongoing_pickup_detail_btnLike"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_star_half"
+                android:paddingTop="@dimen/buttom_padding_top_default"
+                android:paddingBottom="@dimen/buttom_padding_bottom_default"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/cardview_ongoing_pickup_detail_lblStatus"
+            android:layout_width="@dimen/ongoing_mapview_details_label_width"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cardview_ongoing_pickup_detail_lnlButtons"
+            android:layout_marginBottom="@dimen/ongoing_mapview_details_label_margin_bottom"
+            android:layout_marginLeft="@dimen/ongoing_mapview_details_margin_left"
+            android:text="Status"
+            android:textColor="@color/light_gray" />
+
+        <TextView
+            android:id="@+id/cardview_ongoing_pickup_detail_lblAddress"
+            android:layout_width="@dimen/ongoing_mapview_details_label_width"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cardview_ongoing_pickup_detail_lblStatus"
+            android:layout_marginBottom="@dimen/ongoing_mapview_details_label_margin_bottom"
+            android:layout_marginLeft="@dimen/ongoing_mapview_details_margin_left"
+            android:text="Address"
+            android:textColor="@color/light_gray" />
+
+        <TextView
+            android:id="@+id/cardview_ongoing_pickup_detail_lblTime"
+            android:layout_width="@dimen/ongoing_mapview_details_label_width"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cardview_ongoing_pickup_detail_lblAddress"
+            android:layout_marginBottom="@dimen/ongoing_mapview_details_label_margin_bottom"
+            android:layout_marginLeft="@dimen/ongoing_mapview_details_margin_left"
+            android:text="Time"
+            android:textColor="@color/light_gray" />
+
+        <TextView
+            android:id="@+id/cardview_ongoing_pickup_detail_lblBinner"
+            android:layout_width="@dimen/ongoing_mapview_details_label_width"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cardview_ongoing_pickup_detail_lblTime"
+            android:layout_marginBottom="@dimen/ongoing_mapview_details_label_margin_bottom"
+            android:layout_marginLeft="@dimen/ongoing_mapview_details_margin_left"
+            android:text="Binner"
+            android:textColor="@color/light_gray" />
+
+        <TextView
+            android:id="@+id/cardview_ongoing_pickup_detail_lblBottles"
+            android:layout_width="@dimen/ongoing_mapview_details_label_width"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cardview_ongoing_pickup_detail_lblBinner"
+            android:layout_marginBottom="@dimen/ongoing_mapview_details_label_margin_bottom"
+            android:layout_marginLeft="@dimen/ongoing_mapview_details_margin_left"
+            android:text="Bottles"
+            android:textColor="@color/light_gray" />
+
+        <TextView
+            android:id="@+id/cardview_ongoing_pickup_detail_txtStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/cardview_ongoing_pickup_detail_lblStatus"
+            android:layout_marginLeft="@dimen/ongoing_mapview_details_text_margin_left"
+            android:layout_toEndOf="@+id/cardview_ongoing_pickup_detail_lblStatus"
+            android:layout_toRightOf="@+id/cardview_ongoing_pickup_detail_lblStatus"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            tools:text="In Progress"
+            android:textColor="@color/colorPrimary" />
+
+        <TextView
+            android:id="@+id/cardview_ongoing_pickup_detail_txtAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cardview_ongoing_pickup_detail_lblStatus"
+            android:layout_marginLeft="@dimen/ongoing_mapview_details_text_margin_left"
+            android:layout_toEndOf="@+id/cardview_ongoing_pickup_detail_lblAddress"
+            android:layout_toRightOf="@+id/cardview_ongoing_pickup_detail_lblAddress"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            tools:text="1150 Davie St, Vancouver BC"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/cardview_ongoing_pickup_detail_txtTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/cardview_ongoing_pickup_detail_lblTime"
+            android:layout_marginLeft="@dimen/ongoing_mapview_details_text_margin_left"
+            android:layout_toEndOf="@+id/cardview_ongoing_pickup_detail_lblTime"
+            android:layout_toRightOf="@+id/cardview_ongoing_pickup_detail_lblTime"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            tools:text="4:30 pm"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/cardview_ongoing_pickup_detail_txtBinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/cardview_ongoing_pickup_detail_lblBinner"
+            android:layout_marginLeft="@dimen/ongoing_mapview_details_text_margin_left"
+            android:layout_toEndOf="@+id/cardview_ongoing_pickup_detail_lblBinner"
+            android:layout_toRightOf="@+id/cardview_ongoing_pickup_detail_lblBinner"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            tools:text="George"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/cardview_ongoing_pickup_detail_lblDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/cardview_ongoing_pickup_detail_txtTime"
+            android:layout_marginLeft="25dp"
+            android:layout_toEndOf="@+id/cardview_ongoing_pickup_detail_txtTime"
+            android:layout_toRightOf="@+id/cardview_ongoing_pickup_detail_txtTime"
+            android:text="Date"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/cardview_ongoing_pickup_detail_txtDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/cardview_ongoing_pickup_detail_lblDate"
+            android:layout_marginLeft="@dimen/ongoing_mapview_details_text_margin_left"
+            android:layout_toEndOf="@+id/cardview_ongoing_pickup_detail_lblDate"
+            android:layout_toRightOf="@+id/cardview_ongoing_pickup_detail_lblDate"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            tools:text="18/07/2016"
+            android:textColor="@color/black" />
+
+        <ImageView
+            android:id="@+id/cardview_ongoing_pickup_detail_imgBottles"
+            android:layout_width="@dimen/ongoing_mapview_details_imgBottle_width"
+            android:layout_height="@dimen/ongoing_mapview_details_imgBottle_height"
+            android:layout_below="@+id/cardview_ongoing_pickup_detail_lblBinner"
+            android:layout_marginBottom="25dp"
+            android:layout_toEndOf="@+id/cardview_ongoing_pickup_detail_lblBottles"
+            android:layout_toRightOf="@+id/cardview_ongoing_pickup_detail_lblBottles"
+            android:src="@drawable/com_facebook_profile_picture_blank_portrait"/>
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

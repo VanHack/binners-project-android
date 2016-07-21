@@ -32,8 +32,8 @@
             android:layout_weight="1" />
 
         <include
-            android:id="@+id/home_screen_include_toolbar"
-            layout="@layout/toolbar_bottom"></include>
+            android:id="@+id/home_screen_include_tabLayoutBottom"
+            layout="@layout/tablayout_bottom"></include>
 
     </LinearLayout>
 
