@@ -53,6 +53,9 @@ public class OngoingDetailsDlg extends DialogFragment implements OnMapReadyCallb
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.cardview_ongoig_pickup_detail, container, false);
 
+        mMapView = (MapView) rootView.findViewById(R.id.cardview_ongoing_pickup_detail_map);
+        mMapView.onCreate(savedInstanceState);
+
         setupWindow();
 
         return rootView;
@@ -70,7 +73,6 @@ public class OngoingDetailsDlg extends DialogFragment implements OnMapReadyCallb
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        mMapView = (MapView) view.findViewById(R.id.cardview_ongoing_pickup_detail_map);
         btnClose = (ImageButton) view.findViewById(R.id.cardview_ongoing_pickup_detail_btnClose);
         txtStatus  = (TextView) view.findViewById(R.id.cardview_ongoing_pickup_detail_txtStatus);
         txtAddress = (TextView) view.findViewById(R.id.cardview_ongoing_pickup_detail_txtAddress);
@@ -86,12 +88,29 @@ public class OngoingDetailsDlg extends DialogFragment implements OnMapReadyCallb
             }
         });
 
-        mMapView.onCreate(null);
         mMapView.getMapAsync(this);
 
         updateUI();
 
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mMapView.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mMapView.onDestroy();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mMapView.onLowMemory();
     }
 
     //TODO Retrieve Status, Binners' name and bottles' image from the server

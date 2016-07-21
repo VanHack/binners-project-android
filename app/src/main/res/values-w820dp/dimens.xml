@@ -21,4 +21,6 @@
     <dimen name="ongoing_mapview_details_label_margin_bottom">30dp</dimen>
     <dimen name="popup_width">350dp</dimen>
     <dimen name="popup_height">500dp</dimen>
+    <dimen name="tablayout_bottom_height">85dp</dimen>
+    <dimen name="tablayout_bottom_textsize">18dp</dimen>
 </resources>

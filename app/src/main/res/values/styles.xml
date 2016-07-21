@@ -46,4 +46,8 @@
         <item name="android:paddingTop">5sp</item>
         <item name="android:paddingBottom">5sp</item>
     </style>
+
+    <style name="AppTheme.CustomTabText" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">@dimen/tablayout_bottom_textsize</item>
+    </style>
 </resources>
