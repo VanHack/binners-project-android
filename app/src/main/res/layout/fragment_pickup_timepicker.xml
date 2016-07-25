@@ -4,7 +4,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/circle_background">
+              android:background="@color/pickupBgColor">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="70dp"

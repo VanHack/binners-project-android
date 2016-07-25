@@ -219,7 +219,7 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, 
         return false;
     }
 
-	public LatLng getmLatLng() {
+	public LatLng getLatLng() {
 		return mLatLng;
 	}
 }

@@ -8,10 +8,6 @@
     tools:context="ca.com.androidbinnersproject.activities.pickup.PickupActivity"
     android:orientation="vertical">
 
-    <include
-        android:id="@+id/activity_pickup_toolbar"
-        layout="@layout/toolbar" />
-
     <android.support.percent.PercentRelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

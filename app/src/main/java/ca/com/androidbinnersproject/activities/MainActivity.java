@@ -13,6 +13,7 @@ import android.view.View;
 import ca.com.androidbinnersproject.R;
 import ca.com.androidbinnersproject.activities.home.HomeScreenFragment;
 import ca.com.androidbinnersproject.activities.ongoing.OngoingPickupsFragment;
+import ca.com.androidbinnersproject.activities.pickup.NewPickupFragment;
 import ca.com.androidbinnersproject.activities.pickup.PickupActivity;
 import ca.com.androidbinnersproject.util.Util;
 
@@ -86,27 +87,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void showSelectedUI(final int position) {
         switch (position) {
-            case 0:
+            case 0: //History
                 break;
-            case 1:
+            case 1: //Ongoing
                 mFragmentManager.beginTransaction()
                         .replace(R.id.main_container_body, OngoingPickupsFragment.newInstance(MainActivity.this))
                         .addToBackStack("ongoing")
                         .commit();
                 break;
-            case 2:
-                if(mHomeScreenMapFragment != null) {
+            case 2: //New Pickup
+                /*if(mHomeScreenMapFragment != null) {
 
                     Intent intent = new Intent(MainActivity.this, PickupActivity.class);
-                    intent.putExtra("LAT", mHomeScreenMapFragment.getmLatLng().latitude);
-                    intent.putExtra("LON", mHomeScreenMapFragment.getmLatLng().longitude);
+                    intent.putExtra("LAT", mHomeScreenMapFragment.getLatLng().latitude);
+                    intent.putExtra("LON", mHomeScreenMapFragment.getLatLng().longitude);
 
                     startActivity(intent);
-                }
+                }*/
+                mFragmentManager.beginTransaction()
+                        .replace(R.id.main_container_body, NewPickupFragment.newInstance(MainActivity.this,
+                                                                                         mHomeScreenMapFragment.getLatLng().latitude,
+                                                                                         mHomeScreenMapFragment.getLatLng().longitude))
+                        .addToBackStack("pickup")
+                        .commit();
+
                 break;
-            case 3:
+            case 3: //Notifications
                 break;
-            case 4:
+            case 4: //Donate
                 break;
         }
     }

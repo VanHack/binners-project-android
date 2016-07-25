@@ -99,5 +99,6 @@
     <!-- Rate the Pickup -->
     <string name="rate_pickup_dialog_title">Rate the pickup</string>
     <string name="rate_pickup_dialog_message">Please leave a comment about the service.</string>
+    <string name="rate_pickup_dialog_leave_a_comment">Leave a comment</string>
     <!-- End Rate the Pickup -->
 </resources>
