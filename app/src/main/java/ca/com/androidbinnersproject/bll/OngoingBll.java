@@ -33,7 +33,7 @@ public class OngoingBll {
 
         Retrofit retrofit = BaseAPI.getRetroInstance();
 
-        PickupService service = retrofit.create(PickupService.class);
+        final PickupService service = retrofit.create(PickupService.class);
         Call<List<Pickup>> call = service.getPickups(token);
 
         call.enqueue(new Callback<List<Pickup>>() {

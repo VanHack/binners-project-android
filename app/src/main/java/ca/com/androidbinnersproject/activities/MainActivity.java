@@ -96,14 +96,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .commit();
                 break;
             case 2: //New Pickup
-                /*if(mHomeScreenMapFragment != null) {
-
-                    Intent intent = new Intent(MainActivity.this, PickupActivity.class);
-                    intent.putExtra("LAT", mHomeScreenMapFragment.getLatLng().latitude);
-                    intent.putExtra("LON", mHomeScreenMapFragment.getLatLng().longitude);
-
-                    startActivity(intent);
-                }*/
                 mFragmentManager.beginTransaction()
                         .replace(R.id.main_container_body, NewPickupFragment.newInstance(MainActivity.this,
                                                                                          mHomeScreenMapFragment.getLatLng().latitude,

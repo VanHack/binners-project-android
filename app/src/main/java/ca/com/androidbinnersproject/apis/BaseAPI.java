@@ -3,6 +3,8 @@ package ca.com.androidbinnersproject.apis;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import ca.com.androidbinnersproject.util.RevalidateToken;
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -19,9 +21,12 @@ public class BaseAPI {
             return retrofit;
         }
 
+        OkHttpClient client = new OkHttpClient.Builder().authenticator(new RevalidateToken()).build();
+
         return retrofit = new Retrofit.Builder()
                 .baseUrl(ENDPOINT)
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
                 .build();
     }
 
