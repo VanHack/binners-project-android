@@ -7,6 +7,7 @@ import java.util.List;
 import ca.com.androidbinnersproject.apis.BaseAPI;
 import ca.com.androidbinnersproject.apis.PickupService;
 import ca.com.androidbinnersproject.models.Pickup;
+import ca.com.androidbinnersproject.util.BinnersSettings;
 import ca.com.androidbinnersproject.util.Util;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,13 +29,13 @@ public class OngoingBll {
         mListener = listener;
     }
 
-    public void getPickups(String token){
+    public void getPickups(){
         Util.showProgressDialog(mContext, "Ongoing", "Retrieving Pick-Ups");
 
         Retrofit retrofit = BaseAPI.getRetroInstance();
 
         final PickupService service = retrofit.create(PickupService.class);
-        Call<List<Pickup>> call = service.getPickups(token);
+        Call<List<Pickup>> call = service.getPickups(BinnersSettings.getToken());
 
         call.enqueue(new Callback<List<Pickup>>() {
             @Override

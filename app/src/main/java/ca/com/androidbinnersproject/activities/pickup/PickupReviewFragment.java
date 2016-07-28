@@ -23,6 +23,7 @@ import ca.com.androidbinnersproject.R;
 import ca.com.androidbinnersproject.apis.BaseAPI;
 import ca.com.androidbinnersproject.apis.PickupService;
 import ca.com.androidbinnersproject.models.Pickup;
+import ca.com.androidbinnersproject.util.BinnersSettings;
 import ca.com.androidbinnersproject.util.Util;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -116,7 +117,7 @@ public class PickupReviewFragment extends PickupBaseFragment implements View.OnC
             Retrofit retrofit = BaseAPI.getRetroInstance();
 
             PickupService service = retrofit.create(PickupService.class);
-            Call<Pickup> call = service.createPickup(mPickupModel, "AUTHORIZATION_GOES_HERE");
+            Call<Pickup> call = service.createPickup(mPickupModel, BinnersSettings.getToken());
 
             Gson gson = new Gson();
             String json = gson.toJson(mPickupModel);

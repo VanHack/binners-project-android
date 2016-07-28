@@ -27,6 +27,10 @@ public class RevalidateToken implements Authenticator {
     public Request authenticate(Route route, Response response) throws IOException {
         String newToken = getNewToken(response.request().header(HEADER_AUTHORIZATION));
 
+        if(newToken != null && newToken.length() > 0)
+            saveNewToken(newToken);
+
+
         return response.request().newBuilder().header(HEADER_AUTHORIZATION, newToken).build();
     }
 
@@ -45,5 +49,9 @@ public class RevalidateToken implements Authenticator {
         }
 
         return newToken;
+    }
+
+    private void saveNewToken(String newToken) {
+        BinnersSettings.setToken(newToken);
     }
 }

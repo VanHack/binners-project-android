@@ -44,15 +44,13 @@ public class Util {
 		return m.matches();
 	}
 
-	public static String getUserLogged(Activity activity) {
-		SharedPreferences preferences = activity.getSharedPreferences(LoginActivity.USER_AUTHENTICATED, 0);
+	public static String getUserLogged() {
+		String profile = BinnersSettings.getProfileName();
 
-		String profile = preferences.getString(LoginActivity.PROFILE_NAME, "");
-
-		if(profile != null && profile.length() > 0)
+		if(profile.length() > 0)
 			return profile;
 
-		return preferences.getString(LoginActivity.PROFILE_EMAIL, "<>");
+		return BinnersSettings.getProfileEmail();
 	}
 
 	public static String getStringResource(Context context, int resId) {

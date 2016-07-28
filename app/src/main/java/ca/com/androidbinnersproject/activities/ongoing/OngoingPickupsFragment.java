@@ -88,7 +88,7 @@ public class OngoingPickupsFragment extends Fragment implements OngoingBll.Ongoi
     public void onResume() {
         super.onResume();
 
-        service.getPickups("AUTHORIZATION_GOES_HERE");
+        service.getPickups();
     }
 
     @Override

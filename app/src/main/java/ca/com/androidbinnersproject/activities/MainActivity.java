@@ -1,7 +1,6 @@
 
 package ca.com.androidbinnersproject.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
@@ -14,7 +13,6 @@ import ca.com.androidbinnersproject.R;
 import ca.com.androidbinnersproject.activities.home.HomeScreenFragment;
 import ca.com.androidbinnersproject.activities.ongoing.OngoingPickupsFragment;
 import ca.com.androidbinnersproject.activities.pickup.NewPickupFragment;
-import ca.com.androidbinnersproject.activities.pickup.PickupActivity;
 import ca.com.androidbinnersproject.util.Util;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, LeftNavigationDrawerMenu.FragmentDrawerListener {
@@ -35,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        final String userLogged = Util.getUserLogged(this);
+        final String userLogged = Util.getUserLogged();
 
         mFragmentDrawer = (LeftNavigationDrawerMenu) getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         mFragmentDrawer.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar, userLogged);

@@ -3,14 +3,19 @@ package ca.com.androidbinnersproject.activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
+import ca.com.androidbinnersproject.util.BinnersSettings;
+
 public class StartAppActivity extends Activity {
+	private final String TAG = "StartAppActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+		BinnersSettings.initialize(getApplicationContext());
 
 		Intent intent = new Intent();
 
@@ -22,12 +27,12 @@ public class StartAppActivity extends Activity {
 			return;
 		}
 
+
 		startActivity(intent);
     }
 
 	public boolean isLogged() {
-		SharedPreferences preferences = getSharedPreferences(LoginActivity.USER_AUTHENTICATED, 0);
-		return preferences.getBoolean(LoginActivity.IS_AUTHENTICATED, false);
+		return BinnersSettings.getToken().length() > 0;
 	}
 
     @Override
@@ -39,11 +44,11 @@ public class StartAppActivity extends Activity {
                 startActivity(intent);
             }
             else {
-				Log.e("BinnersApp", "Failed to log in: " + resultCode);
+				Log.e(TAG, "Failed to log in: " + resultCode);
 			}
         }
         else {
-			Log.e("BinnersApp", "Received unknown activity result: " + resultCode);
+			Log.e(TAG, "Received unknown activity result: " + resultCode);
 		}
     }
 }
