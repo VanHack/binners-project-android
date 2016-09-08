@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void showHomeScreen() {
         mFragmentManager.beginTransaction()
                 .add(R.id.main_container_body, mHomeScreenMapFragment)
-                .addToBackStack("home")
+                //.addToBackStack("home")
                 .commit();
     }
 

@@ -5,10 +5,9 @@
     android:id="@+id/cardViewOnGoingPickups"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="@dimen/margin_left"
-    android:layout_marginRight="@dimen/margin_right"
     app:cardCornerRadius="@dimen/cardview_corner_radius"
-    app:cardElevation="@dimen/cardview_elevation">
+    app:cardElevation="@dimen/cardview_elevation"
+    android:layout_marginTop="@dimen/ongoing_cardview_margin_top" >
 
     <RelativeLayout
         android:layout_width="match_parent"

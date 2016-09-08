@@ -70,7 +70,7 @@
                 android:paddingBottom="@dimen/buttom_padding_bottom_default"/>
 
             <ImageButton
-                android:id="@+id/cardview_ongoing_pickup_detail_btnLike"
+                android:id="@+id/cardview_ongoing_pickup_detail_btnRate"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

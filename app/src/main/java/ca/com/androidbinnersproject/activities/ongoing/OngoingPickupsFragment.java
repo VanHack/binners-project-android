@@ -27,7 +27,7 @@ import ca.com.androidbinnersproject.util.RecyclerTouchListener;
  */
 public class OngoingPickupsFragment extends Fragment implements OngoingBll.OngoingListener {
 
-    private static final String TAG = OngoingPickupsFragment.class.getSimpleName();
+    private static final String TAG = "OngoingPickupsFragment";
     protected OngoingAdapter ongoingAdapter;
     protected RecyclerView recyclerView;
     private OngoingBll service;

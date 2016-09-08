@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/activity_horizontal_margin">
+
+    android:padding="@dimen/rate_pickup_dialog_padding">
 
     <TextView
         android:id="@+id/rate_pickup_dialog_title"
@@ -42,7 +43,8 @@
         android:layout_alignTop="@+id/rate_pickup_dialog_lblTime"
         android:layout_toRightOf="@+id/rate_pickup_dialog_lblTime"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        tools:text="10:30 am" />
+        tools:text="10:30 am"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/rate_pickup_dialog_txtDate"
@@ -52,7 +54,8 @@
         android:layout_toEndOf="@+id/rate_pickup_dialog_lblTime"
         android:layout_toRightOf="@+id/rate_pickup_dialog_lblTime"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        tools:text="22/07/2016" />
+        tools:text="22/07/2016"
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/rate_pickup_dialog_imgBinner"
@@ -62,7 +65,8 @@
         android:layout_marginLeft="33dp"
         android:layout_marginStart="33dp"
         android:layout_toEndOf="@+id/rate_pickup_dialog_txtDate"
-        android:layout_toRightOf="@+id/rate_pickup_dialog_txtDate" />
+        android:layout_toRightOf="@+id/rate_pickup_dialog_txtDate"
+        android:src="@drawable/nopicture"/>
 
     <TextView
         android:id="@+id/rate_pickup_dialog_lblBinner"
@@ -116,7 +120,8 @@
         android:numStars="5"
         android:progressTint="#ffd500"
         android:rating="1"
-        android:stepSize="1" />
+        android:stepSize="1"
+        android:layout_below="@id/rate_pickup_dialog_edtComment"/>
 
     <Button
         android:id="@+id/rate_pickup_dialog_btnSubmit"

@@ -31,6 +31,16 @@ public class StartAppActivity extends Activity {
 		startActivity(intent);
     }
 
+	@Override
+	protected void onRestart() {
+		super.onRestart();
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+	}
+
 	public boolean isLogged() {
 		return BinnersSettings.getToken().length() > 0;
 	}

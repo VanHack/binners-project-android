@@ -39,6 +39,12 @@
     <!-- Rate the Pickup -->
     <dimen name="rate_pickup_dialog_title_size">18sp</dimen>
     <dimen name="rate_pickup_dialog_message_margin_top">35dp</dimen>
+    <dimen name="rate_pickup_dialog_padding">16dp</dimen>
     <!-- End Rate the Pickup -->
 
+    <dimen name="recycler_view_padding_left">16dp</dimen>
+    <dimen name="recycler_view_padding_right">16dp</dimen>
+    <dimen name="recycler_view_padding_top">8dp</dimen>
+    <dimen name="ongoing_cardview_margin_top">8dp</dimen>
+    
 </resources>
