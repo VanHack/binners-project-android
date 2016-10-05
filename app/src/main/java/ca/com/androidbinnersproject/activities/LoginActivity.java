@@ -228,6 +228,8 @@ public class LoginActivity extends AppCompatActivity implements OnAuthListener, 
 				} else {
 					dismissPDialog();
 					Toast.makeText(LoginActivity.this, getApplicationContext().getString(R.string.fill_login), Toast.LENGTH_SHORT).show();
+
+					return;
 				}
 				break;
 		}

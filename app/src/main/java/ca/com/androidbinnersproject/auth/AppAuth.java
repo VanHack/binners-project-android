@@ -56,6 +56,7 @@ public class AppAuth extends Authentication {
             @Override
             public void onFailure(Call<Profile> call, Throwable t) {
                 Logger.Error("Backend login failure!");
+                onAuthListener.onLoginError(mContext.getString(R.string.login_invalid));
             }
         });
     }
