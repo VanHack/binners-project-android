@@ -34,6 +34,12 @@ public class Profile implements Serializable{
         user.setEmail(email);
     }
 
+    public String getId() {
+        return user.getId();
+    }
+
+    public void setId(String id) { user.setId(id); }
+
     public String getUrlImage() {
         return urlImage;
     }

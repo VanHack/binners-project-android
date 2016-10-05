@@ -129,8 +129,6 @@ public class LoginActivity extends AppCompatActivity implements OnAuthListener, 
 	public void onLoginSuccess(Profile profile) {
 		dismissPDialog();
 
-		Toast.makeText(this, "Logged as " + profile.getName() + " | " + profile.getEmail() + " /   " + profile.getToken(), Toast.LENGTH_LONG).show();
-
 		saveAuthenticatedUser(profile);
 
 		setResult(RESULT_OK);
@@ -163,6 +161,7 @@ public class LoginActivity extends AppCompatActivity implements OnAuthListener, 
 		BinnersSettings.setToken(profile.getToken());
 		BinnersSettings.setProfileName(profile.getName());
 		BinnersSettings.setProfileEmail(profile.getEmail());
+		BinnersSettings.setProfileId(profile.getId());
 	}
 
 	@Override

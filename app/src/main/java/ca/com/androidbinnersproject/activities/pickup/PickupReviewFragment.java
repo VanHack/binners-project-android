@@ -3,6 +3,7 @@ package ca.com.androidbinnersproject.activities.pickup;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,8 @@ import retrofit2.Retrofit;
  * Created by jonathan_campos on 22/05/2016.
  */
 public class PickupReviewFragment extends PickupBaseFragment implements View.OnClickListener, OnMapReadyCallback{
+
+    private static final String TAG = "PickupReviewFragment";
 
     private EditText edtLocation;
     private EditText edtTime;
@@ -127,12 +130,15 @@ public class PickupReviewFragment extends PickupBaseFragment implements View.OnC
                 public void onResponse(Call<Pickup> call, Response<Pickup> response) {
                     Util.dismissProgressDialog();
 
+                    getActivity().onBackPressed();
                 }
 
                 @Override
                 public void onFailure(Call<Pickup> call, Throwable t) {
-                    // TODO
                     Util.dismissProgressDialog();
+
+                    Log.e(TAG, "Error finishing pickup!");
+
                 }
             });
 

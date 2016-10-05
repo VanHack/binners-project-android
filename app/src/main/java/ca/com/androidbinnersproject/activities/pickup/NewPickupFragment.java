@@ -21,6 +21,7 @@ import java.util.Locale;
 
 import ca.com.androidbinnersproject.R;
 import ca.com.androidbinnersproject.models.Pickup;
+import ca.com.androidbinnersproject.util.BinnersSettings;
 import ca.com.androidbinnersproject.util.Logger;
 
 /**
@@ -67,6 +68,7 @@ public class NewPickupFragment extends Fragment implements View.OnClickListener 
     private void initializePickupModel(double lat, double lon) {
         mPickupModel = new Pickup();
 
+        mPickupModel.setUserID(BinnersSettings.getProfileId());
         mPickupModel.getAddress().getLocation().setCoordinates(new double[]{lat, lon});
 
         /**

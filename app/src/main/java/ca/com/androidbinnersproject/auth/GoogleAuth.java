@@ -44,7 +44,6 @@ public class GoogleAuth extends Authentication implements OnConnectionFailedList
         this.activity = activity;
 
         mGso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("231464068093-lc3csen415qpse4skdrlmc6shjmtdthb.apps.googleusercontent.com")
                 .requestEmail()
                 .build();
 

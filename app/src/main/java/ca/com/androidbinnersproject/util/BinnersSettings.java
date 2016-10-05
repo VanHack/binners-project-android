@@ -17,6 +17,7 @@ public class BinnersSettings {
     private static final String SHARED_TOKEN = "TOKEN";
     private static final String PROFILE_NAME = "PROFILE_NAME";
     private static final String PROFILE_EMAIL= "PROFILE_EMAIL";
+    private static final String PROFILE_ID= "PROFILE_ID";
 
 
     public static void initialize(final Context context) {
@@ -49,5 +50,13 @@ public class BinnersSettings {
 
     public static String getProfileEmail() {
         return getSystemContext().getSharedPreferences(app, Context.MODE_PRIVATE).getString(PROFILE_EMAIL, "<>");
+    }
+
+    public static boolean setProfileId(final String id) {
+        return getSystemContext().getSharedPreferences(app, Context.MODE_PRIVATE).edit().putString(PROFILE_ID, id).commit();
+    }
+
+    public static String getProfileId() {
+        return getSystemContext().getSharedPreferences(app, Context.MODE_PRIVATE).getString(PROFILE_ID, "");
     }
 }
