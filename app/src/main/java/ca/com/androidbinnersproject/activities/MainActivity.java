@@ -1,6 +1,8 @@
 
 package ca.com.androidbinnersproject.activities;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
@@ -105,6 +107,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case 3: //Notifications
                 break;
             case 4: //Donate
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.gifttool.com/donations/Donate?ID=1453&AID=503&PID=4805"));
+                startActivity(browserIntent);
                 break;
         }
     }

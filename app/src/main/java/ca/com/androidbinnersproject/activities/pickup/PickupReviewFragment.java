@@ -126,6 +126,7 @@ public class PickupReviewFragment extends PickupBaseFragment implements View.OnC
                 @Override
                 public void onResponse(Call<Pickup> call, Response<Pickup> response) {
                     Util.dismissProgressDialog();
+
                 }
 
                 @Override
