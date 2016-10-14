@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,6 +39,8 @@ public class OngoingDetailsDlg extends DialogFragment implements OnMapReadyCallb
     private TextView txtDate;
     private TextView txtBinner;
     private ImageView imgBottle;
+
+    private ImageButton btnRate;
 
     private Pickup mPickup;
     private GoogleMap mGoogleMap;
@@ -73,7 +76,8 @@ public class OngoingDetailsDlg extends DialogFragment implements OnMapReadyCallb
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        btnClose = (ImageButton) view.findViewById(R.id.cardview_ongoing_pickup_detail_btnClose);
+        btnClose   = (ImageButton) view.findViewById(R.id.cardview_ongoing_pickup_detail_btnClose);
+        btnRate    = (ImageButton) view.findViewById(R.id.cardview_ongoing_pickup_detail_btnRate);
         txtStatus  = (TextView) view.findViewById(R.id.cardview_ongoing_pickup_detail_txtStatus);
         txtAddress = (TextView) view.findViewById(R.id.cardview_ongoing_pickup_detail_txtAddress);
         txtTime    = (TextView) view.findViewById(R.id.cardview_ongoing_pickup_detail_txtTime);
@@ -85,6 +89,13 @@ public class OngoingDetailsDlg extends DialogFragment implements OnMapReadyCallb
             @Override
             public void onClick(View v) {
                 dismiss();
+            }
+        });
+        btnRate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RatePickupDlg dlg = RatePickupDlg.newInstance(mPickup);
+                dlg.show(getFragmentManager(), "");
             }
         });
 

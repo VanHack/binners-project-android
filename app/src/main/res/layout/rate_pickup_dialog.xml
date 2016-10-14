@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:padding="@dimen/rate_pickup_dialog_padding">
+
+    <TextView
+        android:id="@+id/rate_pickup_dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/rate_pickup_dialog_title"
+        android:textColor="@color/black"
+        android:textSize="@dimen/rate_pickup_dialog_title_size"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/rate_pickup_dialog_lblTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/rate_pickup_dialog_title"
+        android:text="@string/label_time"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/rate_pickup_dialog_lblDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/rate_pickup_dialog_lblTime"
+        android:text="@string/label_date"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/rate_pickup_dialog_txtTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/rate_pickup_dialog_lblTime"
+        android:layout_toRightOf="@+id/rate_pickup_dialog_lblTime"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        tools:text="10:30 am"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/rate_pickup_dialog_txtDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rate_pickup_dialog_lblTime"
+        android:layout_toEndOf="@+id/rate_pickup_dialog_lblTime"
+        android:layout_toRightOf="@+id/rate_pickup_dialog_lblTime"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        tools:text="22/07/2016"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/rate_pickup_dialog_imgBinner"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignTop="@+id/rate_pickup_dialog_txtTime"
+        android:layout_marginLeft="33dp"
+        android:layout_marginStart="33dp"
+        android:layout_toEndOf="@+id/rate_pickup_dialog_txtDate"
+        android:layout_toRightOf="@+id/rate_pickup_dialog_txtDate"
+        android:src="@drawable/nopicture"/>
+
+    <TextView
+        android:id="@+id/rate_pickup_dialog_lblBinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rate_pickup_dialog_imgBinner"
+        android:layout_toEndOf="@+id/rate_pickup_dialog_txtDate"
+        android:layout_toRightOf="@+id/rate_pickup_dialog_txtDate"
+        android:text="Binner"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/rate_pickup_dialog_txtBinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/rate_pickup_dialog_lblBinner"
+        android:layout_toEndOf="@+id/rate_pickup_dialog_lblBinner"
+        android:layout_toRightOf="@+id/rate_pickup_dialog_lblBinner"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        tools:text="Melissa"
+        android:textColor="@color/backgroundApp"
+        android:textStyle="bold"
+        android:layout_marginLeft="@dimen/text_margin_left"/>
+
+    <TextView
+        android:id="@+id/rate_pickup_dialog_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/rate_pickup_dialog_lblBinner"
+        android:text="@string/rate_pickup_dialog_message"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginTop="@dimen/rate_pickup_dialog_message_margin_top"
+        android:gravity="center_horizontal"/>
+
+    <EditText
+        android:id="@+id/rate_pickup_dialog_edtComment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rate_pickup_dialog_message"
+        android:layout_marginTop="32dp"
+        android:hint="@string/rate_pickup_dialog_leave_a_comment" />
+
+    <RatingBar
+        android:id="@+id/rate_pickup_dialog_rate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:numStars="5"
+        android:progressTint="#ffd500"
+        android:rating="1"
+        android:stepSize="1"
+        android:layout_below="@id/rate_pickup_dialog_edtComment"/>
+
+    <Button
+        android:id="@+id/rate_pickup_dialog_btnSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/rate_pickup_dialog_rate"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/buttom_blue"
+        android:text="Submit you review"
+        android:textColor="@color/whiteBackground" />
+
+</RelativeLayout>

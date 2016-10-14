@@ -1,12 +1,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="ca.com.androidbinnersproject.activities.pickup.PickupBottlesFragment"
-             android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pickupBgColor"
+    android:orientation="vertical"
+    tools:context="ca.com.androidbinnersproject.activities.pickup.PickupBottlesFragment">
+
     <Space
         android:layout_width="wrap_content"
-        android:layout_height="20dp"/>
+        android:layout_height="20dp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -17,7 +19,7 @@
 
     <Space
         android:layout_width="wrap_content"
-        android:layout_height="5dp"/>
+        android:layout_height="5dp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -27,7 +29,7 @@
 
     <Space
         android:layout_width="wrap_content"
-        android:layout_height="20dp"/>
+        android:layout_height="20dp" />
 
     <android.support.percent.PercentRelativeLayout
         android:layout_width="match_parent"
@@ -39,44 +41,44 @@
             android:layout_height="wrap_content"
             android:gravity="left"
             android:text="@string/pickup_bottles_numberofbottles"
-            android:textSize="15sp"/>
+            android:textSize="15sp" />
 
         <Spinner
             android:id="@+id/fragment_pickup_bottles_spnNumberOfCans"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp" />
 
         <LinearLayout
             android:id="@+id/pickup_bottles_orSeparator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_below="@id/fragment_pickup_bottles_spnNumberOfCans"
-            android:layout_marginTop="30dp">
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
 
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:background="@android:color/black"
+                android:layout_gravity="center"
                 android:layout_weight="3"
-                android:layout_gravity="center"/>
+                android:background="@android:color/black" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="or"
+                android:layout_weight="1"
 
                 android:gravity="center"
-                android:layout_weight="1"
-                android:textSize="20sp"/>
+                android:text="or"
+                android:textSize="20sp" />
 
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:background="@android:color/black"
+                android:layout_gravity="center"
                 android:layout_weight="3"
-                android:layout_gravity="center"/>
+                android:background="@android:color/black" />
 
         </LinearLayout>
 
@@ -85,9 +87,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/pickup_bottles_orSeparator"
+            android:layout_marginTop="10dp"
             android:text="@string/pickup_bottles_takepicture"
-            android:textSize="16sp"
-            android:layout_marginTop="10dp"/>
+            android:textSize="16sp" />
 
         <android.support.percent.PercentRelativeLayout
             android:layout_width="match_parent"
@@ -105,7 +107,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:src="@drawable/camera_icon"/>
+                    android:src="@drawable/camera_icon" />
 
             </FrameLayout>
 

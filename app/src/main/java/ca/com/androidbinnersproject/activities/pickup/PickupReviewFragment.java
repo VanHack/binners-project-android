@@ -3,6 +3,7 @@ package ca.com.androidbinnersproject.activities.pickup;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import ca.com.androidbinnersproject.R;
 import ca.com.androidbinnersproject.apis.BaseAPI;
 import ca.com.androidbinnersproject.apis.PickupService;
 import ca.com.androidbinnersproject.models.Pickup;
+import ca.com.androidbinnersproject.util.BinnersSettings;
 import ca.com.androidbinnersproject.util.Util;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,6 +35,8 @@ import retrofit2.Retrofit;
  * Created by jonathan_campos on 22/05/2016.
  */
 public class PickupReviewFragment extends PickupBaseFragment implements View.OnClickListener, OnMapReadyCallback{
+
+    private static final String TAG = "PickupReviewFragment";
 
     private EditText edtLocation;
     private EditText edtTime;
@@ -116,7 +120,7 @@ public class PickupReviewFragment extends PickupBaseFragment implements View.OnC
             Retrofit retrofit = BaseAPI.getRetroInstance();
 
             PickupService service = retrofit.create(PickupService.class);
-            Call<Pickup> call = service.createPickup(mPickupModel, "AUTHORIZATION_GOES_HERE");
+            Call<Pickup> call = service.createPickup(mPickupModel, BinnersSettings.getToken());
 
             Gson gson = new Gson();
             String json = gson.toJson(mPickupModel);
@@ -125,12 +129,16 @@ public class PickupReviewFragment extends PickupBaseFragment implements View.OnC
                 @Override
                 public void onResponse(Call<Pickup> call, Response<Pickup> response) {
                     Util.dismissProgressDialog();
+
+                    getActivity().onBackPressed();
                 }
 
                 @Override
                 public void onFailure(Call<Pickup> call, Throwable t) {
-                    // TODO
                     Util.dismissProgressDialog();
+
+                    Log.e(TAG, "Error finishing pickup!");
+
                 }
             });
 

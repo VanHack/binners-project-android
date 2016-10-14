@@ -40,7 +40,6 @@ public class PickupActivity extends AppCompatActivity implements View.OnClickLis
 		setContentView(R.layout.activity_pickup);
 
 
-		mToolbar   = (Toolbar) findViewById(R.id.activity_pickup_toolbar);
 		btnNextButton = (Button) findViewById(R.id.activity_pickup_next_button);
 		btnBackButton = (Button) findViewById(R.id.activity_pickup_back_button);
 		container = (FrameLayout) findViewById(R.id.activity_pickup_container);

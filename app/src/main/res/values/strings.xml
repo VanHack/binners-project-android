@@ -7,6 +7,10 @@
     <string name="txtLoginWith">Log in with</string>
     <string name="createAccount">Create an Account</string>
     <string name="forgotPassword">Forgot Password?</string>
+    <string name="password_label">Password</string>
+    <string name="email_label">Email</string>
+    <string name="recycler_app_label">RECYCLER</string>
+    <string name="recycler_app_logo_contente_description">Binner\'s Project Logo</string>
 
     <string name="facebook_app_id">934314433288495</string>
     <string name="fabric_id">d78872197696ec6106cdc9761625d9950add5f65</string>
@@ -14,6 +18,7 @@
     <string name="has_no_connection">Please check your internet connection!</string>
     <string name="executing_sign_in">Executing SignIn!</string>
     <string name="login_error">There is a problem on trying to login. Try again!</string>
+    <string name="login_invalid">Usename or password invalid. Try again!</string>
     <string name="invalid_email">Please write a valid e-mail</string>
     <string name="create_user_without_permission">We will never post without your permission.</string>
     <string name="create_user_terms_privacy">By signing up I agree to the Binner\'s Project Service Terms and Privacy Policy</string>
@@ -78,7 +83,7 @@
     <string name="home_screen_map_marker_title">Request pickup here</string>
     <string name="home_screen_toolbar_history_title">History</string>
     <string name="home_screen_toolbar_ongoing_title">Ongoing</string>
-    <string name="home_screen_toolbar_pickup_title">New Pickup</string>
+    <string name="home_screen_toolbar_pickup_title">Pickup</string>
     <string name="home_screen_toolbar_notifications_title">Notifications</string>
     <string name="home_screen_toolbar_donate_title">Donate</string>
     <string name="search_hint">Search on Maps</string>
@@ -88,11 +93,17 @@
     <string name="pickup_activity_title_instructions">Instructions</string>
     <string name="pickup_activity_title_confirm">Review your information</string>
     <string name="pickup_review_label_location">Pick-Up Location</string>
-    <string name="pickup_review_label_time">Time</string>
-    <string name="pickup_review_label_date">Date</string>
+    <string name="label_time">Time</string>
+    <string name="label_date">Date</string>
     <string name="pickup_review_label_canAndBottles">Number of Cans and Bottles</string>
     <string name="pickup_review_label_instructions">Instructions</string>
     <string name="pickup_review_post_pickup">Finish your Pick-Up!</string>
     <string name="new_pickup_progress_title" type="id">New Pick-Up</string>
     <string name="new_pickup_progress_message" type="id">Saving Pick-Up</string>
+
+    <!-- Rate the Pickup -->
+    <string name="rate_pickup_dialog_title">Rate the pickup</string>
+    <string name="rate_pickup_dialog_message">Please leave a comment about the service.</string>
+    <string name="rate_pickup_dialog_leave_a_comment">Leave a comment</string>
+    <!-- End Rate the Pickup -->
 </resources>

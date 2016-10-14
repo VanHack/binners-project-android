@@ -1,44 +1,42 @@
 {
   "project_info": {
-    "project_id": "binners-dev",
-    "project_number": "231464068093",
-    "name": "binners-dev"
+    "project_number": "291018299300",
+    "project_id": "binnersdraft"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:231464068093:android:f5caa9d6e6b11ddd",
-        "client_id": "android:ca.com.androidbinnersproject",
-        "client_type": 1,
+        "mobilesdk_app_id": "1:291018299300:android:f5caa9d6e6b11ddd",
         "android_client_info": {
           "package_name": "ca.com.androidbinnersproject"
         }
       },
       "oauth_client": [
         {
-          "client_id": "231464068093-lli39m2beo4kt5uqbnadibkbbdh2d1kp.apps.googleusercontent.com",
-          "client_type": 3
+          "client_id": "291018299300-6dp69vofhdrsu6nurt21shtk54hn46d2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ca.com.androidbinnersproject",
+            "certificate_hash": "6C861F614885C4175CBDEF0D8CF81A648D19D6A2"
+          }
         },
         {
-          "client_id": "231464068093-lc3csen415qpse4skdrlmc6shjmtdthb.apps.googleusercontent.com",
+          "client_id": "291018299300-klslc1u3kbg59p3km633d5dklbbmk820.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
-      "api_key": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADYFGbUAL5LJ9fIA0qVh6TP1IX1q4syv0"
+        }
+      ],
       "services": {
         "analytics_service": {
           "status": 1
         },
-        "cloud_messaging_service": {
-          "status": 1,
-          "apns_config": []
-        },
         "appinvite_service": {
           "status": 1,
           "other_platform_oauth_client": []
-        },
-        "google_signin_service": {
-          "status": 1
         },
         "ads_service": {
           "status": 1
@@ -46,6 +44,5 @@
       }
     }
   ],
-  "client_info": [],
-  "ARTIFACT_VERSION": "1"
+  "configuration_version": "1"
 }

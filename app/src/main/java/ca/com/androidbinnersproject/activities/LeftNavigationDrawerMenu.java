@@ -192,7 +192,7 @@ public class LeftNavigationDrawerMenu extends Fragment {
     }
 
     private void loadProfileName() {
-        txtProfile.setText(Util.getUserLogged(this.getActivity()));
+        txtProfile.setText(Util.getUserLogged());
     }
 
     private void loadProfilePicture() {

@@ -1,11 +1,14 @@
 package ca.com.androidbinnersproject.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
  * Created by jonathan_campos on 28/01/2016.
  */
 public class User implements Serializable{
+    @SerializedName("_id")
     private String id;
     private String name;
     private String email;

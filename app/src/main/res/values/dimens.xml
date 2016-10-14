@@ -12,6 +12,15 @@
     <dimen name="cardview_elevation">4dp</dimen>
     <dimen name="margin_left">16dp</dimen>
     <dimen name="margin_right">16dp</dimen>
+
+    <!-- Default -->
+    <dimen name="buttom_padding_bottom_default">5dp</dimen>
+    <dimen name="buttom_padding_top_default">5dp</dimen>
+    <dimen name="text_margin_left">5dp</dimen>
+
+    <!-- End Default -->
+
+    <!-- Ongoing -->
     <dimen name="ongoing_mapview_height">100dp</dimen>
     <dimen name="ongoing_mapview_details_height">160dp</dimen>
     <dimen name="ongoing_mapview_details_margin_left">50dp</dimen>
@@ -20,11 +29,22 @@
     <dimen name="ongoing_mapview_details_text_margin_left">10dp</dimen>
     <dimen name="ongoing_mapview_details_imgBottle_width">150dp</dimen>
     <dimen name="ongoing_mapview_details_imgBottle_height">120dp</dimen>
-    <dimen name="buttom_padding_bottom_default">5dp</dimen>
-    <dimen name="buttom_padding_top_default">5dp</dimen>
+    <!-- End Ongoing -->
+
     <dimen name="popup_width">350dp</dimen>
     <dimen name="popup_height">500dp</dimen>
     <dimen name="tablayout_bottom_height">60dp</dimen>
     <dimen name="tablayout_bottom_textsize">7dp</dimen>
 
+    <!-- Rate the Pickup -->
+    <dimen name="rate_pickup_dialog_title_size">18sp</dimen>
+    <dimen name="rate_pickup_dialog_message_margin_top">35dp</dimen>
+    <dimen name="rate_pickup_dialog_padding">16dp</dimen>
+    <!-- End Rate the Pickup -->
+
+    <dimen name="recycler_view_padding_left">16dp</dimen>
+    <dimen name="recycler_view_padding_right">16dp</dimen>
+    <dimen name="recycler_view_padding_top">8dp</dimen>
+    <dimen name="ongoing_cardview_margin_top">8dp</dimen>
+    
 </resources>

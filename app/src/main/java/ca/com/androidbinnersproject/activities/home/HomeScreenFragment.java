@@ -79,7 +79,6 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, 
 		SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
 		// Assumes current activity is the searchable activity
 		edtSearch.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
-		edtSearch.setIconifiedByDefault(false);
 		edtSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 			@Override
 			public boolean onQueryTextSubmit(String query) {
@@ -219,7 +218,7 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, 
         return false;
     }
 
-	public LatLng getmLatLng() {
+	public LatLng getLatLng() {
 		return mLatLng;
 	}
 }

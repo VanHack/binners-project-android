@@ -28,16 +28,12 @@ import ca.com.androidbinnersproject.auth.TwitterAuth;
 import ca.com.androidbinnersproject.auth.keys.KeyManager;
 import ca.com.androidbinnersproject.listeners.OnAuthListener;
 import ca.com.androidbinnersproject.models.Profile;
+import ca.com.androidbinnersproject.util.BinnersSettings;
 import ca.com.androidbinnersproject.util.Logger;
 import ca.com.androidbinnersproject.util.Util;
 
 
 public class LoginActivity extends AppCompatActivity implements OnAuthListener, View.OnClickListener {
-	public static String IS_AUTHENTICATED = "IS_AUTHENTICATED";
-	public static String USER_AUTHENTICATED = "USER_AUTHENTICATED";
-	public static String ACCESS_TOKEN = "ACCESS_TOKEN";
-	public static String PROFILE_NAME = "PROFILE_NAME";
-	public static String PROFILE_EMAIL = "PROFILE_EMAIL";
 	public static final int FROM_LOGIN = 25678;
 
 	private KeyManager keyManager;
@@ -133,8 +129,6 @@ public class LoginActivity extends AppCompatActivity implements OnAuthListener, 
 	public void onLoginSuccess(Profile profile) {
 		dismissPDialog();
 
-		Toast.makeText(this, "Logged as " + profile.getName() + " | " + profile.getEmail() + " /   " + profile.getToken(), Toast.LENGTH_LONG).show();
-
 		saveAuthenticatedUser(profile);
 
 		setResult(RESULT_OK);
@@ -164,14 +158,10 @@ public class LoginActivity extends AppCompatActivity implements OnAuthListener, 
 	}
 
 	private void saveAuthenticatedUser(Profile profile) {
-		SharedPreferences preferences = getSharedPreferences(USER_AUTHENTICATED, 0);
-		SharedPreferences.Editor editor = preferences.edit();
-
-		editor.putBoolean(IS_AUTHENTICATED, true);
-		editor.putString(ACCESS_TOKEN, profile.getToken());
-		editor.putString(PROFILE_NAME, profile.getName());
-		editor.putString(PROFILE_EMAIL, profile.getEmail());
-		editor.commit();
+		BinnersSettings.setToken(profile.getToken());
+		BinnersSettings.setProfileName(profile.getName());
+		BinnersSettings.setProfileEmail(profile.getEmail());
+		BinnersSettings.setProfileId(profile.getId());
 	}
 
 	@Override
@@ -238,6 +228,8 @@ public class LoginActivity extends AppCompatActivity implements OnAuthListener, 
 				} else {
 					dismissPDialog();
 					Toast.makeText(LoginActivity.this, getApplicationContext().getString(R.string.fill_login), Toast.LENGTH_SHORT).show();
+
+					return;
 				}
 				break;
 		}
