@@ -83,7 +83,7 @@
     <string name="home_screen_map_marker_title">Request pickup here</string>
     <string name="home_screen_toolbar_history_title">History</string>
     <string name="home_screen_toolbar_ongoing_title">Ongoing</string>
-    <string name="home_screen_toolbar_pickup_title">New Pickup</string>
+    <string name="home_screen_toolbar_pickup_title">Pickup</string>
     <string name="home_screen_toolbar_notifications_title">Notifications</string>
     <string name="home_screen_toolbar_donate_title">Donate</string>
     <string name="search_hint">Search on Maps</string>

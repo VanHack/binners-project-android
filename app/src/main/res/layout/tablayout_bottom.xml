@@ -1,52 +1,6 @@
-<android.support.design.widget.TabLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/toolbar_bottom_tabLayout"
+<com.ashokvarma.bottomnavigation.BottomNavigationBar android:id="@+id/bottom_navigation_bar"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/tablayout_bottom_height"
+    android:layout_height="wrap_content"
     android:layout_alignParentBottom="true"
-    android:fitsSystemWindows="true"
-    android:minHeight="?attr/actionBarSize"
-    app:tabIndicatorColor="@null"
-    app:tabMode="fixed"
-    app:tabTextAppearance="@style/AppTheme.CustomTabText"
-    app:tabBackground="@drawable/buttom_tab"
-    app:tabSelectedTextColor="@color/whiteBackground"
-    app:tabGravity="fill">
-
-    <android.support.design.widget.TabItem
-        android:id="@+id/toolbar_bottom_btnHistory"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/home_screen_toolbar_history_title"
-        android:icon="@drawable/ic_buttom_history" />
-
-    <android.support.design.widget.TabItem
-        android:id="@+id/toolbar_bottom_btnOngoing"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/home_screen_toolbar_ongoing_title"
-        android:icon="@drawable/ic_buttom_ongoing"/>
-
-    <android.support.design.widget.TabItem
-        android:id="@+id/toolbar_bottom_btnPickup"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/home_screen_toolbar_pickup_title"
-        android:icon="@drawable/ic_buttom_pickup" />
-
-
-    <android.support.design.widget.TabItem
-        android:id="@+id/toolbar_bottom_btnNotifications"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/home_screen_toolbar_notifications_title"
-        android:icon="@drawable/ic_buttom_notifications" />
-
-    <android.support.design.widget.TabItem
-        android:id="@+id/toolbar_bottom_btnDonate"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/home_screen_toolbar_donate_title"
-        android:icon="@drawable/ic_buttom_donate" />
-
-</android.support.design.widget.TabLayout>
+    android:layout_gravity="bottom"
+    xmlns:android="http://schemas.android.com/apk/res/android" />
