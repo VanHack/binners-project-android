@@ -95,6 +95,7 @@
     <string name="pickup_review_label_location">Pick-Up Location</string>
     <string name="label_time">Time</string>
     <string name="label_date">Date</string>
+    <string name="label_binner">Binner</string>
     <string name="pickup_review_label_canAndBottles">Number of Cans and Bottles</string>
     <string name="pickup_review_label_instructions">Instructions</string>
     <string name="pickup_review_post_pickup">Finish your Pick-Up!</string>
@@ -108,4 +109,6 @@
     <string name="rate_pickup_dialog_message">Please leave a comment about the service.</string>
     <string name="rate_pickup_dialog_leave_a_comment">Leave a comment</string>
     <!-- End Rate the Pickup -->
+
+    <string name="label_retry">Retry</string>
 </resources>
