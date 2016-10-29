@@ -40,7 +40,7 @@ public class OngoingViewHolder extends RecyclerView.ViewHolder implements OnMapR
         this.timeTv = (TextView) itemView.findViewById(R.id.timeTv);
         this.dateTv = (TextView) itemView.findViewById(R.id.dateTv);
         this.binnerTv = (TextView) itemView.findViewById(R.id.binnerTv);
-        this.statusTv = (TextView) itemView.findViewById(R.id.statusTv);
+        this.statusTv = (TextView) itemView.findViewById(R.id.txtStatusHistory);
         this.mapView = (MapView) itemView.findViewById(R.id.cardview_ongoing_pickup_detail_map);
 
         this.mapView.onCreate(null);

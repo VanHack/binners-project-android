@@ -4,8 +4,6 @@ package ca.com.androidbinnersproject.activities;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,6 +13,7 @@ import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 
 import ca.com.androidbinnersproject.R;
+import ca.com.androidbinnersproject.activities.history.HistoryPickupFragment;
 import ca.com.androidbinnersproject.activities.home.HomeScreenFragment;
 import ca.com.androidbinnersproject.activities.ongoing.OngoingPickupsFragment;
 import ca.com.androidbinnersproject.activities.pickup.NewPickupFragment;
@@ -73,7 +72,6 @@ public class MainActivity extends AppCompatActivity implements LeftNavigationDra
     private void showHomeScreen() {
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.main_container_body, mHomeScreenMapFragment)
-                //.addToBackStack("home")
                 .commit();
     }
 
@@ -94,6 +92,10 @@ public class MainActivity extends AppCompatActivity implements LeftNavigationDra
     public void onTabSelected(int position) {
         switch (position) {
             case 0: //History
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.main_container_body, HistoryPickupFragment.newInstance())
+                        .addToBackStack("history")
+                        .commit();
                 break;
             case 1: //Ongoing
                 getSupportFragmentManager().beginTransaction()

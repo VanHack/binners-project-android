@@ -3,7 +3,6 @@ package ca.com.androidbinnersproject.activities.pickup;
 import android.support.v4.app.Fragment;
 
 import java.util.Calendar;
-import java.util.Date;
 
 import ca.com.androidbinnersproject.models.Pickup;
 
@@ -56,10 +55,6 @@ public abstract class PickupBaseFragment extends Fragment {
 
     protected String getStreet() {
         return mPickupModel.getAddress().getStreet();
-    }
-
-    protected String getCity() {
-        return mPickupModel.getAddress().getCity();
     }
 
     protected abstract boolean isValid();

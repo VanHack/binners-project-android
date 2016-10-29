@@ -4,7 +4,6 @@ package ca.com.androidbinnersproject.activities.home;
 import android.Manifest;
 import android.app.SearchManager;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Criteria;
@@ -29,7 +28,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
@@ -37,9 +35,8 @@ import java.util.List;
 import java.util.Locale;
 
 import ca.com.androidbinnersproject.R;
-import ca.com.androidbinnersproject.activities.pickup.PickupActivity;
 
-public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
 	private View mViewHomeScreen;
 
 	private SupportMapFragment mSupportMapFragment;
@@ -134,7 +131,6 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, 
 
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mMapView.setMyLocationEnabled(true);
-            mMapView.setOnMarkerClickListener(this);
             showCurrentLocation();
         } else {
             // Show rationale and request permission.
@@ -152,7 +148,10 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, 
         String provider = locationManager.getBestProvider(criteria, true);
 
         // Getting Current Location
-        Location location = locationManager.getLastKnownLocation(provider);
+		Location location = null;
+
+		if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+        	location = locationManager.getLastKnownLocation(provider);
 
         if(location!=null) {
             // Creating a LatLng object for the current location
@@ -206,17 +205,6 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback, 
 			Log.e("MAPSERROR", "");
 		}
 	}
-
-    @Override
-    public boolean onMarkerClick(Marker marker) {
-        Intent intent = new Intent(getActivity(), PickupActivity.class);
-        intent.putExtra("LAT", marker.getPosition().latitude);
-        intent.putExtra("LON", marker.getPosition().longitude);
-
-        startActivity(intent);
-
-        return false;
-    }
 
 	public LatLng getLatLng() {
 		return mLatLng;

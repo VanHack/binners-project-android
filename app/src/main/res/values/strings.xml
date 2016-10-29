@@ -75,7 +75,7 @@
     <string name="pickup_instructions_hint">E.g. Hey! I\'ve left my bottles and cans for you by the recycling bin in the alleyway</string>
 
     <string name="pickup_bottles_top">Give us a rough estimate of how many\nredeemables you have for pick-up</string>
-    <string name="pickup_bottles_advice">(No less than 15 bottles please)</string>
+    <string name="pickup_bottles_advice">(No less than 15 bottles/cans please)</string>
     <string name="pickup_bottles_numberofbottles">Number of bottles</string>
     <string name="pickup_bottles_takepicture">Take a picture</string>
     <string name="pickup_bottles_uploadpicture">Upload a picture</string>
@@ -100,6 +100,8 @@
     <string name="pickup_review_post_pickup">Finish your Pick-Up!</string>
     <string name="new_pickup_progress_title" type="id">New Pick-Up</string>
     <string name="new_pickup_progress_message" type="id">Saving Pick-Up</string>
+    <string name="new_pickup_menu_next">Next</string>
+    <string name="new_pickup_menu_back">Back</string>
 
     <!-- Rate the Pickup -->
     <string name="rate_pickup_dialog_title">Rate the pickup</string>

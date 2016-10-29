@@ -8,12 +8,12 @@ import android.view.ViewGroup;
 import com.google.android.gms.maps.MapView;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
 import ca.com.androidbinnersproject.R;
 import ca.com.androidbinnersproject.models.Pickup;
+import ca.com.androidbinnersproject.util.BinnersStatusConverter;
 
 /**
  * Created by Pedro Henrique on 06/07/2016.
@@ -48,7 +48,7 @@ public class OngoingAdapter extends RecyclerView.Adapter<OngoingViewHolder> {
         viewHolder.dateTv.setText( sdfDate.format(pickup.getTime()) );
         //TODO: Change binnerTV and statusTV to data model.
         viewHolder.binnerTv.setText("Binner Sample"); // Waiting for change in the model
-        viewHolder.statusTv.setText("Completed (Sample)"); // Waiting for change in the model
+        viewHolder.statusTv.setText(BinnersStatusConverter.getStatusDescription(pickup.getStatus()));
 
         viewHolder.setPickup(pickup);
     }

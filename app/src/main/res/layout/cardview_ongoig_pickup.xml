@@ -21,7 +21,7 @@
             map:liteMode="true" />
 
         <TextView
-            android:id="@+id/statusTv"
+            android:id="@+id/txtStatusHistory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/cardview_ongoing_pickup_detail_map"
@@ -39,7 +39,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignWithParentIfMissing="false"
-            android:layout_below="@+id/statusTv"
+            android:layout_below="@+id/txtStatusHistory"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="10dp"
             android:text="Time" />

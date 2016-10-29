@@ -5,9 +5,6 @@ package ca.com.androidbinnersproject.models;
  */
 public class Address {
     private String street;
-    private String city;
-    private String state;
-    private String zip;
     private Location location;
 
     public Address() {
@@ -22,29 +19,6 @@ public class Address {
         this.street = street;
     }
 
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getZip() {
-        return zip;
-    }
-
-    public void setZip(String zip) {
-        this.zip = zip;
-    }
 
     public Location getLocation() {
         return location;
@@ -56,6 +30,6 @@ public class Address {
 
     @Override
     public String toString() {
-        return street + ", " + city;
+        return street;
     }
 }
