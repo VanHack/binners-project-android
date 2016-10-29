@@ -17,5 +17,8 @@ public interface PickupService {
     Call<List<Pickup>> getPickups(@Header("Authorization") String authorization);
 
     @POST("pickup")
-    public abstract Call<Pickup> createPickup(@Body Pickup pickup, @Header("Authorization") String authorization);
+    Call<Pickup> createPickup(@Body Pickup pickup, @Header("Authorization") String authorization);
+
+    @GET("pickups/ongoing")
+    Call<List<Pickup>> getHistory(@Header("Authorization") String authorization);
 }

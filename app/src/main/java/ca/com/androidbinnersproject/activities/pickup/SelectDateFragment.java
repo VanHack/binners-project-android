@@ -3,10 +3,13 @@ package ca.com.androidbinnersproject.activities.pickup;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
@@ -47,6 +50,12 @@ public class SelectDateFragment extends PickupBaseFragment implements View.OnCli
         fragment.setTitle(Util.getStringResource(context, R.string.pickup_activity_title_date));
 
         return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -188,5 +197,10 @@ public class SelectDateFragment extends PickupBaseFragment implements View.OnCli
     @Override
     protected boolean isValid() {
         return true;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.getItem(0).setVisible(false);
     }
 }

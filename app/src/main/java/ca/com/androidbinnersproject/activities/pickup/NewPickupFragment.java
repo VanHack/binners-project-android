@@ -1,7 +1,6 @@
 package ca.com.androidbinnersproject.activities.pickup;
 
 import android.content.Context;
-import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -9,9 +8,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -27,9 +28,7 @@ import ca.com.androidbinnersproject.util.Logger;
 /**
  * Created by jonathan_campos on 25/07/2016.
  */
-public class NewPickupFragment extends Fragment implements View.OnClickListener {
-    private Button btnNextButton;
-    private Button btnBackButton;
+public class NewPickupFragment extends Fragment {
 
     private List<PickupBaseFragment> mFragments;
 
@@ -48,18 +47,18 @@ public class NewPickupFragment extends Fragment implements View.OnClickListener 
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.activity_pickup, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        btnNextButton = (Button) view.findViewById(R.id.activity_pickup_next_button);
-        btnBackButton = (Button) view.findViewById(R.id.activity_pickup_back_button);
-
-        btnNextButton.setOnClickListener(this);
-        btnBackButton.setOnClickListener(this);
-
         initializeFragments(mPickupModel);
 
         super.onViewCreated(view, savedInstanceState);
@@ -79,9 +78,6 @@ public class NewPickupFragment extends Fragment implements View.OnClickListener 
             List<Address> fromLocation = geocoder.getFromLocation(lat, lon, 1);
             for (Address address : fromLocation) {
                 mPickupModel.getAddress().setStreet(address.getThoroughfare() + ", " + address.getSubThoroughfare() + " - " + address.getSubLocality());
-                mPickupModel.getAddress().setCity(address.getLocality());
-                mPickupModel.getAddress().setState(address.getAdminArea());
-                mPickupModel.getAddress().setZip(address.getPostalCode());
             }
 
         } catch (IOException e) {
@@ -101,18 +97,13 @@ public class NewPickupFragment extends Fragment implements View.OnClickListener 
     }
 
     private void changeFragment(Action action) {
-        boolean hasChanged = false;
 
         if (action.ordinal() == Action.NEXT.ordinal()) {
-            if (indexFragment < (mFragments.size() - 1)) {
+            if (indexFragment < (mFragments.size() - 1))
                 incrementIndex();
-                hasChanged = true;
-            }
         } else {
-            if (indexFragment > 0) {
+            if (indexFragment > 0)
                 decrementIndex();
-                hasChanged = true;
-            }
         }
 
         FragmentTransaction ft = getFragmentManager().beginTransaction();
@@ -120,14 +111,23 @@ public class NewPickupFragment extends Fragment implements View.OnClickListener 
         ft.commit();
     }
 
+    private void decrementIndex() {
+        indexFragment--;
+    }
+
+    private void incrementIndex() {
+        indexFragment++;
+    }
+
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.activity_pickup_back_button: {
-                changeFragment(Action.BACK);
-            }
-            break;
-            case R.id.activity_pickup_next_button: {
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.newpickup_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.newpickup_menu_next:
                 PickupBaseFragment currentFragment = mFragments.get(indexFragment);
 
                 if(currentFragment.isValid()) {
@@ -135,25 +135,13 @@ public class NewPickupFragment extends Fragment implements View.OnClickListener 
                 } else {
                     Toast.makeText(getContext(), "Cannot change!", Toast.LENGTH_SHORT).show();
                 }
-            }
-            break;
+                return true;
+            case R.id.newpickup_menu_back:
+                changeFragment(Action.BACK);
+                return true;
         }
-    }
 
-    private void decrementIndex() {
-        indexFragment--;
-
-        if(indexFragment >= mFragments.size() -2) {
-            btnNextButton.setText("Next");
-        }
-    }
-
-    private void incrementIndex() {
-        indexFragment++;
-
-        if(indexFragment >= mFragments.size() -1) {
-            btnNextButton.setText("Finish");
-        }
+        return false;
     }
 
     public enum Action {

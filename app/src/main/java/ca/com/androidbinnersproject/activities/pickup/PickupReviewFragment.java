@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -57,6 +59,12 @@ public class PickupReviewFragment extends PickupBaseFragment implements View.OnC
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_pickup_review, container, false);
     }
@@ -87,7 +95,7 @@ public class PickupReviewFragment extends PickupBaseFragment implements View.OnC
     }
 
     private void fillPickupInformation() {
-        edtLocation.setText(String.format("%s - %s", getStreet(), getCity()));
+        edtLocation.setText(String.format("%s", getStreet()));
         edtTime.setText(Util.getTimeFormated(getDate()));
         edtDate.setText(Util.getDateFormated(getDate()));
         edtCanBottles.setText(getItems());
@@ -158,5 +166,10 @@ public class PickupReviewFragment extends PickupBaseFragment implements View.OnC
 
         initializeStaticMap();
 
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.getItem(1).setVisible(false);
     }
 }

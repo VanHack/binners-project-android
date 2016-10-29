@@ -21,6 +21,7 @@ public class StartAppActivity extends Activity {
 
 		if(isLogged()) {
 			intent.setClass(this, MainActivity.class);
+			finish();
 		}  else {
 			intent.setClass(this, LoginActivity.class);
 			startActivityForResult(intent, LoginActivity.FROM_LOGIN);

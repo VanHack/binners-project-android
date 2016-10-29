@@ -19,9 +19,9 @@ import ca.com.androidbinnersproject.models.Pickup;
 import ca.com.androidbinnersproject.util.Logger;
 
 /**
- * Created by Pedro Henrique on 06/07/2016.
+ * Created by Jonathan on 28/10/2016.
  */
-public class OngoingViewHolder extends RecyclerView.ViewHolder implements OnMapReadyCallback {
+public class HistoryViewHolder extends RecyclerView.ViewHolder implements OnMapReadyCallback {
     public TextView timeTv;
     public TextView dateTv;
     public TextView binnerTv;
@@ -33,15 +33,15 @@ public class OngoingViewHolder extends RecyclerView.ViewHolder implements OnMapR
     public MapView mapView;
     private Context ctx;
 
-    public OngoingViewHolder(Context ctx, View itemView) {
+    public HistoryViewHolder(Context ctx, View itemView) {
         super(itemView);
 
         this.ctx = ctx;
-        this.timeTv = (TextView) itemView.findViewById(R.id.timeTv);
-        this.dateTv = (TextView) itemView.findViewById(R.id.dateTv);
-        this.binnerTv = (TextView) itemView.findViewById(R.id.binnerTv);
+        this.timeTv = (TextView) itemView.findViewById(R.id.txtHistoryTime);
+        this.dateTv = (TextView) itemView.findViewById(R.id.txtHistoryDate);
+        this.binnerTv = (TextView) itemView.findViewById(R.id.txtHistoryBinner);
         this.statusTv = (TextView) itemView.findViewById(R.id.txtStatusHistory);
-        this.mapView = (MapView) itemView.findViewById(R.id.cardview_ongoing_pickup_detail_map);
+        this.mapView = (MapView) itemView.findViewById(R.id.cardview_history_pickup_detail_map);
 
         this.mapView.onCreate(null);
         this.mapView.getMapAsync(this);

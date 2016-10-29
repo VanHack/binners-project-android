@@ -7,8 +7,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import ca.com.androidbinnersproject.util.Util;
-
 /**
  * Created by jonathan_campos on 27/06/2016.
  */
@@ -19,6 +17,7 @@ public class Pickup {
     private transient Calendar dateTime;
     private Date time;
     private String instructions;
+    private String status;
     private List<Items> items;
 
     public Pickup() {
@@ -75,4 +74,9 @@ public class Pickup {
     public Date getTime() {
         return time;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
 }

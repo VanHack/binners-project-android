@@ -16,20 +16,20 @@ import ca.com.androidbinnersproject.models.Pickup;
 import ca.com.androidbinnersproject.util.BinnersStatusConverter;
 
 /**
- * Created by Pedro Henrique on 06/07/2016.
+ * Created by Jonathan on 28/10/2016.
  */
-public class OngoingAdapter extends RecyclerView.Adapter<OngoingViewHolder> {
+public class HistoryAdapter extends RecyclerView.Adapter<HistoryViewHolder> {
     protected HashSet<MapView> mapViews = new HashSet<>();
     protected List<Pickup> pickups;
 
-    public OngoingAdapter(List<Pickup> pickups) {
+    public HistoryAdapter(List<Pickup> pickups) {
         this.pickups = pickups;
     }
 
     @Override
-    public OngoingViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        final View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.cardview_ongoig_pickup, viewGroup, false);
-        OngoingViewHolder viewHolder = new OngoingViewHolder(viewGroup.getContext(), view);
+    public HistoryViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+        final View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.cardview_history_pickup, viewGroup, false);
+        HistoryViewHolder viewHolder = new HistoryViewHolder(viewGroup.getContext(), view);
 
         mapViews.add(viewHolder.mapView);
 
@@ -37,7 +37,7 @@ public class OngoingAdapter extends RecyclerView.Adapter<OngoingViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(OngoingViewHolder viewHolder, int position) {
+    public void onBindViewHolder(HistoryViewHolder viewHolder, int position) {
         Pickup pickup = pickups.get(position);
 
         viewHolder.itemView.setTag(pickup);
@@ -46,7 +46,7 @@ public class OngoingAdapter extends RecyclerView.Adapter<OngoingViewHolder> {
         SimpleDateFormat sdfDate = new SimpleDateFormat("dd/MM/yyyy");
         viewHolder.timeTv.setText( sdfTime.format(pickup.getTime()) );
         viewHolder.dateTv.setText( sdfDate.format(pickup.getTime()) );
-        //TODO: Change binnerTV and statusTV to data model.
+        //TODO: Change binnerTV to data model.
         viewHolder.binnerTv.setText("Binner Sample"); // Waiting for change in the model
         viewHolder.statusTv.setText(BinnersStatusConverter.getStatusDescription(pickup.getStatus()));
 

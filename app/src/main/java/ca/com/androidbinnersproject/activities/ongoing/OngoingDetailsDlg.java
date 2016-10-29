@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,6 +23,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import ca.com.androidbinnersproject.R;
 import ca.com.androidbinnersproject.models.Pickup;
+import ca.com.androidbinnersproject.util.BinnersStatusConverter;
 import ca.com.androidbinnersproject.util.Logger;
 import ca.com.androidbinnersproject.util.Util;
 
@@ -127,7 +127,7 @@ public class OngoingDetailsDlg extends DialogFragment implements OnMapReadyCallb
     //TODO Retrieve Status, Binners' name and bottles' image from the server
     private void updateUI() {
         if(mPickup != null) {
-            txtStatus.setText("In Progress");
+            txtStatus.setText(BinnersStatusConverter.getStatusDescription(mPickup.getStatus()));
             txtAddress.setText(mPickup.getAddress().toString());
             txtTime.setText(Util.getTimeFormated(mPickup.getTime()));
             txtDate.setText(Util.getDateFormated(mPickup.getTime()));

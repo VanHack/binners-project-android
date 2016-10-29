@@ -14,7 +14,7 @@
         android:layout_height="wrap_content">
 
         <com.google.android.gms.maps.MapView xmlns:map="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/cardview_ongoing_pickup_detail_map"
+            android:id="@+id/cardview_history_pickup_detail_map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="@dimen/ongoing_mapview_height"
@@ -24,12 +24,12 @@
             android:id="@+id/txtStatusHistory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/cardview_ongoing_pickup_detail_map"
+            android:layout_below="@+id/cardview_history_pickup_detail_map"
             android:fontFamily="@string/sans_serif"
             android:gravity="center_horizontal"
             tools:text="Completed"
             android:textColor="@color/blue"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
@@ -42,10 +42,10 @@
             android:layout_below="@+id/txtStatusHistory"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="10dp"
-            android:text="Time" />
+            android:text="@string/label_time" />
 
         <TextView
-            android:id="@+id/timeTv"
+            android:id="@+id/txtHistoryTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/textView"
@@ -62,16 +62,16 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/timeTv"
+            android:layout_alignBaseline="@+id/txtHistoryTime"
             android:layout_alignParentLeft="false"
             android:layout_alignParentRight="false"
             android:layout_alignWithParentIfMissing="false"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/timeTv"
-            android:text="Date" />
+            android:layout_toRightOf="@+id/txtHistoryTime"
+            android:text="@string/label_date" />
 
         <TextView
-            android:id="@+id/dateTv"
+            android:id="@+id/txtHistoryDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/textView3"
@@ -85,14 +85,14 @@
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/dateTv"
+            android:layout_alignBaseline="@+id/txtHistoryDate"
             android:layout_alignWithParentIfMissing="false"
             android:layout_marginLeft="15dp"
-            android:layout_toRightOf="@+id/dateTv"
-            android:text="Binner " />
+            android:layout_toRightOf="@+id/txtHistoryDate"
+            android:text="@string/label_binner" />
 
         <TextView
-            android:id="@+id/binnerTv"
+            android:id="@+id/txtHistoryBinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/textView5"
