@@ -40,7 +40,7 @@
     </style>
 
     <style name="EditTextStyle" parent="@android:style/Widget.EditText">
-        <item name="android:background">@color/whiteBackground</item>
+        <item name="android:background">@color/white</item>
         <item name="android:textColor">@color/transparent_black</item>
         <item name="android:textSize">18sp</item>
         <item name="android:paddingTop">5sp</item>

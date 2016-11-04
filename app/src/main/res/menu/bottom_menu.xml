@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item
+    android:id="@+id/bottom_menu_history"
+    android:icon="@drawable/ic_history"
+    android:title="@string/history" />
+  <item
+    android:id="@+id/bottom_menu_ongoing"
+    android:icon="@drawable/ic_ongoing"
+    android:title="@string/ongoing" />
+  <item
+    android:id="@+id/bottom_menu_pickup"
+    android:icon="@drawable/ic_pickup"
+    android:title="@string/pickup" />
+  <item
+    android:id="@+id/bottom_menu_donate"
+    android:icon="@drawable/ic_donate_sign"
+    android:title="@string/donate" />
+
+</menu>

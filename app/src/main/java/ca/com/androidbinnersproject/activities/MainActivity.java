@@ -7,6 +7,7 @@ import android.support.customtabs.CustomTabsIntent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,6 +17,7 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigationAdapter;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.ncapdevi.fragnav.FragNavController;
 
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
   private ActionBarDrawerToggle mActionBarDrawerToggle;
   private FragNavController mFragController;
   private Resources res;
+  private AHBottomNavigationAdapter mBottomNavigationAdapter;
 
   public static final int POSITION_HISTORY = 0;
   public static final int POSITION_ONGOING = 1;
@@ -66,10 +69,14 @@ public class MainActivity extends AppCompatActivity {
 
   private void createBottomNavigationTabs() {
 
-    mBottomNavigationBar.addItem(new AHBottomNavigationItem(res.getString(R.string.history),R.drawable.ic_buttom_history, R.color.grey_600));
-    mBottomNavigationBar.addItem(new AHBottomNavigationItem(res.getString(R.string.ongoing),R.drawable.ic_buttom_ongoing, R.color.grey_600));
-    mBottomNavigationBar.addItem(new AHBottomNavigationItem(res.getString(R.string.pickup),R.drawable.ic_buttom_pickup, R.color.grey_600));
-    mBottomNavigationBar.addItem(new AHBottomNavigationItem(res.getString(R.string.donate),R.drawable.ic_buttom_donate, R.color.grey_600));
+
+
+    mBottomNavigationBar.setForceTitlesDisplay(true);
+    mBottomNavigationBar.setDefaultBackgroundColor(ContextCompat.getColor(this, R.color.green_400) );
+    mBottomNavigationBar.setAccentColor(ContextCompat.getColor(this, R.color.white));
+    mBottomNavigationBar.setInactiveColor(ContextCompat.getColor(this, R.color.green_700));
+    mBottomNavigationAdapter = new AHBottomNavigationAdapter(this, R.menu.bottom_menu);
+    mBottomNavigationAdapter.setupWithBottomNavigation(mBottomNavigationBar);
 
 
     ArrayList<Fragment> fragments = new ArrayList<>();
