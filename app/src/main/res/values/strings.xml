@@ -64,7 +64,9 @@
         <item>Account</item>
     </string-array>
 
+
     <string name="open">Open</string>
+    <string name="home">Home</string>
     <string name="close">Close</string>
     <string name="help">Help</string>
     <string name="binners">Binners</string>

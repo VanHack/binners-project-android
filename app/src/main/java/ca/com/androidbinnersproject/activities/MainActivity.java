@@ -1,19 +1,16 @@
 package ca.com.androidbinnersproject.activities;
 
-import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.customtabs.CustomTabsIntent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.FrameLayout;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
@@ -28,8 +25,6 @@ import ca.com.androidbinnersproject.R;
 import ca.com.androidbinnersproject.activities.history.HistoryPickupFragment;
 import ca.com.androidbinnersproject.activities.home.HomeScreenFragment;
 import ca.com.androidbinnersproject.activities.ongoing.OngoingPickupsFragment;
-import ca.com.androidbinnersproject.activities.pickup.NewPickupFragment;
-import ca.com.androidbinnersproject.util.Util;
 
 public class MainActivity extends AppCompatActivity {
   @BindView(R.id.binners_toolbar)
@@ -63,18 +58,7 @@ public class MainActivity extends AppCompatActivity {
     setContentView(R.layout.activity_main);
     ButterKnife.bind(this);
     res = this.getResources();
-
-    final String userLogged = Util.getUserLogged();
-    //mFragmentDrawer.setUp(R.id.fragment_navigation_drawer, mDrawer, mToolbar, userLogged);
-
     setSupportActionBar(mToolbar);
-    getSupportActionBar().setDisplayShowHomeEnabled(true);
-
-    //mFragmentDrawer.setDrawerListener(this);
-    mHomeScreenMapFragment = new HomeScreenFragment();
-    getSupportFragmentManager().beginTransaction()
-        .add(R.id.main_container_body, mHomeScreenMapFragment)
-        .commit();
     createBottomNavigationTabs();
   }
 
@@ -89,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Fragment> fragments = new ArrayList<>();
     fragments.add(HistoryPickupFragment.newInstance());
     fragments.add(OngoingPickupsFragment.newInstance(this));
-    fragments.add(NewPickupFragment.newInstance(MainActivity.this, mHomeScreenMapFragment.getLatLng().latitude, mHomeScreenMapFragment.getLatLng().longitude));
+    fragments.add(HomeScreenFragment.newInstance());
 
     mFragController = new FragNavController(getSupportFragmentManager(), R.id.main_container_body, fragments);
 
@@ -107,11 +91,9 @@ public class MainActivity extends AppCompatActivity {
             mFragController.switchTab(INDEX_PICKUP);
             break;
           case POSITION_DONATE:
-
             CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
             CustomTabsIntent customTabsIntent = builder.build();
             customTabsIntent.launchUrl(MainActivity.this, Uri.parse(res.getString(R.string.url_donate)));
-
             break;
         }
 
@@ -120,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
     });
 
     mBottomNavigationBar.setCurrentItem(POSITION_PICKUP);
-
   }
 
   @Override
