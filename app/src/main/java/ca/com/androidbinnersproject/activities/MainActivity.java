@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.support.customtabs.CustomTabsIntent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -34,13 +36,11 @@ public class MainActivity extends AppCompatActivity {
   @BindView(R.id.bottom_navigation_bar)
   AHBottomNavigation mBottomNavigationBar;
   @BindView(R.id.drawer_layout)
-  DrawerLayout mDrawer;
+  DrawerLayout mDrawerLayout;
   @BindView(R.id.drawer_navigation_view)
   NavigationView mNavigationView;
 
-  //LeftNavigationDrawerMenu mFragmentDrawer;
-
-  private HomeScreenFragment mHomeScreenMapFragment;
+  private ActionBarDrawerToggle mActionBarDrawerToggle;
   private FragNavController mFragController;
   private Resources res;
 
@@ -60,7 +60,9 @@ public class MainActivity extends AppCompatActivity {
     res = this.getResources();
     setSupportActionBar(mToolbar);
     createBottomNavigationTabs();
+    setupDrawerContent();
   }
+
 
   private void createBottomNavigationTabs() {
 
@@ -108,10 +110,66 @@ public class MainActivity extends AppCompatActivity {
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
       case android.R.id.home:
-        mDrawer.openDrawer(GravityCompat.START);
+        mDrawerLayout.openDrawer(GravityCompat.START);
         return true;
     }
     return super.onOptionsItemSelected(item);
+  }
+
+  private void setupDrawerContent() {
+    mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.open, R.string.close);
+    mActionBarDrawerToggle.syncState();
+    mDrawerLayout.setDrawerListener(mActionBarDrawerToggle);
+
+    mNavigationView.setNavigationItemSelectedListener(
+        new NavigationView.OnNavigationItemSelectedListener() {
+          @Override
+          public boolean onNavigationItemSelected(MenuItem menuItem) {
+            selectDrawerItem(menuItem);
+            return true;
+          }
+        });
+  }
+
+  public void selectDrawerItem(MenuItem menuItem) {
+    // Create a new fragment and specify the fragment to show based on nav item clicked
+    Fragment fragment = null;
+    Class fragmentClass;
+    switch(menuItem.getItemId()) {
+      case R.id.drawer_menu_my_profile:
+        fragmentClass = HomeScreenFragment.class;
+        break;
+      case R.id.drawer_menu_donate:
+        fragmentClass = HomeScreenFragment.class;
+        break;
+      case R.id.drawer_menu_binners:
+        fragmentClass = HomeScreenFragment.class;
+        break;
+      case R.id.drawer_menu_account:
+        fragmentClass = HomeScreenFragment.class;
+        break;
+      case R.id.drawer_menu_help:
+        fragmentClass = HomeScreenFragment.class;
+        break;
+      default:
+        fragmentClass = HomeScreenFragment.class;
+    }
+
+    try {
+      fragment = (Fragment) fragmentClass.newInstance();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    FragmentManager fragmentManager = getSupportFragmentManager();
+    fragmentManager.beginTransaction().replace(R.id.main_container_body, fragment).commit();
+
+    // Highlight the selected item has been done by NavigationView
+    menuItem.setChecked(true);
+    // Set action bar title
+    setTitle(menuItem.getTitle());
+    // Close the navigation drawer
+    mDrawerLayout.closeDrawers();
   }
 
 
