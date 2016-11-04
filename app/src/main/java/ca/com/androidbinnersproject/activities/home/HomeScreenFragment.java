@@ -46,8 +46,6 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
 
 	private SearchView edtSearch;
 
-	public HomeScreenFragment() {
-	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

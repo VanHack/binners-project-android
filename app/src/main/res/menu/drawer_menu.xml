@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <group android:checkableBehavior="single">
+    <item
+      android:id="@+id/drawer_menu_my_profile"
+      android:title="@string/my_profile" />
+    <item
+      android:id="@+id/drawer_menu_donate"
+      android:title="@string/donate" />
+    <item
+      android:id="@+id/drawer_menu_binners"
+      android:title="@string/binners" />
+    <item
+      android:id="@+id/drawer_menu_account"
+      android:title="@string/account" />
+    <item
+      android:id="@+id/drawer_menu_help"
+      android:title="@string/help" />
+  </group>
+</menu>

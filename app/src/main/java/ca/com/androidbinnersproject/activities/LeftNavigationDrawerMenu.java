@@ -1,6 +1,7 @@
 package ca.com.androidbinnersproject.activities;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -26,6 +27,8 @@ import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import ca.com.androidbinnersproject.R;
 import ca.com.androidbinnersproject.adapters.LeftDrawerAdapter;
 import ca.com.androidbinnersproject.models.NavDrawerItem;
@@ -35,31 +38,32 @@ import ca.com.androidbinnersproject.util.Util;
  * Created by jonathan_campos on 12/03/2016.
  */
 public class LeftNavigationDrawerMenu extends Fragment {
-    private RecyclerView mRecyclerView;
+
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
-    private LeftDrawerAdapter mAdapter;
     private View mContainerView;
+    @BindView(R.id.drawer_drawerList)
+    RecyclerView mRecyclerView;
+    private LeftDrawerAdapter mAdapter;
     private static String[] mTitles = null;
     private FragmentDrawerListener mDrawerListener;
 
     private ImageView imgProfile;
     private TextView txtProfile;
-
-    public LeftNavigationDrawerMenu(){}
+    private Resources res;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mTitles = getActivity().getResources().getStringArray(R.array.nav_drawer_labels);
+        res = getActivity().getResources();
+        mTitles = res.getStringArray(R.array.nav_drawer_labels);
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
-        View layout = inflater.inflate(R.layout.left_navigation_drawer_menu, container, false);
-
-        mRecyclerView = (RecyclerView) layout.findViewById(R.id.left_navigation_drawer_menu_drawerList);
+        View view = inflater.inflate(R.layout.navigation_drawer, container, false);
+        ButterKnife.bind(this, view);
 
         mAdapter = new LeftDrawerAdapter(getActivity(), getData());
         mRecyclerView.setAdapter(mAdapter);
@@ -77,7 +81,7 @@ public class LeftNavigationDrawerMenu extends Fragment {
             }
         }));
 
-        return layout;
+        return view;
     }
 
     public void setUp(int fragmentId, DrawerLayout drawerLayout, final Toolbar toolbar, final String userName) {
@@ -105,7 +109,7 @@ public class LeftNavigationDrawerMenu extends Fragment {
             }
         });
 
-        mDrawerToggle = new ActionBarDrawerToggle(getActivity(), mDrawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close);
+        mDrawerToggle = new ActionBarDrawerToggle(getActivity(), mDrawerLayout, toolbar, R.string.open, R.string.close);
 
         mDrawerLayout.post(new Runnable() {
             @Override
@@ -114,8 +118,8 @@ public class LeftNavigationDrawerMenu extends Fragment {
             }
         });
 
-        imgProfile = (ImageView) getActivity().findViewById(R.id.left_navigation_drawer_menu_profile_picture);
-        txtProfile  = (TextView) getActivity().findViewById(R.id.left_navigation_drawer_menu_profile_name);
+        imgProfile = (ImageView) getActivity().findViewById(R.id.drawer_profile_picture);
+        txtProfile  = (TextView) getActivity().findViewById(R.id.drawer_profile_name);
 
         loadProfilePicture();
         loadProfileName();

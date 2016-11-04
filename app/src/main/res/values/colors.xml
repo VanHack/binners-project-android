@@ -17,4 +17,10 @@
     <color name="black">#000000</color>
     <color name="blueRate">#0088f0</color>
     <color name="bluePressed">#0593ff</color>
+    <color name="grey_100">#F0F0F0</color>
+    <color name="grey_200">#D6D6D6</color>
+    <color name="grey_300">#ACACAC</color>
+    <color name="grey_400">#999999</color>
+    <color name="grey_500">#666666</color>
+    <color name="grey_600">#4A4A4A</color>
 </resources>

@@ -29,7 +29,7 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <com.ashokvarma.bottomnavigation.BottomNavigationBar
+        <com.aurelhubert.ahbottomnavigation.AHBottomNavigation
           android:id="@+id/bottom_navigation_bar"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
@@ -37,13 +37,12 @@
 
     </LinearLayout>
 
-    <fragment
-        android:id="@+id/fragment_navigation_drawer"
-        android:name="ca.com.androidbinnersproject.activities.LeftNavigationDrawerMenu"
-        android:layout_width="@dimen/nav_drawer_width"
+    <android.support.design.widget.NavigationView
+        android:id="@+id/drawer_navigation_view"
+        app:menu="@menu/drawer_menu"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:layout="@layout/left_navigation_drawer_menu"
-        tools:layout="@layout/left_navigation_drawer_menu" />
+        android:background="@android:color/white"/>
 
 </android.support.v4.widget.DrawerLayout>
