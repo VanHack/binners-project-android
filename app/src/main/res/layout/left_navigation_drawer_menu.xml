@@ -1,44 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@android:color/white">
+
+  <RelativeLayout
+    android:id="@+id/nav_header_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:layout_height="160dp"
+    android:layout_alignParentTop="true"
+    android:background="#1f4926">
 
-    <RelativeLayout
-        android:id="@+id/nav_header_container"
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:layout_alignParentTop="true"
-        android:background="#1f4926">
+    <ImageView
+      android:id="@+id/left_navigation_drawer_menu_profile_picture"
+      android:layout_width="70dp"
+      android:layout_height="70dp"
+      android:layout_centerHorizontal="true"
+      android:layout_centerVertical="true"
+      android:scaleType="fitCenter"
+      tools:src="@color/black"/>
 
-        <ImageView
-            android:id="@+id/left_navigation_drawer_menu_profile_picture"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/common_ic_googleplayservices"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
+    <TextView
+      android:id="@+id/left_navigation_drawer_menu_profile_name"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/left_navigation_drawer_menu_profile_picture"
+      android:layout_centerHorizontal="true"
+      android:text="Jonathan Campos"
+      android:textAppearance="?android:attr/textAppearanceMedium"
+      android:textColor="@color/tw__solid_white"
+      android:textStyle="bold"/>
 
-        <TextView
-            android:id="@+id/left_navigation_drawer_menu_profile_name"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/left_navigation_drawer_menu_profile_picture"
-            android:layout_centerHorizontal="true"
-            android:text="Jonathan Campos"
-            android:textColor="@color/tw__solid_white"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    </RelativeLayout>
+  </RelativeLayout>
 
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/left_navigation_drawer_menu_drawerList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/nav_header_container"
-        android:layout_marginTop="15dp" />
+  <android.support.v7.widget.RecyclerView
+    android:id="@+id/left_navigation_drawer_menu_drawerList"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/nav_header_container"
+    android:layout_marginTop="15dp"/>
 
 </RelativeLayout>
