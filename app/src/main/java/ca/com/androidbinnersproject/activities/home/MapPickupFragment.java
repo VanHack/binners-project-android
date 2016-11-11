@@ -2,12 +2,14 @@
 package ca.com.androidbinnersproject.activities.home;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,9 +21,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import com.arlib.floatingsearchview.FloatingSearchView;
 import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -29,21 +31,21 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ca.com.androidbinnersproject.R;
+import ca.com.androidbinnersproject.helpers.GeoHelper;
 
-public class MapPickupFragment extends Fragment implements OnMapReadyCallback {
+public class MapPickupFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMapClickListener,  LocationListener , GoogleMap.OnInfoWindowClickListener {
 
 
   private SupportMapFragment mSupportMapFragment;
   private GoogleMap mMapView;
   private MarkerOptions markerOptions;
+  private Marker mMarker;
   private LatLng mLatLng;
   private String mLastQuery = "";
   private Resources res;
@@ -70,6 +72,7 @@ public class MapPickupFragment extends Fragment implements OnMapReadyCallback {
 
     setupSearch();
 
+
     return view;
   }
 
@@ -95,6 +98,9 @@ public class MapPickupFragment extends Fragment implements OnMapReadyCallback {
   public void onMapReady(GoogleMap googleMap) {
     mMapView = googleMap;
     mMapView.setPadding(16,150,16,16);
+    mMapView.setInfoWindowAdapter(new BaloonAdapter(getActivity()));
+    mMapView.setOnInfoWindowClickListener(this);
+    mMapView.setOnMapClickListener(this);
 
     if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
       mMapView.setMyLocationEnabled(true);
@@ -119,10 +125,53 @@ public class MapPickupFragment extends Fragment implements OnMapReadyCallback {
     });
   }
 
+  @Override
+  public void onMapClick(LatLng latLng) {
+    Toast.makeText(getContext(), latLng.toString(), Toast.LENGTH_SHORT).show();
+
+    mMarker.remove();
+    mMarker = mMapView.addMarker(new MarkerOptions().position(latLng));
+    mMarker.showInfoWindow();
+  }
+
+  @Override
+  public void onLocationChanged(Location location) {
+    LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
+    mMarker = mMapView.addMarker(new MarkerOptions().position(loc));
+    if(mMapView != null){
+      mMapView.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 16.0f));
+    }
+    mMarker.showInfoWindow();
+  }
+
+  @Override
+  public void onStatusChanged(String provider, int status, Bundle extras) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void onProviderEnabled(String provider) {
+    Toast.makeText(getContext(), "Enabled new provider " + provider,
+        Toast.LENGTH_SHORT).show();
+
+  }
+
+  @Override
+  public void onProviderDisabled(String provider) {
+    Toast.makeText(getContext(), "Disabled provider " + provider,
+        Toast.LENGTH_SHORT).show();
+  }
+
+  @Override
+  public void onInfoWindowClick(Marker marker) {
+    //Todo: go to Create Pickup Activity
+    Toast.makeText(getContext(), "onInfoWindowClick", Toast.LENGTH_SHORT).show();
+  }
 
   private void showCurrentLocation() {
     // Getting LocationManager object from System Service LOCATION_SERVICE
-    LocationManager locationManager = (LocationManager) getActivity().getSystemService(getActivity().LOCATION_SERVICE);
+    LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
     // Creating a criteria object to retrieve provider
     Criteria criteria = new Criteria();
@@ -142,8 +191,8 @@ public class MapPickupFragment extends Fragment implements OnMapReadyCallback {
 
       mMapView.clear();
       mMapView.animateCamera(CameraUpdateFactory.newLatLngZoom(mLatLng, 15));
-      mMapView.setInfoWindowAdapter(new BaloonAdapter(getActivity(), getActivity().getLayoutInflater()));
-      mMapView.addMarker(new MarkerOptions().position(mLatLng).draggable(true)).showInfoWindow();
+      mMarker = mMapView.addMarker(new MarkerOptions().position(mLatLng));
+      mMarker.showInfoWindow();
     }
   }
 
@@ -155,32 +204,17 @@ public class MapPickupFragment extends Fragment implements OnMapReadyCallback {
 
       if (addresses == null || addresses.size() == 0) {
         Toast.makeText(getActivity(), "No Location found", Toast.LENGTH_SHORT).show();
-      }
+      } else {
+        Address address = addresses.get(0);
+        mMapView.clear();
 
-      // Clears all the existing markers on the map
-      mMapView.clear();
-
-      // Adding Markers on Google Map for each matching address
-      for (int i = 0; i < addresses.size(); i++) {
-
-        Address address = (Address) addresses.get(i);
-
-        // Creating an instance of GeoPoint, to display in Google Map
         mLatLng = new LatLng(address.getLatitude(), address.getLongitude());
-
-        String addressText = String.format("%s, %s",
-            address.getMaxAddressLineIndex() > 0 ? address.getAddressLine(0) : "",
-            address.getCountryName());
-
         markerOptions = new MarkerOptions();
         markerOptions.position(mLatLng);
-        markerOptions.title(addressText);
+        markerOptions.title(GeoHelper.getInstance(getContext()).getAddress(mLatLng));
 
-        mMapView.addMarker(markerOptions);
-
-        // Locate the first location
-        if (i == 0)
-          mMapView.animateCamera(CameraUpdateFactory.newLatLngZoom(mLatLng, 14));
+        mMarker = mMapView.addMarker(markerOptions);
+        mMarker.showInfoWindow();
       }
 
     } catch (IOException e) {
