@@ -1,50 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1">
-
-
-        <RelativeLayout
-            android:id="@+id/fragment_home_screen_map_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
+  >
         <fragment
-            android:id="@+id/fragment_home_screen_map"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:name="com.google.android.gms.maps.SupportMapFragment"/>
+          android:id="@+id/fragment_home_screen_map"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:name="com.google.android.gms.maps.SupportMapFragment"/>
 
-            <!---->
-
-        </RelativeLayout>
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/fragment_home_screen_search_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="@drawable/rounded_corners"
-            android:minHeight="?attr/actionBarSize">
-
-            <android.support.v7.widget.SearchView
-                android:id="@+id/fragment_home_screen_edtSearch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_search"
-                android:hint="Search Google Maps"
-                android:inputType="text"
-                android:maxLines="1" />
-
-        </android.support.v7.widget.Toolbar>
-    </FrameLayout>
-</LinearLayout>
+        <com.arlib.floatingsearchview.FloatingSearchView
+          android:id="@+id/pickup_search_bar"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          app:floatingSearch_showSearchKey="true"
+          app:floatingSearch_searchHint="@string/search_hint"
+          app:floatingSearch_dimBackground="false"
+          app:floatingSearch_searchBarMarginLeft="16dp"
+          app:floatingSearch_searchBarMarginRight="16dp"
+          app:floatingSearch_searchBarMarginTop="16dp"
+          app:floatingSearch_leftActionMode="showSearch"
+          />
+</FrameLayout>

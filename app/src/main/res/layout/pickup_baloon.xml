@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:background="@drawable/rounded_corners_blue"
+  android:padding="12dp"
+  android:layout_marginBottom="4dp"
+  android:orientation="vertical"
+  >
+  <TextView
+    android:id="@+id/pickup_baloon_text"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textSize="16sp"
+    android:textColor="@color/white"
+    tools:text="San Francisco"
+    android:textAlignment="center"
+    android:layout_marginBottom="8dp"
+    />
+
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    style="@style/Base.TextAppearance.AppCompat.Medium.Inverse"
+    android:text="@string/request_pickup"
+    android:textColor="@color/white"
+    android:textStyle="bold"
+    android:layout_gravity="center"
+    android:background="@drawable/rounded_corners_blue"
+    />
+
+</LinearLayout>

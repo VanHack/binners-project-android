@@ -18,7 +18,6 @@ import android.widget.FrameLayout;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationAdapter;
-import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.ncapdevi.fragnav.FragNavController;
 
 import java.util.ArrayList;
@@ -27,7 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ca.com.androidbinnersproject.R;
 import ca.com.androidbinnersproject.activities.history.HistoryPickupFragment;
-import ca.com.androidbinnersproject.activities.home.HomeScreenFragment;
+import ca.com.androidbinnersproject.activities.home.MapPickupFragment;
 import ca.com.androidbinnersproject.activities.ongoing.OngoingPickupsFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -68,9 +67,6 @@ public class MainActivity extends AppCompatActivity {
 
 
   private void createBottomNavigationTabs() {
-
-
-
     mBottomNavigationBar.setForceTitlesDisplay(true);
     mBottomNavigationBar.setDefaultBackgroundColor(ContextCompat.getColor(this, R.color.green_400) );
     mBottomNavigationBar.setAccentColor(ContextCompat.getColor(this, R.color.white));
@@ -78,11 +74,10 @@ public class MainActivity extends AppCompatActivity {
     mBottomNavigationAdapter = new AHBottomNavigationAdapter(this, R.menu.bottom_menu);
     mBottomNavigationAdapter.setupWithBottomNavigation(mBottomNavigationBar);
 
-
-    ArrayList<Fragment> fragments = new ArrayList<>();
+    final ArrayList<Fragment> fragments = new ArrayList<>();
     fragments.add(HistoryPickupFragment.newInstance());
     fragments.add(OngoingPickupsFragment.newInstance(this));
-    fragments.add(HomeScreenFragment.newInstance());
+    fragments.add(MapPickupFragment.newInstance());
 
     mFragController = new FragNavController(getSupportFragmentManager(), R.id.main_container_body, fragments);
 
@@ -100,12 +95,10 @@ public class MainActivity extends AppCompatActivity {
             mFragController.switchTab(INDEX_PICKUP);
             break;
           case POSITION_DONATE:
-            CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-            CustomTabsIntent customTabsIntent = builder.build();
-            customTabsIntent.launchUrl(MainActivity.this, Uri.parse(res.getString(R.string.url_donate)));
+            mBottomNavigationBar.setSelected(false);
+
             break;
         }
-
         return true;
       }
     });
@@ -141,35 +134,42 @@ public class MainActivity extends AppCompatActivity {
   public void selectDrawerItem(MenuItem menuItem) {
     // Create a new fragment and specify the fragment to show based on nav item clicked
     Fragment fragment = null;
-    Class fragmentClass;
+    Class fragmentClass = null;
     switch(menuItem.getItemId()) {
       case R.id.drawer_menu_my_profile:
-        fragmentClass = HomeScreenFragment.class;
+        fragmentClass = MapPickupFragment.class;
         break;
       case R.id.drawer_menu_donate:
-        fragmentClass = HomeScreenFragment.class;
+        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+        builder.setToolbarColor(ContextCompat.getColor(MainActivity.this, R.color.green_400));
+        builder.addDefaultShareMenuItem();
+        CustomTabsIntent customTabsIntent = builder.build();
+        customTabsIntent.launchUrl(MainActivity.this, Uri.parse(res.getString(R.string.url_donate)));
         break;
       case R.id.drawer_menu_binners:
-        fragmentClass = HomeScreenFragment.class;
+        fragmentClass = MapPickupFragment.class;
         break;
       case R.id.drawer_menu_account:
-        fragmentClass = HomeScreenFragment.class;
+        fragmentClass = MapPickupFragment.class;
         break;
       case R.id.drawer_menu_help:
-        fragmentClass = HomeScreenFragment.class;
+        fragmentClass = MapPickupFragment.class;
         break;
       default:
-        fragmentClass = HomeScreenFragment.class;
+        fragmentClass = MapPickupFragment.class;
     }
 
-    try {
-      fragment = (Fragment) fragmentClass.newInstance();
-    } catch (Exception e) {
-      e.printStackTrace();
+    if (fragmentClass != null) {
+      try {
+        fragment = (Fragment) fragmentClass.newInstance();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+
+      FragmentManager fragmentManager = getSupportFragmentManager();
+      fragmentManager.beginTransaction().replace(R.id.main_container_body, fragment).commit();
     }
 
-    FragmentManager fragmentManager = getSupportFragmentManager();
-    fragmentManager.beginTransaction().replace(R.id.main_container_body, fragment).commit();
 
     // Highlight the selected item has been done by NavigationView
     menuItem.setChecked(true);

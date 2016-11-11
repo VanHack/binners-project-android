@@ -75,6 +75,7 @@ dependencies {
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
     compile 'com.ncapdevi:frag-nav:1.0.3'
     compile 'com.makeramen:roundedimageview:2.2.1'
+    compile 'com.github.arimorty:floatingsearchview:2.0.3'
 }
 
 apply plugin: 'com.google.gms.google-services'

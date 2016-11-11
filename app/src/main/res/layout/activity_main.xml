@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/backgroundApp"
+    android:background="@color/white"
     tools:context="ca.com.androidbinnersproject.activities.MainActivity">
 
     <LinearLayout
@@ -20,7 +20,6 @@
           android:layout_height="wrap_content"
           android:background="@color/backgroundApp"
           android:minHeight="?attr/actionBarSize"
-          android:fitsSystemWindows="true"
           app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
           app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
@@ -28,13 +27,17 @@
             android:id="@+id/main_container_body"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+             />
+
 
         <com.aurelhubert.ahbottomnavigation.AHBottomNavigation
           android:id="@+id/bottom_navigation_bar"
           android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_gravity="bottom"/>
+          android:layout_height="56dp"
+          tools:background="@color/green_400"
+          android:layout_gravity="bottom"
+          />
 
     </LinearLayout>
 

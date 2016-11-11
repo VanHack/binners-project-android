@@ -25,11 +25,4 @@
     <color name="grey_600">#4A4A4A</color>
     <color name="green_400">#369a3f</color>
     <color name="green_700">#095500</color>
-
-    <array name="bottom_bar_colors">
-        <item>@color/white</item>
-        <item>@color/white</item>
-        <item>@color/green_400</item>
-        <item>@color/white</item>
-    </array>
 </resources>
