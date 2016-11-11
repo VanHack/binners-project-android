@@ -15,8 +15,8 @@
     <color name="light_gray">#bbbbbb</color>
     <color name="greenButtonPressed">#58c462</color>
     <color name="black">#000000</color>
-    <color name="blueRate">#0088f0</color>
-    <color name="bluePressed">#0593ff</color>
+    <color name="blue_550">#0088f0</color>
+    <color name="blue_500">#0593ff</color>
     <color name="grey_100">#F0F0F0</color>
     <color name="grey_200">#D6D6D6</color>
     <color name="grey_300">#ACACAC</color>
