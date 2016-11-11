@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Binners\' Project</string>
+    <string name="api_endpoint" translatable="false">"http://binners.herokuapp.com/api/v1.0/"</string>
+    <string name="url_donate" translatable="false">"https://www.gifttool.com/donations/Donate?ID=1453&amp;AID=503&amp;PID=4805"</string>
+
 
     <string name="packageName">ca.com.androidbinnersproject</string>
 
@@ -61,8 +64,14 @@
         <item>Account</item>
     </string-array>
 
-    <string name="drawer_open">Open</string>
-    <string name="drawer_close">Close</string>
+
+    <string name="open">Open</string>
+    <string name="home">Home</string>
+    <string name="close">Close</string>
+    <string name="help">Help</string>
+    <string name="binners">Binners</string>
+    <string name="account">Account</string>
+    <string name="my_profile">My profile</string>
 
     <string name="pickup_calendar_info">Please provide your preferred date for a pick-up.</string>
     <string name="pickup_additional_notes_infoOne">Please provide any further instructions for the binner.</string>
@@ -80,13 +89,13 @@
     <string name="pickup_bottles_takepicture">Take a picture</string>
     <string name="pickup_bottles_uploadpicture">Upload a picture</string>
 
-    <string name="home_screen_map_marker_title">Request pickup here</string>
-    <string name="home_screen_toolbar_history_title">History</string>
-    <string name="home_screen_toolbar_ongoing_title">Ongoing</string>
-    <string name="home_screen_toolbar_pickup_title">Pickup</string>
+    <string name="request_pickup">Request pickup here</string>
+    <string name="history">History</string>
+    <string name="ongoing">Ongoing</string>
+    <string name="pickup">Pickup</string>
     <string name="home_screen_toolbar_notifications_title">Notifications</string>
-    <string name="home_screen_toolbar_donate_title">Donate</string>
-    <string name="search_hint">Search on Maps</string>
+    <string name="donate">Donate</string>
+    <string name="search_hint">Search on Google Maps</string>
     <string name="pickup_activity_title_date">Set Date</string>
     <string name="pickup_activity_title_time">Set Time</string>
     <string name="pickup_activity_title_bottles">Quantity</string>

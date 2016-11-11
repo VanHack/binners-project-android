@@ -1,131 +1,183 @@
-
 package ca.com.androidbinnersproject.activities;
 
-import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.customtabs.CustomTabsIntent;
+import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.view.MenuItem;
+import android.widget.FrameLayout;
 
-import com.ashokvarma.bottomnavigation.BottomNavigationBar;
-import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigationAdapter;
+import com.ncapdevi.fragnav.FragNavController;
 
+import java.util.ArrayList;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import ca.com.androidbinnersproject.R;
 import ca.com.androidbinnersproject.activities.history.HistoryPickupFragment;
-import ca.com.androidbinnersproject.activities.home.HomeScreenFragment;
+import ca.com.androidbinnersproject.activities.home.MapPickupFragment;
 import ca.com.androidbinnersproject.activities.ongoing.OngoingPickupsFragment;
-import ca.com.androidbinnersproject.activities.pickup.NewPickupFragment;
-import ca.com.androidbinnersproject.util.Util;
 
-public class MainActivity extends AppCompatActivity implements LeftNavigationDrawerMenu.FragmentDrawerListener,
-        BottomNavigationBar.OnTabSelectedListener {
-    private Toolbar mToolbar;
-    private LeftNavigationDrawerMenu mFragmentDrawer;
-    private BottomNavigationBar mBottomNavigationBar;
+public class MainActivity extends AppCompatActivity {
+  @BindView(R.id.binners_toolbar)
+  Toolbar mToolbar;
+  @BindView(R.id.main_container_body)
+  FrameLayout mContainerBody;
+  @BindView(R.id.bottom_navigation_bar)
+  AHBottomNavigation mBottomNavigationBar;
+  @BindView(R.id.drawer_layout)
+  DrawerLayout mDrawerLayout;
+  @BindView(R.id.drawer_navigation_view)
+  NavigationView mNavigationView;
 
-    private HomeScreenFragment mHomeScreenMapFragment;
+  private ActionBarDrawerToggle mActionBarDrawerToggle;
+  private FragNavController mFragController;
+  private Resources res;
+  private AHBottomNavigationAdapter mBottomNavigationAdapter;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+  public static final int POSITION_HISTORY = 0;
+  public static final int POSITION_ONGOING = 1;
+  public static final int POSITION_PICKUP = 2;
+  public static final int POSITION_DONATE = 3;
+  private final int INDEX_HISTORY = FragNavController.TAB1;
+  private final int INDEX_ONGOING = FragNavController.TAB2;
+  private final int INDEX_PICKUP = FragNavController.TAB3;
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mFragmentDrawer = (LeftNavigationDrawerMenu) getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
-        mBottomNavigationBar = (BottomNavigationBar) findViewById(R.id.home_screen_include_tabLayoutBottom);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    ButterKnife.bind(this);
+    res = this.getResources();
+    setSupportActionBar(mToolbar);
+    createBottomNavigationTabs();
+    setupDrawerContent();
+  }
 
-        final String userLogged = Util.getUserLogged();
-        mFragmentDrawer.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar, userLogged);
 
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+  private void createBottomNavigationTabs() {
+    mBottomNavigationBar.setForceTitlesDisplay(true);
+    mBottomNavigationBar.setDefaultBackgroundColor(ContextCompat.getColor(this, R.color.green_400) );
+    mBottomNavigationBar.setAccentColor(ContextCompat.getColor(this, R.color.white));
+    mBottomNavigationBar.setInactiveColor(ContextCompat.getColor(this, R.color.green_700));
+    mBottomNavigationAdapter = new AHBottomNavigationAdapter(this, R.menu.bottom_menu);
+    mBottomNavigationAdapter.setupWithBottomNavigation(mBottomNavigationBar);
 
-        mFragmentDrawer.setDrawerListener(this);
-        mHomeScreenMapFragment = new HomeScreenFragment();
+    final ArrayList<Fragment> fragments = new ArrayList<>();
+    fragments.add(HistoryPickupFragment.newInstance());
+    fragments.add(OngoingPickupsFragment.newInstance(this));
+    fragments.add(MapPickupFragment.newInstance());
 
-        createBottomNavigationTabs();
-        selectDefaultTabIndex();
-        showHomeScreen();
-    }
+    mFragController = new FragNavController(getSupportFragmentManager(), R.id.main_container_body, fragments);
 
-    private void createBottomNavigationTabs() {
-        mBottomNavigationBar.setMode(BottomNavigationBar.MODE_FIXED);
-        mBottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
-        mBottomNavigationBar.setTabSelectedListener(this);
-
-        mBottomNavigationBar
-                .addItem(new BottomNavigationItem(R.drawable.ic_buttom_history, getString(R.string.home_screen_toolbar_history_title)))
-                .addItem(new BottomNavigationItem(R.drawable.ic_buttom_ongoing, getString(R.string.home_screen_toolbar_ongoing_title)))
-                .addItem(new BottomNavigationItem(R.drawable.ic_buttom_pickup, getString(R.string.home_screen_toolbar_pickup_title)))
-                .addItem(new BottomNavigationItem(R.drawable.ic_buttom_donate, getString(R.string.home_screen_toolbar_donate_title)))
-                .setActiveColor(R.color.backgroundApp)
-                .initialise();
-    }
-
-    private void selectDefaultTabIndex() {
-        //Select Pickup Tab by default
-        mBottomNavigationBar.setFirstSelectedPosition(2);
-    }
-
-    private void showHomeScreen() {
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.main_container_body, mHomeScreenMapFragment)
-                .commit();
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
-            getSupportFragmentManager().popBackStack();
-        } else
-            super.onBackPressed();
-    }
-
-    @Override
-    public void onDrawerItemSelected(View view, int position) {
-
-    }
-
-    @Override
-    public void onTabSelected(int position) {
+    mBottomNavigationBar.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
+      @Override
+      public boolean onTabSelected(int position, boolean wasSelected) {
         switch (position) {
-            case 0: //History
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.main_container_body, HistoryPickupFragment.newInstance())
-                        .addToBackStack("history")
-                        .commit();
-                break;
-            case 1: //Ongoing
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.main_container_body, OngoingPickupsFragment.newInstance(MainActivity.this))
-                        .addToBackStack("ongoing")
-                        .commit();
-                break;
-            case 2: //New Pickup
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.main_container_body, NewPickupFragment.newInstance(MainActivity.this,
-                                mHomeScreenMapFragment.getLatLng().latitude,
-                                mHomeScreenMapFragment.getLatLng().longitude))
-                        .addToBackStack("pickup")
-                        .commit();
+          case POSITION_HISTORY:
+            mFragController.switchTab(INDEX_HISTORY);
+            break;
+          case POSITION_ONGOING:
+            mFragController.switchTab(INDEX_ONGOING);
+            break;
+          case POSITION_PICKUP:
+            mFragController.switchTab(INDEX_PICKUP);
+            break;
+          case POSITION_DONATE:
+            mBottomNavigationBar.setSelected(false);
 
-                break;
-            case 3: //Donate
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.gifttool.com/donations/Donate?ID=1453&AID=503&PID=4805"));
-                startActivity(browserIntent);
-                break;
+            break;
         }
+        return true;
+      }
+    });
+
+    mBottomNavigationBar.setCurrentItem(POSITION_PICKUP);
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case android.R.id.home:
+        mDrawerLayout.openDrawer(GravityCompat.START);
+        return true;
+    }
+    return super.onOptionsItemSelected(item);
+  }
+
+  private void setupDrawerContent() {
+    mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.open, R.string.close);
+    mActionBarDrawerToggle.syncState();
+    mDrawerLayout.setDrawerListener(mActionBarDrawerToggle);
+
+    mNavigationView.setNavigationItemSelectedListener(
+        new NavigationView.OnNavigationItemSelectedListener() {
+          @Override
+          public boolean onNavigationItemSelected(MenuItem menuItem) {
+            selectDrawerItem(menuItem);
+            return true;
+          }
+        });
+  }
+
+  public void selectDrawerItem(MenuItem menuItem) {
+    // Create a new fragment and specify the fragment to show based on nav item clicked
+    Fragment fragment = null;
+    Class fragmentClass = null;
+    switch(menuItem.getItemId()) {
+      case R.id.drawer_menu_my_profile:
+        fragmentClass = MapPickupFragment.class;
+        break;
+      case R.id.drawer_menu_donate:
+        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+        builder.setToolbarColor(ContextCompat.getColor(MainActivity.this, R.color.green_400));
+        builder.addDefaultShareMenuItem();
+        CustomTabsIntent customTabsIntent = builder.build();
+        customTabsIntent.launchUrl(MainActivity.this, Uri.parse(res.getString(R.string.url_donate)));
+        break;
+      case R.id.drawer_menu_binners:
+        fragmentClass = MapPickupFragment.class;
+        break;
+      case R.id.drawer_menu_account:
+        fragmentClass = MapPickupFragment.class;
+        break;
+      case R.id.drawer_menu_help:
+        fragmentClass = MapPickupFragment.class;
+        break;
+      default:
+        fragmentClass = MapPickupFragment.class;
     }
 
-    @Override
-    public void onTabUnselected(int position) {
+    if (fragmentClass != null) {
+      try {
+        fragment = (Fragment) fragmentClass.newInstance();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
 
+      FragmentManager fragmentManager = getSupportFragmentManager();
+      fragmentManager.beginTransaction().replace(R.id.main_container_body, fragment).commit();
     }
 
-    @Override
-    public void onTabReselected(int position) {
 
-    }
+    // Highlight the selected item has been done by NavigationView
+    menuItem.setChecked(true);
+    // Set action bar title
+    setTitle(menuItem.getTitle());
+    // Close the navigation drawer
+    mDrawerLayout.closeDrawers();
+  }
+
+
 }

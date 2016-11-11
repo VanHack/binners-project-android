@@ -9,7 +9,7 @@
     <color name="textColorPrimary">#FFFFFF</color>
     <color name="windowBackground">#FFFFFF</color>
     <color name="navigationBarColor">#000000</color>
-    <color name="whiteBackground">#FFFFFF</color>
+    <color name="white">#FFFFFF</color>
     <color name="pickupBgColor">#EFEFEE</color>
     <color name="mediumGray">#7e7d7d</color>
     <color name="light_gray">#bbbbbb</color>
@@ -17,4 +17,12 @@
     <color name="black">#000000</color>
     <color name="blueRate">#0088f0</color>
     <color name="bluePressed">#0593ff</color>
+    <color name="grey_100">#F0F0F0</color>
+    <color name="grey_200">#D6D6D6</color>
+    <color name="grey_300">#ACACAC</color>
+    <color name="grey_400">#999999</color>
+    <color name="grey_500">#666666</color>
+    <color name="grey_600">#4A4A4A</color>
+    <color name="green_400">#369a3f</color>
+    <color name="green_700">#095500</color>
 </resources>

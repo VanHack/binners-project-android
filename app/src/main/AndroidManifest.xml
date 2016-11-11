@@ -52,7 +52,7 @@
         <activity
             android:name=".activities.MainActivity"
             android:screenOrientation="portrait"
-            android:configChanges="keyboardHidden"/>
+            android:windowSoftInputMode="adjustPan"/>
 
         <activity
             android:name=".activities.LoginActivity"
@@ -74,16 +74,6 @@
             android:name=".activities.ForgotPasswordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/BinnersNoActionTheme"/>
-
-        <activity
-            android:name=".activities.pickup.PickupActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/PickupNoActionTheme"/>
-
-        <activity
-            android:name=".activities.ongoing.OngoingPickupsFragment"
-            android:screenOrientation="portrait"
-            android:theme="@style/PickupNoActionTheme"/>
 
     </application>
 
