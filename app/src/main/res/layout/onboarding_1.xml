@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/green_500"
+  android:gravity="center_horizontal"
+  >
+
+  <LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    >
+
+    <ca.com.androidbinnersproject.customViews.BinnersTextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/onboarding_1_title"
+      android:textAlignment="center"
+      android:textColor="@color/white"
+      android:textSize="24sp"
+      app:btv_textStyle="bold"
+      android:id="@+id/binnersTextView"/>
+
+    <android.support.percent.PercentRelativeLayout
+      android:layout_width="280dp"
+      android:layout_height="280dp"
+      android:layout_gravity="center"
+      android:layout_marginTop="8dp"
+      android:layout_marginBottom="8dp"
+      >
+
+      <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0.1"
+        android:background="@drawable/bg_circle_white"
+        app:layout_heightPercent="100%"
+        app:layout_widthPercent="100%"
+        />
+
+      <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:alpha="0.1"
+        android:background="@drawable/bg_circle_white"
+        app:layout_heightPercent="85%"
+        app:layout_widthPercent="85%"
+        />
+
+      <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/onboarding_1_redeemable"
+        app:layout_heightPercent="60%"
+        app:layout_widthPercent="60%"
+        />
+
+    </android.support.percent.PercentRelativeLayout>
+
+    <ca.com.androidbinnersproject.customViews.BinnersTextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:paddingLeft="16dp"
+      android:paddingRight="16dp"
+      android:text="@string/onboarding_1_content"
+      android:textAlignment="center"
+      android:textColor="@color/white"
+      android:textSize="16sp"
+      app:btv_textStyle="regular"
+      android:lines="5"
+      />
+
+  </LinearLayout>
+
+
+</FrameLayout>

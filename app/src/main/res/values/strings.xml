@@ -5,6 +5,10 @@
 
 
     <string name="packageName">ca.com.androidbinnersproject</string>
+    <string name="onboarding_1_title">binner \\\`bin-ner\\ – noun</string>
+    <string name="onboarding_1_content">A person who collects redeemable containers and other things form bins to sustain their livelihood and to divert waste from landfills; a dumpster diver</string>
+
+
 
     <string name="login">Log In</string>
     <string name="txtLoginWith">Log in with</string>

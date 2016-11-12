@@ -2,7 +2,6 @@ package ca.com.androidbinnersproject.activities.about;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -39,7 +38,7 @@ public class AboutPageOne extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         
-        View view = inflater.inflate(R.layout.about_page_one,container,false);
+        View view = inflater.inflate(R.layout.onboarding_1,container,false);
 
         txtSkip = (TextView) view.findViewById(R.id.imgSkipButton);
 

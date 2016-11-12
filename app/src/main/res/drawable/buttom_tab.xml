@@ -2,7 +2,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" >
     <!-- Button Selected-->
-    <item android:state_selected="true" android:drawable="@color/backgroundApp" app:tabTextColor="@color/white"/>
+    <item android:state_selected="true" android:drawable="@color/green_500" app:tabTextColor="@color/white"/>
     <!-- Button Default Image-->
     <item android:drawable="@color/white" />
 

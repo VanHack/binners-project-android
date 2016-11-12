@@ -87,7 +87,7 @@
         android:layout_toRightOf="@+id/rate_pickup_dialog_lblBinner"
         android:textAppearance="?android:attr/textAppearanceMedium"
         tools:text="Melissa"
-        android:textColor="@color/backgroundApp"
+        android:textColor="@color/green_500"
         android:textStyle="bold"
         android:layout_marginLeft="@dimen/text_margin_left"/>
 
