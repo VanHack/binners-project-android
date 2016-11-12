@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:layout_weight="1"
+  android:background="@color/green_500"
+  android:gravity="center_horizontal"
+  android:orientation="vertical"
+  >
+
+  <FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    tools:background="@color/blue"
+    >
+
+    <ca.com.androidbinnersproject.customViews.BinnersTextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="bottom"
+      android:paddingLeft="16dp"
+      android:paddingRight="16dp"
+      android:text="@string/onboarding_3_top"
+      android:textAlignment="center"
+      android:textColor="@color/white"
+      android:textSize="24sp"
+      app:btv_textStyle="bold"
+      />
+  </FrameLayout>
+
+  <FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    >
+
+    <android.support.percent.PercentRelativeLayout
+      android:layout_width="260dp"
+      android:layout_height="260dp"
+      android:layout_gravity="center"
+      android:layout_marginBottom="8dp"
+      android:layout_marginTop="8dp"
+      >
+
+      <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0.05"
+        android:background="@drawable/bg_circle_white"
+        app:layout_heightPercent="100%"
+        app:layout_widthPercent="100%"
+        />
+
+      <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:alpha="0.09"
+        android:background="@drawable/bg_circle_white"
+        app:layout_heightPercent="87%"
+        app:layout_widthPercent="87%"
+        />
+
+      <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/onboarding_3"
+        app:layout_heightPercent="80%"
+        app:layout_widthPercent="60%"
+        />
+
+    </android.support.percent.PercentRelativeLayout>
+  </FrameLayout>
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_marginBottom="64dp"
+    android:orientation="vertical"
+    tools:background="@color/red"
+    >
+
+    <ca.com.androidbinnersproject.customViews.BinnersTextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="top"
+      android:text="@string/onboarding_3_bottom"
+      android:textAlignment="center"
+      android:textColor="@color/white"
+      android:textSize="16sp"
+      app:btv_textStyle="regular"
+      android:layout_marginBottom="8dp"
+      />
+
+    <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:orientation="vertical"
+      >
+
+      <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <View
+          android:layout_width="5dp"
+          android:layout_height="5dp"
+          android:layout_gravity="center_vertical"
+          android:background="@drawable/bg_circle_white"
+          />
+
+        <ca.com.androidbinnersproject.customViews.BinnersTextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:paddingLeft="8dp"
+          android:text="@string/onboarding_3_item_1"
+          android:textAlignment="center"
+          android:textColor="@color/white"
+          android:textSize="16sp"
+          app:btv_textStyle="regular"
+          />
+      </LinearLayout>
+
+      <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <View
+          android:layout_width="5dp"
+          android:layout_height="5dp"
+          android:layout_gravity="center_vertical"
+          android:background="@drawable/bg_circle_white"
+          />
+
+        <ca.com.androidbinnersproject.customViews.BinnersTextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:paddingLeft="8dp"
+          android:text="@string/onboarding_3_item_2"
+          android:textAlignment="center"
+          android:textColor="@color/white"
+          android:textSize="16sp"
+          app:btv_textStyle="regular"
+          />
+      </LinearLayout>
+
+      <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <View
+          android:layout_width="5dp"
+          android:layout_height="5dp"
+          android:layout_gravity="center_vertical"
+          android:background="@drawable/bg_circle_white"
+          />
+
+        <ca.com.androidbinnersproject.customViews.BinnersTextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:paddingLeft="8dp"
+          android:text="@string/onboarding_3_item_3"
+          android:textAlignment="center"
+          android:textColor="@color/white"
+          android:textSize="16sp"
+          app:btv_textStyle="regular"
+          />
+      </LinearLayout>
+
+    </LinearLayout>
+
+
+  </LinearLayout>
+
+
+</LinearLayout>

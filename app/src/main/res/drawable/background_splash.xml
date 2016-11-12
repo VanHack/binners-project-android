@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:drawable="@color/backgroundApp"/>
+    <item android:drawable="@color/green_500"/>
 
     <item>
         <bitmap android:src="@drawable/start_p1_circle"
@@ -10,7 +10,7 @@
     </item>
 
     <item>
-        <bitmap android:src="@drawable/start_p0_circle_binners"
+        <bitmap android:src="@drawable/binners_logo_negative"
             android:gravity="center"/>
 
     </item>

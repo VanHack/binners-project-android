@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <declare-styleable name="BinnersTextView">
+    <attr name="btv_textStyle" format="enum">
+      <enum name="black" value="3"/>
+      <enum name="bold" value="2"/>
+      <enum name="regular" value="1"/>
+    </attr>
+  </declare-styleable>
+</resources>

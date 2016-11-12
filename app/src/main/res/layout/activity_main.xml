@@ -18,7 +18,7 @@
           android:id="@+id/binners_toolbar"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:background="@color/backgroundApp"
+          android:background="@color/green_500"
           android:minHeight="?attr/actionBarSize"
           app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
           app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>

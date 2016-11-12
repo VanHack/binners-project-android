@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/green_500"
+  android:gravity="center_horizontal"
+  android:orientation="vertical"
+  android:layout_weight="1"
+  >
+
+    <FrameLayout
+      android:layout_width="match_parent"
+      android:layout_height="100dp"
+      tools:background="@color/blue"
+      >
+        <ca.com.androidbinnersproject.customViews.BinnersTextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/increase"
+          android:textAlignment="center"
+          android:textColor="@color/white"
+          android:textSize="24sp"
+          app:btv_textStyle="bold"
+          android:layout_gravity="center"
+          />
+
+        <ca.com.androidbinnersproject.customViews.BinnersTextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/onboarding_2_top"
+          android:textAlignment="center"
+          android:textColor="@color/white"
+          android:textSize="16sp"
+          app:btv_textStyle="regular"
+          android:layout_gravity="bottom"
+          />
+    </FrameLayout>
+
+    <FrameLayout
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      >
+        <android.support.percent.PercentRelativeLayout
+          android:layout_width="260dp"
+          android:layout_height="260dp"
+          android:layout_gravity="center"
+          android:layout_marginTop="8dp"
+          android:layout_marginBottom="8dp"
+          >
+
+            <View
+              android:layout_width="0dp"
+              android:layout_height="0dp"
+              android:alpha="0.05"
+              android:background="@drawable/bg_circle_white"
+              app:layout_heightPercent="100%"
+              app:layout_widthPercent="100%"
+              />
+
+            <View
+              android:layout_width="0dp"
+              android:layout_height="0dp"
+              android:layout_centerInParent="true"
+              android:layout_gravity="center"
+              android:alpha="0.09"
+              android:background="@drawable/bg_circle_white"
+              app:layout_heightPercent="87%"
+              app:layout_widthPercent="87%"
+              />
+
+            <ImageView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_centerInParent="true"
+              android:src="@drawable/onboarding_2"
+              app:layout_heightPercent="80%"
+              app:layout_widthPercent="60%"
+              />
+
+        </android.support.percent.PercentRelativeLayout>
+    </FrameLayout>
+
+    <FrameLayout
+      android:layout_width="match_parent"
+      android:layout_height="100dp"
+      android:orientation="vertical"
+      tools:background="@color/red"
+      android:layout_marginBottom="64dp"
+      >
+        <ca.com.androidbinnersproject.customViews.BinnersTextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/decrease"
+          android:textAlignment="center"
+          android:textColor="@color/white"
+          android:textSize="24sp"
+          app:btv_textStyle="bold"
+          android:layout_gravity="top"
+          />
+
+        <ca.com.androidbinnersproject.customViews.BinnersTextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/onboarding_2_bottom"
+          android:textAlignment="center"
+          android:textColor="@color/white"
+          android:textSize="16sp"
+          app:btv_textStyle="regular"
+          android:layout_gravity="center"
+          />
+
+    </FrameLayout>
+
+
+</LinearLayout>

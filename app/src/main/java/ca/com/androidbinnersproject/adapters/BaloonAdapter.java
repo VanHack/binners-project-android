@@ -1,4 +1,4 @@
-package ca.com.androidbinnersproject.activities.home;
+package ca.com.androidbinnersproject.adapters;
 
 import android.content.Context;
 import android.content.Intent;

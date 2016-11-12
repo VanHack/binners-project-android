@@ -2,24 +2,20 @@ package ca.com.androidbinnersproject.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
-import android.widget.ViewSwitcher;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 
 import ca.com.androidbinnersproject.R;
-import ca.com.androidbinnersproject.activities.about.AboutAppActivity;
+import ca.com.androidbinnersproject.activities.onboarding.OnboardingActivity;
 import ca.com.androidbinnersproject.auth.AppAuth;
 import ca.com.androidbinnersproject.auth.Authentication;
 import ca.com.androidbinnersproject.auth.FacebookAuth;
@@ -94,10 +90,10 @@ public class LoginActivity extends AppCompatActivity implements OnAuthListener, 
 	}
 
 	/**
-	 * The intent AboutAppActivity will be shown before the login UI
+	 * The intent OnboardingActivity will be shown before the login UI
 	 */
 	private void showAboutAppUI() {
-		Intent intent = new Intent(this, AboutAppActivity.class);
+		Intent intent = new Intent(this, OnboardingActivity.class);
 		startActivity(intent);
 	}
 

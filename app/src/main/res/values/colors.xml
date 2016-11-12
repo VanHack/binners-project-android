@@ -3,7 +3,7 @@
     <color name="colorPrimary">#095500</color>
     <color name="colorPrimaryDark">#053700</color>
     <color name="colorAccent">#607D8B</color>
-    <color name="backgroundApp">#369a3f</color>
+    <color name="green_500">#369a3f</color>
     <color name="tabBackground">#FFFFFF</color>
     <color name="lightBackground">#eaffef</color>
     <color name="textColorPrimary">#FFFFFF</color>
