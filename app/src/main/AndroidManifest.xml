@@ -42,7 +42,7 @@
         </activity>
 
         <activity
-            android:name=".activities.about.AboutAppActivity"
+            android:name=".activities.onboarding.OnboardingActivity"
             android:screenOrientation="portrait"/>
 
         <activity

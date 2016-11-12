@@ -1,4 +1,4 @@
-package ca.com.androidbinnersproject.activities.about;
+package ca.com.androidbinnersproject.activities.onboarding;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,16 +12,15 @@ import ca.com.androidbinnersproject.R;
 /**
  * Created by jonathan_campos on 07/02/2016.
  */
-public class Onboarding1Fragment extends Fragment {
+public class Onboarding2Fragment extends Fragment {
 
-
-    public Onboarding1Fragment newInstance() {
-        return new Onboarding1Fragment();
+    public static Onboarding2Fragment newInstance() {
+        return new Onboarding2Fragment();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.onboarding_1_fragment,container,false);
+        return inflater.inflate(R.layout.onboarding_2_fragment,container,false);
     }
 }

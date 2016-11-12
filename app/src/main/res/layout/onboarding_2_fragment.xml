@@ -15,7 +15,6 @@
       android:layout_width="match_parent"
       android:layout_height="100dp"
       tools:background="@color/blue"
-      android:layout_marginTop="48dp"
       >
         <ca.com.androidbinnersproject.customViews.BinnersTextView
           android:layout_width="match_parent"
@@ -90,7 +89,7 @@
       android:layout_height="100dp"
       android:orientation="vertical"
       tools:background="@color/red"
-      android:layout_marginBottom="48dp"
+      android:layout_marginBottom="64dp"
       >
         <ca.com.androidbinnersproject.customViews.BinnersTextView
           android:layout_width="match_parent"

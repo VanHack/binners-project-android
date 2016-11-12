@@ -23,7 +23,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 import com.arlib.floatingsearchview.FloatingSearchView;
 import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
-import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -37,6 +36,7 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ca.com.androidbinnersproject.R;
+import ca.com.androidbinnersproject.adapters.BaloonAdapter;
 import ca.com.androidbinnersproject.helpers.GeoHelper;
 
 public class MapPickupFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMapClickListener,  LocationListener , GoogleMap.OnInfoWindowClickListener {

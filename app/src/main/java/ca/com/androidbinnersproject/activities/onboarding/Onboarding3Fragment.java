@@ -1,25 +1,20 @@
-package ca.com.androidbinnersproject.activities.about;
+package ca.com.androidbinnersproject.activities.onboarding;
 
-import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import ca.com.androidbinnersproject.R;
-import ca.com.androidbinnersproject.listeners.OnSkipListener;
-import ca.com.androidbinnersproject.util.Logger;
 
 /**
  * Created by jonathan_campos on 07/02/2016.
  */
 public class Onboarding3Fragment extends Fragment {
 
-    public Onboarding3Fragment newInstance() {
+    public static Onboarding3Fragment newInstance() {
         return new Onboarding3Fragment();
     }
 
