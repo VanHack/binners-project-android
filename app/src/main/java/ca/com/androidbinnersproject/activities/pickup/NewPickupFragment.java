@@ -68,7 +68,7 @@ public class NewPickupFragment extends Fragment {
         mPickupModel = new Pickup();
 
         mPickupModel.setUserID(BinnersSettings.getProfileId());
-        mPickupModel.getAddress().getLocation().setCoordinates(new double[]{lat, lon});
+        mPickupModel.getAddress().getLocation().setCoordinates(lat, lon);
 
         /**
          * Get Address information based on latitude and longitude

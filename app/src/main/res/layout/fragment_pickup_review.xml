@@ -1,163 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/green_500"
+  android:orientation="vertical">
+
+  <android.support.v7.widget.CardView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/pickupBgColor">
+    android:layout_marginBottom="72dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:layout_marginTop="16dp"
+    app:cardCornerRadius="4dp"
+    >
 
-    <ScrollView
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical"
+      android:padding="16dp"
+      >
+
+      <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
         <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="vertical">
+
+          <com.google.android.gms.maps.MapView
+            android:id="@+id/fragment_pickup_review_imgStaticMap"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="230dp"
+            app:liteMode="true"
+            tools:background="@color/blue"
+            />
 
-            <com.google.android.gms.maps.MapView
-                xmlns:map="http://schemas.android.com/apk/res-auto"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
-                android:id="@+id/fragment_pickup_review_imgStaticMap"
-                android:layout_width="match_parent"
-                android:layout_height="230dp"
-                map:liteMode="true" />
+          <TextView
+            android:id="@+id/fragment_pickup_review_txtLabelLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/pickup_review_label_location"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
 
-            <TextView
-                android:id="@+id/fragment_pickup_review_txtLabelLocation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/pickup_review_label_location"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_marginTop="10dp"/>
+          <EditText
+            android:id="@+id/fragment_pickup_review_edtLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:focusableInTouchMode="false"/>
 
-            <EditText
-                android:id="@+id/fragment_pickup_review_edtLocation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:focusable="false"
-                android:focusableInTouchMode="false"/>
+          <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/darker_gray"/>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"/>
+          <LinearLayout
+            android:id="@+id/fragment_pickup_review_lnlDateTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <LinearLayout
-                android:id="@+id/fragment_pickup_review_lnlDateTime"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginRight="5dp"
+              android:layout_weight="1"
+              android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:layout_marginRight="5dp">
-
-                    <TextView
-                        android:id="@+id/fragment_pickup_review_txtLabelTime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/label_time"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                    <EditText
-                        android:id="@+id/fragment_pickup_review_edtTime"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:focusable="false"
-                        android:gravity="center_horizontal"
-                        android:focusableInTouchMode="false" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="5dp">
-
-                    <TextView
-                        android:id="@+id/fragment_pickup_review_txtLabelDate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/label_date"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                    <EditText
-                        android:id="@+id/fragment_pickup_review_edtDate"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:focusable="false"
-                        android:gravity="center_horizontal"
-                        android:focusableInTouchMode="false" />
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"/>
-
-            <TextView
-                android:id="@+id/fragment_pickup_review_txtLabelCanBottles"
+              <TextView
+                android:id="@+id/fragment_pickup_review_txtLabelTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/pickup_review_label_canAndBottles"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:text="@string/label_time"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
 
-            <EditText
-                android:id="@+id/fragment_pickup_review_edtCanBottles"
+              <EditText
+                android:id="@+id/fragment_pickup_review_edtTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:focusable="false"
-                android:gravity="center_horizontal"
-                android:focusableInTouchMode="false" />
+                android:focusableInTouchMode="false"
+                android:gravity="center_horizontal"/>
 
-            <TextView
-                android:id="@+id/fragment_pickup_review_txtLabelInstruction"
+            </LinearLayout>
+
+            <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="5dp"
+              android:layout_weight="1"
+              android:orientation="vertical">
+
+              <TextView
+                android:id="@+id/fragment_pickup_review_txtLabelDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/pickup_review_label_instructions"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:text="@string/label_date"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"/>
-
-            <EditText
-                android:id="@+id/fragment_pickup_review_edtInstructions"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:gravity="top"
-                android:inputType="textMultiLine"
-                android:focusable="false"
-                android:focusableInTouchMode="false"/>
-
-            <Button
-                android:id="@+id/fragment_pickup_review_btnFinishPickup"
+              <EditText
+                android:id="@+id/fragment_pickup_review_edtDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/pickup_review_post_pickup"
-                android:background="@drawable/green_button_selector"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:layout_marginTop="25dp" />
+                android:layout_marginTop="5dp"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:gravity="center_horizontal"/>
+
+            </LinearLayout>
+          </LinearLayout>
+
+          <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/darker_gray"/>
+
+          <TextView
+            android:id="@+id/fragment_pickup_review_txtLabelCanBottles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pickup_review_label_canAndBottles"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+          <EditText
+            android:id="@+id/fragment_pickup_review_edtCanBottles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:gravity="center_horizontal"/>
+
+          <TextView
+            android:id="@+id/fragment_pickup_review_txtLabelInstruction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pickup_review_label_instructions"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+          <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/darker_gray"/>
+
+          <EditText
+            android:id="@+id/fragment_pickup_review_edtInstructions"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:gravity="top"
+            android:inputType="textMultiLine"/>
+
+          <Button
+            android:id="@+id/fragment_pickup_review_btnFinishPickup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/green_button_selector"
+            android:text="@string/pickup_review_post_pickup"
+            android:textColor="@color/white"
+            android:textSize="14sp"/>
 
         </LinearLayout>
-    </ScrollView>
+      </ScrollView>
+
+
+      </LinearLayout>
+
+  </android.support.v7.widget.CardView>
+
+
 
 </LinearLayout>

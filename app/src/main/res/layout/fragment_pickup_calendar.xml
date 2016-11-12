@@ -1,68 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.percent.PercentFrameLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/green_500">
+
+  <android.support.v7.widget.CardView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@color/pickupBgColor">
+    android:layout_marginBottom="72dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:layout_marginTop="16dp"
+    app:cardCornerRadius="4dp"
+    >
 
-    <TextView
+    <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:padding="16dp"
+      >
+
+      <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/pickup_calendar_info"
         android:gravity="center_horizontal"
+        android:text="@string/pickup_calendar_info"
         android:textStyle="bold"/>
 
-    <TextView
+      <TextView
         android:id="@+id/select_date_activity_txtDayOfWeek"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:gravity="center_horizontal"
         android:textColor="#369a3f"
         android:textSize="20sp"
-        tools:text="Tuesday"
-        android:layout_marginTop="20dp"/>
+        tools:text="Tuesday"/>
 
-    <LinearLayout
+      <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/select_date_activity_btnPreviousDay"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:background="@null"
-            android:src="@drawable/arrow_left" />
+          android:id="@+id/select_date_activity_btnPreviousDay"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:layout_gravity="center_vertical"
+          android:layout_weight="1"
+          android:background="@null"
+          android:src="@drawable/arrow_left"/>
 
         <TextView
-            android:id="@+id/select_date_activity_txtDayOfMonth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:textColor="#369a3f"
-            android:textSize="70sp"
-            tools:text="7" />
+          android:id="@+id/select_date_activity_txtDayOfMonth"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:gravity="center_horizontal"
+          android:textColor="#369a3f"
+          android:textSize="70sp"
+          tools:text="7"/>
 
         <ImageButton
-            android:id="@+id/select_date_activity_btnNextDay"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:background="@null"
-            android:src="@drawable/arrow_right" />
+          android:id="@+id/select_date_activity_btnNextDay"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:layout_gravity="center_vertical"
+          android:layout_weight="1"
+          android:background="@null"
+          android:src="@drawable/arrow_right"/>
 
-    </LinearLayout>
+      </LinearLayout>
 
-    <LinearLayout
+      <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -70,37 +84,44 @@
         android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/select_date_activity_btnPreviousMonth"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:background="@null"
-            android:src="@drawable/arrow_left" />
+          android:id="@+id/select_date_activity_btnPreviousMonth"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:layout_gravity="center_vertical"
+          android:layout_weight="1"
+          android:background="@null"
+          android:src="@drawable/arrow_left"/>
 
         <TextView
-            android:id="@+id/select_date_activity_txtMonth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:textSize="20sp"
-            tools:text="February 2016"
-            android:textColor="@color/mediumGray"/>
+          android:id="@+id/select_date_activity_txtMonth"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:gravity="center_horizontal"
+          android:textColor="@color/mediumGray"
+          android:textSize="20sp"
+          tools:text="February 2016"/>
 
         <ImageButton
-            android:id="@+id/select_date_activity_btnNextMonth"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:background="@null"
-            android:src="@drawable/arrow_right" />
+          android:id="@+id/select_date_activity_btnNextMonth"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:layout_gravity="center_vertical"
+          android:layout_weight="1"
+          android:background="@null"
+          android:src="@drawable/arrow_right"/>
+
+      </LinearLayout>
+
+      <CalendarView
+        android:id="@+id/select_date_activity_calendar_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
     </LinearLayout>
 
-    <CalendarView
-        android:id="@+id/select_date_activity_calendar_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></CalendarView>
-</LinearLayout>
+
+  </android.support.v7.widget.CardView>
+
+
+</android.support.percent.PercentFrameLayout>

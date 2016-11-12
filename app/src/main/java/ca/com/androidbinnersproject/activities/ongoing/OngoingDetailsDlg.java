@@ -167,8 +167,8 @@ public class OngoingDetailsDlg extends DialogFragment implements OnMapReadyCallb
         double longitude= 0;
 
         try {
-            latitude = mPickup.getAddress().getLocation().getCoordinates()[0];
-            longitude = mPickup.getAddress().getLocation().getCoordinates()[1];
+            latitude = mPickup.getAddress().getLocation().getLatitude();
+            longitude = mPickup.getAddress().getLocation().getLongitude();
         } catch (ArrayIndexOutOfBoundsException e) {
             Logger.Error("Latitude or Longitude with no value!");
         }

@@ -36,6 +36,7 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ca.com.androidbinnersproject.R;
+import ca.com.androidbinnersproject.activities.pickup.PickupActivity;
 import ca.com.androidbinnersproject.adapters.BaloonAdapter;
 import ca.com.androidbinnersproject.helpers.GeoHelper;
 
@@ -67,8 +68,10 @@ public class MapPickupFragment extends Fragment implements OnMapReadyCallback, G
     mSupportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragment_home_screen_map);
     mSupportMapFragment = SupportMapFragment.newInstance();
 
-    FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-    transaction.add(R.id.fragment_home_screen_map, mSupportMapFragment).commit();
+    if (!mSupportMapFragment.isAdded()) {
+      FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+      transaction.add(R.id.fragment_home_screen_map, mSupportMapFragment).commit();
+    }
 
     setupSearch();
 
@@ -146,7 +149,6 @@ public class MapPickupFragment extends Fragment implements OnMapReadyCallback, G
 
   @Override
   public void onStatusChanged(String provider, int status, Bundle extras) {
-    // TODO Auto-generated method stub
 
   }
 
@@ -166,7 +168,7 @@ public class MapPickupFragment extends Fragment implements OnMapReadyCallback, G
   @Override
   public void onInfoWindowClick(Marker marker) {
     //Todo: go to Create Pickup Activity
-    Toast.makeText(getContext(), "onInfoWindowClick", Toast.LENGTH_SHORT).show();
+    PickupActivity.startNewPickup(getActivity(), marker.getPosition().latitude, marker.getPosition().longitude);
   }
 
   private void showCurrentLocation() {
