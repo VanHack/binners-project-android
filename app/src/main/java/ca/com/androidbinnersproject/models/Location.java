@@ -6,6 +6,8 @@ package ca.com.androidbinnersproject.models;
 public class Location {
     private String type;
     private double[] coordinates;
+    private double latitude;
+    private double longitude;
 
     public Location() {}
 
@@ -17,11 +19,18 @@ public class Location {
         this.type = type;
     }
 
-    public double[] getCoordinates() {
-        return coordinates;
+    public double getLatitude() {
+        return this.latitude;
     }
 
-    public void setCoordinates(double[] coordinates) {
-        this.coordinates = coordinates;
+    public double getLongitude() {
+        return this.latitude;
     }
+
+    public void setCoordinates(double latitude, double longitude) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+
 }

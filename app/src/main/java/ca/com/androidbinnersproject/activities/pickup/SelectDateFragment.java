@@ -29,6 +29,8 @@ import ca.com.androidbinnersproject.util.Util;
  */
 public class SelectDateFragment extends PickupBaseFragment implements View.OnClickListener {
 
+
+
     private TextView txtDayOfWeek;
     private TextView txtDayOfMonth;
     private TextView txtMonth;

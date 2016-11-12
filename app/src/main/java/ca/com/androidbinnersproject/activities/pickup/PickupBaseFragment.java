@@ -26,11 +26,11 @@ public abstract class PickupBaseFragment extends Fragment {
     }
 
     protected double getLatitude() {
-        return mPickupModel.getAddress().getLocation().getCoordinates()[0];
+        return mPickupModel.getAddress().getLocation().getLatitude();
     }
 
     protected double getLongitude() {
-        return mPickupModel.getAddress().getLocation().getCoordinates()[1];
+        return mPickupModel.getAddress().getLocation().getLongitude();
     }
 
     protected void setDate(Calendar dateTime) {

@@ -68,9 +68,9 @@ public class MainActivity extends AppCompatActivity {
 
   private void createBottomNavigationTabs() {
     mBottomNavigationBar.setForceTitlesDisplay(true);
-    mBottomNavigationBar.setDefaultBackgroundColor(ContextCompat.getColor(this, R.color.green_400) );
-    mBottomNavigationBar.setAccentColor(ContextCompat.getColor(this, R.color.white));
-    mBottomNavigationBar.setInactiveColor(ContextCompat.getColor(this, R.color.green_700));
+    mBottomNavigationBar.setDefaultBackgroundColor(ContextCompat.getColor(this, R.color.white) );
+    mBottomNavigationBar.setAccentColor(ContextCompat.getColor(this, R.color.green_500));
+    mBottomNavigationBar.setInactiveColor(ContextCompat.getColor(this, R.color.grey_500));
     mBottomNavigationAdapter = new AHBottomNavigationAdapter(this, R.menu.bottom_menu);
     mBottomNavigationAdapter.setupWithBottomNavigation(mBottomNavigationBar);
 

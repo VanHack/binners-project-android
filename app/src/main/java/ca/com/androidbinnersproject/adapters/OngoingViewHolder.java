@@ -74,8 +74,8 @@ public class OngoingViewHolder extends RecyclerView.ViewHolder implements OnMapR
         double longitude= 0;
 
         try {
-            latitude = pickup.getAddress().getLocation().getCoordinates()[0];
-            longitude = pickup.getAddress().getLocation().getCoordinates()[1];
+            latitude = pickup.getAddress().getLocation().getLatitude();
+            longitude = pickup.getAddress().getLocation().getLongitude();
         } catch (ArrayIndexOutOfBoundsException e) {
             Logger.Error("Latitude or Longitude with no value!");
         }
