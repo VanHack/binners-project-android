@@ -25,7 +25,7 @@ public class AboutAppActivity extends FragmentActivity implements OnSkipListener
 
         List<Fragment> fragmentList = new ArrayList<>();
 
-        fragmentList.add(new AboutPageOne());
+        fragmentList.add(new Onboarding1Fragment());
         fragmentList.add(new AboutPageTwo());
         fragmentList.add(new AboutPageThree());
 
