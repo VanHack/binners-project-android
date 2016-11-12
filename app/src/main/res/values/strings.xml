@@ -11,6 +11,11 @@
     <string name="decrease">Decrease</string>
     <string name="onboarding_2_top">Informal/semi-formal work opportunities</string>
     <string name="onboarding_2_bottom">Stigma surrounding binning</string>
+    <string name="onboarding_3_top">The pickup service will connect you to a local binner</string>
+    <string name="onboarding_3_bottom">The redeemables empties you donate will</string>
+    <string name="onboarding_3_item_1">Support local economy</string>
+    <string name="onboarding_3_item_2">Encourage financial independence</string>
+    <string name="onboarding_3_item_3">Increase diversion rates</string>
 
 
     <string name="login">Log In</string>

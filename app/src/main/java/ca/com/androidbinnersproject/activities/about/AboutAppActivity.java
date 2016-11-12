@@ -27,7 +27,7 @@ public class AboutAppActivity extends FragmentActivity implements OnSkipListener
 
         fragmentList.add(new Onboarding1Fragment());
         fragmentList.add(new Onboarding2Fragment());
-        fragmentList.add(new AboutPageThree());
+        fragmentList.add(new Onboarding3Fragment());
 
         mPageAdapter = new StartAppPageAdapter(getSupportFragmentManager(), fragmentList);
 
