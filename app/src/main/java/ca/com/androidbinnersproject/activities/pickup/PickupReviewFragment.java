@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -40,12 +41,10 @@ public class PickupReviewFragment extends PickupBaseFragment implements View.OnC
 
     private static final String TAG = "PickupReviewFragment";
 
-    private EditText edtLocation;
-    private EditText edtTime;
-    private EditText edtDate;
-    private EditText edtCanBottles;
-    private EditText edtInstructions;
-    private Button btnFinish;
+    private TextView edtLocation;
+    private TextView edtTime;
+    private TextView edtDate;
+    private TextView edtInstructions;
 
     private GoogleMap mGoogleMap;
     private MapView mMapView;
@@ -71,16 +70,11 @@ public class PickupReviewFragment extends PickupBaseFragment implements View.OnC
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        mMapView = (MapView) view.findViewById(R.id.fragment_pickup_review_imgStaticMap);
-        edtLocation  = (EditText) view.findViewById(R.id.fragment_pickup_review_edtLocation);
-        edtTime      = (EditText) view.findViewById(R.id.fragment_pickup_review_edtTime);
-        edtDate      = (EditText) view.findViewById(R.id.fragment_pickup_review_edtDate);
-        edtCanBottles= (EditText) view.findViewById(R.id.fragment_pickup_review_edtCanBottles);
-        edtInstructions= (EditText) view.findViewById(R.id.fragment_pickup_review_edtInstructions);
-        btnFinish    = (Button) view.findViewById(R.id.fragment_pickup_review_btnFinishPickup);
-
-        btnFinish.setOnClickListener(this);
-
+        mMapView = (MapView) view.findViewById(R.id.review_map);
+        edtLocation  = (TextView) view.findViewById(R.id.review_location);
+        edtTime      = (TextView) view.findViewById(R.id.review_time);
+        edtDate      = (TextView) view.findViewById(R.id.review_date);
+        edtInstructions= (TextView) view.findViewById(R.id.review_instructions);
         this.mMapView.onCreate(null);
         this.mMapView.getMapAsync(this);
 
@@ -98,7 +92,6 @@ public class PickupReviewFragment extends PickupBaseFragment implements View.OnC
         edtLocation.setText(String.format("%s", getStreet()));
         edtTime.setText(Util.getTimeFormated(getDate()));
         edtDate.setText(Util.getDateFormated(getDate()));
-        edtCanBottles.setText(getItems());
         edtInstructions.setText(getInstructions());
     }
 
@@ -124,36 +117,36 @@ public class PickupReviewFragment extends PickupBaseFragment implements View.OnC
     @Override
     public void onClick(View v) {
 
-        if (v.getId() == R.id.fragment_pickup_review_btnFinishPickup) {
-            Retrofit retrofit = BaseAPI.getRetroInstance();
-
-            PickupService service = retrofit.create(PickupService.class);
-            Call<Pickup> call = service.createPickup(mPickupModel, BinnersSettings.getToken());
-
-            Gson gson = new Gson();
-            String json = gson.toJson(mPickupModel);
-
-            call.enqueue(new Callback<Pickup>() {
-                @Override
-                public void onResponse(Call<Pickup> call, Response<Pickup> response) {
-                    Util.dismissProgressDialog();
-
-                    getActivity().onBackPressed();
-                }
-
-                @Override
-                public void onFailure(Call<Pickup> call, Throwable t) {
-                    Util.dismissProgressDialog();
-
-                    Log.e(TAG, "Error finishing pickup!");
-
-                }
-            });
-
-            Util.showProgressDialog(getContext(),
-                                    Util.getStringResource(getContext(), R.string.new_pickup_progress_title),
-                                    Util.getStringResource(getContext(), R.string.new_pickup_progress_message));
-        }
+//        if (v.getId() == R.id.fragment_pickup_review_btnFinishPickup) {
+//            Retrofit retrofit = BaseAPI.getRetroInstance();
+//
+//            PickupService service = retrofit.create(PickupService.class);
+//            Call<Pickup> call = service.createPickup(mPickupModel, BinnersSettings.getToken());
+//
+//            Gson gson = new Gson();
+//            String json = gson.toJson(mPickupModel);
+//
+//            call.enqueue(new Callback<Pickup>() {
+//                @Override
+//                public void onResponse(Call<Pickup> call, Response<Pickup> response) {
+//                    Util.dismissProgressDialog();
+//
+//                    getActivity().onBackPressed();
+//                }
+//
+//                @Override
+//                public void onFailure(Call<Pickup> call, Throwable t) {
+//                    Util.dismissProgressDialog();
+//
+//                    Log.e(TAG, "Error finishing pickup!");
+//
+//                }
+//            });
+//
+//            Util.showProgressDialog(getContext(),
+//                                    Util.getStringResource(getContext(), R.string.new_pickup_progress_title),
+//                                    Util.getStringResource(getContext(), R.string.new_pickup_progress_message));
+//        }
     }
 
     @Override

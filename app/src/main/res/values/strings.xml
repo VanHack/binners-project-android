@@ -9,6 +9,7 @@
     <string name="onboarding_1_bottom">A person who collects redeemable containers and other things form bins to sustain their livelihood and to divert waste from landfills; a dumpster diver</string>
     <string name="increase">Increase</string>
     <string name="decrease">Decrease</string>
+    <string name="details">Details</string>
     <string name="onboarding_2_top">Informal/semi-formal work opportunities</string>
     <string name="onboarding_2_bottom">Stigma surrounding binning</string>
     <string name="onboarding_3_top">The pickup service will connect you to a local binner</string>
@@ -117,8 +118,8 @@
     <string name="label_time">Time</string>
     <string name="label_date">Date</string>
     <string name="label_binner">Binner</string>
-    <string name="pickup_review_label_canAndBottles">Number of Cans and Bottles</string>
-    <string name="pickup_review_label_instructions">Instructions</string>
+    <string name="number_cans_bottles"># Cans &amp; bottles</string>
+    <string name="instructions">Instructions</string>
     <string name="pickup_review_post_pickup">Finish your Pick-Up!</string>
     <string name="new_pickup_progress_title" type="id">New Pick-Up</string>
     <string name="new_pickup_progress_message" type="id">Saving Pick-Up</string>
