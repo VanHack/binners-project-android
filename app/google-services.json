@@ -1,33 +1,35 @@
 {
   "project_info": {
-    "project_number": "291018299300",
-    "project_id": "binnersdraft"
+    "project_number": "602355136970",
+    "firebase_url": "https://binners-project.firebaseio.com",
+    "project_id": "binners-project",
+    "storage_bucket": "binners-project.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:291018299300:android:f5caa9d6e6b11ddd",
+        "mobilesdk_app_id": "1:602355136970:android:f5caa9d6e6b11ddd",
         "android_client_info": {
           "package_name": "ca.com.androidbinnersproject"
         }
       },
       "oauth_client": [
         {
-          "client_id": "291018299300-6dp69vofhdrsu6nurt21shtk54hn46d2.apps.googleusercontent.com",
+          "client_id": "602355136970-ta8i7ajcqqf45s4pkshlcjo6qol4tues.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "ca.com.androidbinnersproject",
-            "certificate_hash": "6C861F614885C4175CBDEF0D8CF81A648D19D6A2"
+            "certificate_hash": "6B361C38A1BA889EF504EE183B8FE1D6E79C5A84"
           }
         },
         {
-          "client_id": "291018299300-klslc1u3kbg59p3km633d5dklbbmk820.apps.googleusercontent.com",
+          "client_id": "602355136970-f7a95ef5v69pafde40gv8tle4jq5j80f.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyADYFGbUAL5LJ9fIA0qVh6TP1IX1q4syv0"
+          "current_key": "AIzaSyBMfj_pICFn26j-00XOSwyG7CnDmxDS0Co"
         }
       ],
       "services": {
@@ -35,11 +37,16 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "602355136970-f7a95ef5v69pafde40gv8tle4jq5j80f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
-          "status": 1
+          "status": 2
         }
       }
     }

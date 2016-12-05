@@ -1,16 +1,10 @@
 package ca.com.androidbinnersproject.adapters;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.LayerDrawable;
-import android.graphics.drawable.LevelListDrawable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.Marker;
@@ -18,7 +12,6 @@ import com.google.android.gms.maps.model.Marker;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ca.com.androidbinnersproject.R;
-import ca.com.androidbinnersproject.activities.pickup.NewPickupFragment;
 import ca.com.androidbinnersproject.helpers.GeoHelper;
 
 /**

@@ -44,7 +44,7 @@ public class MapPickupFragment extends Fragment implements OnMapReadyCallback, G
 
 
   private SupportMapFragment mSupportMapFragment;
-  private GoogleMap mMapView;
+  private GoogleMap mGoogleMap;
   private MarkerOptions markerOptions;
   private Marker mMarker;
   private LatLng mLatLng;
@@ -99,14 +99,14 @@ public class MapPickupFragment extends Fragment implements OnMapReadyCallback, G
 
   @Override
   public void onMapReady(GoogleMap googleMap) {
-    mMapView = googleMap;
-    mMapView.setPadding(16,150,16,16);
-    mMapView.setInfoWindowAdapter(new BaloonAdapter(getActivity()));
-    mMapView.setOnInfoWindowClickListener(this);
-    mMapView.setOnMapClickListener(this);
+    this.mGoogleMap = googleMap;
+    this.mGoogleMap.setPadding(16,150,16,16);
+    this.mGoogleMap.setInfoWindowAdapter(new BaloonAdapter(getActivity()));
+    this.mGoogleMap.setOnInfoWindowClickListener(this);
+    this.mGoogleMap.setOnMapClickListener(this);
 
     if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-      mMapView.setMyLocationEnabled(true);
+      this.mGoogleMap.setMyLocationEnabled(true);
       showCurrentLocation();
     } else {
       // Show rationale and request permission.
@@ -133,16 +133,16 @@ public class MapPickupFragment extends Fragment implements OnMapReadyCallback, G
     Toast.makeText(getContext(), latLng.toString(), Toast.LENGTH_SHORT).show();
 
     mMarker.remove();
-    mMarker = mMapView.addMarker(new MarkerOptions().position(latLng));
+    mMarker = mGoogleMap.addMarker(new MarkerOptions().position(latLng));
     mMarker.showInfoWindow();
   }
 
   @Override
   public void onLocationChanged(Location location) {
     LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
-    mMarker = mMapView.addMarker(new MarkerOptions().position(loc));
-    if(mMapView != null){
-      mMapView.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 16.0f));
+    mMarker = mGoogleMap.addMarker(new MarkerOptions().position(loc));
+    if(mGoogleMap != null){
+      mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 16.0f));
     }
     mMarker.showInfoWindow();
   }
@@ -167,7 +167,6 @@ public class MapPickupFragment extends Fragment implements OnMapReadyCallback, G
 
   @Override
   public void onInfoWindowClick(Marker marker) {
-    //Todo: go to Create Pickup Activity
     PickupActivity.startNewPickup(getActivity(), marker.getPosition().latitude, marker.getPosition().longitude);
   }
 
@@ -191,9 +190,9 @@ public class MapPickupFragment extends Fragment implements OnMapReadyCallback, G
       // Creating a LatLng object for the current location
       mLatLng = new LatLng(location.getLatitude(), location.getLongitude());
 
-      mMapView.clear();
-      mMapView.animateCamera(CameraUpdateFactory.newLatLngZoom(mLatLng, 15));
-      mMarker = mMapView.addMarker(new MarkerOptions().position(mLatLng));
+      mGoogleMap.clear();
+      mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(mLatLng, 15));
+      mMarker = mGoogleMap.addMarker(new MarkerOptions().position(mLatLng));
       mMarker.showInfoWindow();
     }
   }
@@ -208,14 +207,14 @@ public class MapPickupFragment extends Fragment implements OnMapReadyCallback, G
         Toast.makeText(getActivity(), "No Location found", Toast.LENGTH_SHORT).show();
       } else {
         Address address = addresses.get(0);
-        mMapView.clear();
+        mGoogleMap.clear();
 
         mLatLng = new LatLng(address.getLatitude(), address.getLongitude());
         markerOptions = new MarkerOptions();
         markerOptions.position(mLatLng);
         markerOptions.title(GeoHelper.getInstance(getContext()).getAddress(mLatLng));
 
-        mMarker = mMapView.addMarker(markerOptions);
+        mMarker = mGoogleMap.addMarker(markerOptions);
         mMarker.showInfoWindow();
       }
 

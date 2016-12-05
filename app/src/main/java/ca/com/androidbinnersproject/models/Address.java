@@ -5,10 +5,19 @@ package ca.com.androidbinnersproject.models;
  */
 public class Address {
     private String street;
+    private String city;
     private Location location;
 
-    public Address() {
-        location = new Location();
+    public Address(Location location) {
+        this.location = location;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getStreet() {
@@ -19,14 +28,10 @@ public class Address {
         this.street = street;
     }
 
-
     public Location getLocation() {
         return location;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
-    }
 
     @Override
     public String toString() {

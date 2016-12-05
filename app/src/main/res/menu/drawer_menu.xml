@@ -21,5 +21,9 @@
       android:id="@+id/drawer_menu_help"
       android:icon="@drawable/ic_help"
       android:title="@string/help" />
+    <item
+      android:id="@+id/drawer_menu_logout"
+      android:icon="@drawable/ic_logout"
+      android:title="@string/logout" />
   </group>
 </menu>

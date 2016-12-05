@@ -20,6 +20,7 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 
@@ -49,9 +50,9 @@ public class PickupReviewFragment extends PickupBaseFragment implements View.OnC
     private GoogleMap mGoogleMap;
     private MapView mMapView;
 
-    public static PickupBaseFragment newInstance(Context context, Pickup pickupModel) {
+    public static PickupBaseFragment newInstance(Context context, Pickup pickup) {
         PickupBaseFragment fragment = new PickupReviewFragment();
-        fragment.setPickupModel(pickupModel);
+        fragment.setPickupModel(pickup);
         fragment.setTitle(Util.getStringResource(context, R.string.pickup_activity_title_confirm));
 
         return fragment;
@@ -151,14 +152,10 @@ public class PickupReviewFragment extends PickupBaseFragment implements View.OnC
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        MapsInitializer.initialize(getContext());
         mGoogleMap = googleMap;
         mGoogleMap.getUiSettings().setMapToolbarEnabled(false);
-
-        MapsInitializer.initialize(getContext());
-        googleMap.getUiSettings().setMapToolbarEnabled(false);
-
         initializeStaticMap();
-
     }
 
     @Override

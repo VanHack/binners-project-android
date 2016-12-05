@@ -155,6 +155,10 @@ public class MainActivity extends AppCompatActivity {
       case R.id.drawer_menu_help:
         fragmentClass = MapPickupFragment.class;
         break;
+      case R.id.drawer_menu_logout:
+
+
+        break;
       default:
         fragmentClass = MapPickupFragment.class;
     }

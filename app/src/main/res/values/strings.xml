@@ -82,6 +82,7 @@
     <string name="home">Home</string>
     <string name="close">Close</string>
     <string name="help">Help</string>
+    <string name="logout">Logout</string>
     <string name="binners">Binners</string>
     <string name="account">Account</string>
     <string name="my_profile">My profile</string>

@@ -21,7 +21,7 @@ public class Pickup {
     private List<Items> items;
 
     public Pickup() {
-        address = new Address();
+        address = new Address(new Location(0d,0d));
         items   = new ArrayList<>();
     }
 
