@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import ca.com.androidbinnersproject.activities.login.LoginActivity;
 import ca.com.androidbinnersproject.util.BinnersSettings;
 
 public class StartAppActivity extends Activity {

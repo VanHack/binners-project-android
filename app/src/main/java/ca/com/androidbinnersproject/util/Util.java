@@ -1,18 +1,14 @@
 
 package ca.com.androidbinnersproject.util;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
-import ca.com.androidbinnersproject.activities.LoginActivity;
 
 public class Util {
 	private static ProgressDialog pDialog;
