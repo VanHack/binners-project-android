@@ -25,4 +25,6 @@
     <color name="grey_600">#4A4A4A</color>
     <color name="green_400">#369a3f</color>
     <color name="green_700">#095500</color>
+    <color name="google">#dd4b39</color>
+    <color name="facebook">#3b5998</color>
 </resources>

@@ -1,0 +1,71 @@
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="300dp"
+  android:background="@color/green_500"
+  android:orientation="vertical"
+  android:padding="16dp"
+  tools:background="@color/green_500"
+  tools:context="ca.com.androidbinnersproject.activities.signin.EmailLoginFragment"
+  >
+
+  <android.support.design.widget.TextInputLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    tools:background="@color/white"
+    >
+
+    <EditText
+      android:id="@+id/login_email"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="@string/email"
+      android:inputType="textEmailAddress"
+      />
+
+  </android.support.design.widget.TextInputLayout>
+
+
+  <android.support.design.widget.TextInputLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:layout_marginTop="8dp"
+    tools:background="@color/white"
+
+    >
+
+    <EditText
+      android:id="@+id/login_password"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="@string/password"
+      android:inputType="textPassword"
+      />
+
+  </android.support.design.widget.TextInputLayout>
+
+  <android.support.v7.widget.AppCompatButton
+    android:id="@+id/login_button"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    android:layout_marginTop="16dp"
+    android:text="@string/login"
+    android:textColor="@color/green_700"
+    app:backgroundTint="@color/white"
+    />
+
+  <TextView
+    android:id="@+id/email_login_forgot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    android:text="@string/forgot_password"
+    android:textAlignment="center"
+    />
+
+</LinearLayout>

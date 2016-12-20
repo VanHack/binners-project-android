@@ -52,28 +52,16 @@ public class LoginActivity extends AppCompatActivity implements OnAuthListener, 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
 
-		btnCreateAccount = (Button) findViewById(R.id.login_btnCreateAccount);
-		btnForgotPassword = (Button) findViewById(R.id.login_btnForgotPassword);
 
 		edtEmail = (EditText) findViewById(R.id.login_email);
 		edtPassword = (EditText) findViewById(R.id.login_password);
 
 		Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/oxygen.otf");
 
-		if(typeface != null)
-		{
-			TextView residentLabel = (TextView) findViewById(R.id.login_binners_resident_label);
-
-			if(residentLabel != null)
-				residentLabel.setTypeface(typeface);
-		}
-
 		keyManager = new KeyManager(getResources());
 
 		if(!keyManager.RetrieveKeys())
 			Logger.Error("Failed to retrieve keys");
-
-		initListeners();
 
 		showOnboarding();
 	}
@@ -92,24 +80,6 @@ public class LoginActivity extends AppCompatActivity implements OnAuthListener, 
 		startActivity(intent);
 	}
 
-	private void initListeners() {
-
-		btnCreateAccount.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				Intent createUserIntent = new Intent(LoginActivity.this, CreateAccountActivity.class);
-				startActivityForResult(createUserIntent, CreateAccountActivity.CREATE_ACCOUNT_RESULT);
-			}
-		});
-
-		btnForgotPassword.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent forgotPasswordIntent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
-				startActivityForResult(forgotPasswordIntent, 0);
-			}
-		});
-	}
 
 	@Override
 	public void onLoginSuccess(Profile profile) {

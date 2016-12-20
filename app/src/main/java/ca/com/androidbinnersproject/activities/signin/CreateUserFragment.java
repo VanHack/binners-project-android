@@ -1,4 +1,4 @@
-package ca.com.androidbinnersproject.activities.login;
+package ca.com.androidbinnersproject.activities.signin;
 
 
 import android.os.Bundle;
@@ -7,18 +7,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import butterknife.ButterKnife;
 import ca.com.androidbinnersproject.R;
 
-public class LoginFragment extends Fragment {
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class CreateUserFragment extends Fragment {
+
+
+  public CreateUserFragment() {
+    // Required empty public constructor
+  }
 
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.login_fragment, container, false);
-    ButterKnife.bind(this, view);
-    return view;
+    // Inflate the layout for this fragment
+    return inflater.inflate(R.layout.signup_fragment, container, false);
   }
 
 }
