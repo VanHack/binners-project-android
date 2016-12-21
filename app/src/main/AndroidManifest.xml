@@ -33,11 +33,13 @@
           android:value="@integer/google_play_services_version"/>
 
         <activity
-          android:name=".activities.SplashActivity"
-          android:theme="@style/SplashTheme">
+          android:name=".activities.LauncherActivity"
+          android:theme="@style/SplashTheme"
+          android:launchMode="singleTask"
+          android:noHistory="true"
+          >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
@@ -45,8 +47,9 @@
           android:name=".activities.onboarding.OnboardingActivity"
           android:screenOrientation="portrait"/>
         <activity
-          android:name=".activities.StartAppActivity"
-          android:screenOrientation="portrait"/>
+          android:name=".activities.signin.LandingActivity"
+          android:screenOrientation="portrait"
+          />
         <activity
           android:name=".activities.MainActivity"
           android:screenOrientation="portrait"

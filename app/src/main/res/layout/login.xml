@@ -48,14 +48,11 @@
       android:textStyle="bold"
       />
 
-    <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="@string/recycler_app_label"
-      android:textSize="18sp"
-      android:textColor="@color/white"
-      />
 
   </LinearLayout>
-
+  <FrameLayout
+    android:id="@+id/login_container"
+    android:layout_width="match_parent"
+    android:layout_gravity="bottom"
+    android:layout_height="wrap_content"/>
 </FrameLayout>

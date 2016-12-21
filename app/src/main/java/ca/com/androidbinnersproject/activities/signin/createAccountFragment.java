@@ -12,10 +12,10 @@ import ca.com.androidbinnersproject.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CreateUserFragment extends Fragment {
+public class createAccountFragment extends Fragment {
 
 
-  public CreateUserFragment() {
+  public createAccountFragment() {
     // Required empty public constructor
   }
 

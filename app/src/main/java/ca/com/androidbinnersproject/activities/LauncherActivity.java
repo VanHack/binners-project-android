@@ -6,11 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.facebook.FacebookSdk;
+
 import ca.com.androidbinnersproject.activities.login.LoginActivity;
+import ca.com.androidbinnersproject.activities.signin.LandingActivity;
 import ca.com.androidbinnersproject.util.BinnersSettings;
 
-public class StartAppActivity extends Activity {
-	private final String TAG = "StartAppActivity";
+public class LauncherActivity extends Activity {
+	private final String TAG = "LauncherActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,14 +21,16 @@ public class StartAppActivity extends Activity {
 
 		BinnersSettings.initialize(getApplicationContext());
 
+      FacebookSdk.sdkInitialize(getApplicationContext());
+
 		Intent intent = new Intent();
 
 		if(isLogged()) {
 			intent.setClass(this, MainActivity.class);
 			finish();
 		}  else {
-			intent.setClass(this, LoginActivity.class);
-			startActivityForResult(intent, LoginActivity.FROM_LOGIN);
+			intent.setClass(this, LandingActivity.class);
+			startActivity(intent);
 			return;
 		}
 

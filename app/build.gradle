@@ -69,12 +69,14 @@ dependencies {
     compile "com.google.android.gms:play-services-plus:$googlePlayVersion"
     compile "com.google.android.gms:play-services-auth:$googlePlayVersion"
     compile "com.google.android.gms:play-services-maps:$googlePlayVersion"
-    //Connectivity
 
-    //Custom components
+    //Connectivity
     compile 'com.facebook.android:facebook-android-sdk:4.11.0'
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+    apt 'com.jakewharton:butterknife-compiler:8.4.0'
+
+    //Custom components
     compile 'com.scottyab:aes-crypto:0.0.4'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.aurelhubert:ahbottomnavigation:1.5.1'
@@ -83,9 +85,8 @@ dependencies {
     compile 'com.makeramen:roundedimageview:2.2.1'
     compile 'com.github.arimorty:floatingsearchview:2.0.3'
     compile 'com.github.paolorotolo:appintro:4.1.0'
-    compile 'com.android.support:support-v4:25.1.0'
     compile 'com.github.citux:datetimepicker:0.2.0'
-    apt 'com.jakewharton:butterknife-compiler:8.4.0'
+    compile 'com.github.florent37:viewanimator:1.0.4'
 }
 
 apply plugin: 'com.google.gms.google-services'

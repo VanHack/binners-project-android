@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import ca.com.androidbinnersproject.R;
 import ca.com.androidbinnersproject.bll.CreateAccount;
@@ -35,7 +34,7 @@ public class CreateAccountActivity extends Activity implements ResponseListener<
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.create_user);
+        setContentView(R.layout.create_account);
 
         imgBinnerResidentSelector = (ImageView) findViewById(R.id.create_user_binner_resident_selector);
         edtName  = (EditText) findViewById(R.id.create_user_edtName);

@@ -32,133 +32,134 @@ import ca.com.androidbinnersproject.util.Util;
 
 
 public class LoginActivity extends AppCompatActivity implements OnAuthListener, View.OnClickListener {
-	public static final int FROM_LOGIN = 25678;
+  public static final int FROM_LOGIN = 25678;
 
-	private KeyManager keyManager;
+  private KeyManager keyManager;
 
-	private Authentication authentication;
-
-
-	private Button btnCreateAccount;
-	private Button btnForgotPassword;
-
-	private EditText edtEmail;
-	private EditText edtPassword;
-
-	private ProgressDialog mProgressDialog;
-
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.login);
+  private Authentication authentication;
 
 
-		edtEmail = (EditText) findViewById(R.id.login_email);
-		edtPassword = (EditText) findViewById(R.id.login_password);
+  private Button btnCreateAccount;
+  private Button btnForgotPassword;
 
-		Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/oxygen.otf");
+  private EditText edtEmail;
+  private EditText edtPassword;
 
-		keyManager = new KeyManager(getResources());
+  private ProgressDialog mProgressDialog;
 
-		if(!keyManager.RetrieveKeys())
-			Logger.Error("Failed to retrieve keys");
-
-		showOnboarding();
-	}
-
-	@Override
-	protected void onResume() {
-		super.onResume();
-		dismissPDialog();
-	}
-
-	/**
-	 * The intent OnboardingActivity will be shown before the login UI
-	 */
-	private void showOnboarding() {
-		Intent intent = new Intent(this, OnboardingActivity.class);
-		startActivity(intent);
-	}
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.login);
 
 
-	@Override
-	public void onLoginSuccess(Profile profile) {
-		dismissPDialog();
+    edtEmail = (EditText) findViewById(R.id.login_email);
+    edtPassword = (EditText) findViewById(R.id.login_password);
 
-		saveAuthenticatedUser(profile);
+    Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/oxygen.otf");
 
-		setResult(RESULT_OK);
+    keyManager = new KeyManager(getResources());
 
-		finish();
-	}
+    if (!keyManager.RetrieveKeys())
+      Logger.Error("Failed to retrieve keys");
 
-	@Override
-	public void onLoginError(String message) {
-		dismissPDialog();
-		Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
-	}
+    showOnboarding();
+  }
 
-	@Override
-	public void onLoginCancel() {
-		dismissPDialog();
-	}
+  @Override
+  protected void onResume() {
+    super.onResume();
+    dismissPDialog();
+  }
 
-	@Override
-	public void onRevoke() {
-		dismissPDialog();
-	}
+  /**
+   * The intent OnboardingActivity will be shown before the login UI
+   */
+  private void showOnboarding() {
+    Intent intent = new Intent(this, OnboardingActivity.class);
+    startActivity(intent);
+  }
 
-	private void dismissPDialog() {
-		if(mProgressDialog != null)
-			mProgressDialog.dismiss();
-	}
 
-	private void saveAuthenticatedUser(Profile profile) {
-		BinnersSettings.setToken(profile.getToken());
-		BinnersSettings.setProfileName(profile.getName());
-		BinnersSettings.setProfileEmail(profile.getEmail());
-		BinnersSettings.setProfileId(profile.getId());
-	}
+  @Override
+  public void onLoginSuccess(Profile profile) {
+    dismissPDialog();
 
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if(requestCode == GoogleAuth.GOOGLE_SIGN_IN) {
-			GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-			((GoogleAuth) authentication).handleSignInResult(result);
-		} else if(authentication instanceof FacebookAuth) {
-			if(resultCode == RESULT_OK)
-				((FacebookAuth) authentication).getFacebookCallbackManager().onActivityResult(requestCode, resultCode, data);
-		} else if(authentication instanceof TwitterAuth) {
-			((TwitterAuth) authentication).authClient.onActivityResult(requestCode, resultCode, data);
-		}
+    saveAuthenticatedUser(profile);
 
-		if(requestCode == CreateAccountActivity.CREATE_ACCOUNT_RESULT) {
-			if(resultCode == RESULT_OK) {
-				//String token = data.getStringExtra("TOKEN");
-				Profile profile = (Profile) data.getSerializableExtra("PROFILE");
+    setResult(RESULT_OK);
 
-				onLoginSuccess(profile);
-			}
-		}
-	}
+    finish();
+  }
 
-	public boolean isEditFilled() {
-		return edtEmail.getText().toString().length() > 0 && edtPassword.getText().toString().length() > 0;
-	}
+  @Override
+  public void onLoginError(String message) {
+    dismissPDialog();
+    Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+  }
 
-	@Override
-	public void onClick(View view) {
+  @Override
+  public void onLoginCancel() {
+    dismissPDialog();
+  }
 
-		if(!Util.hasInternetConnection(LoginActivity.this)) {
-			Toast.makeText(LoginActivity.this, R.string.has_no_connection, Toast.LENGTH_SHORT).show();
-			return;
-		}
+  @Override
+  public void onRevoke() {
+    dismissPDialog();
+  }
 
-		mProgressDialog = ProgressDialog.show(LoginActivity.this, "Login", this.getString(R.string.executing_sign_in));
+  private void dismissPDialog() {
+    if (mProgressDialog != null)
+      mProgressDialog.dismiss();
+  }
 
-		switch(view.getId()) {
+  private void saveAuthenticatedUser(Profile profile) {
+    BinnersSettings.setToken(profile.getToken());
+    BinnersSettings.setProfileName(profile.getName());
+    BinnersSettings.setProfileEmail(profile.getEmail());
+    BinnersSettings.setProfileId(profile.getId());
+  }
 
-			case R.id.login_button_fb:
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    if (requestCode == GoogleAuth.GOOGLE_SIGN_IN) {
+      GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+      ((GoogleAuth) authentication).handleSignInResult(result);
+    } else if (authentication instanceof FacebookAuth) {
+      if (resultCode == RESULT_OK)
+        ((FacebookAuth) authentication).getFacebookCallbackManager().onActivityResult(requestCode, resultCode, data);
+    } else if (authentication instanceof TwitterAuth) {
+      ((TwitterAuth) authentication).authClient.onActivityResult(requestCode, resultCode, data);
+    }
+
+    if (requestCode == CreateAccountActivity.CREATE_ACCOUNT_RESULT) {
+      if (resultCode == RESULT_OK) {
+        //String token = data.getStringExtra("TOKEN");
+        Profile profile = (Profile) data.getSerializableExtra("PROFILE");
+
+        onLoginSuccess(profile);
+      }
+    }
+  }
+
+  public boolean isEditFilled() {
+    return edtEmail.getText().toString().length() > 0 && edtPassword.getText().toString().length() > 0;
+  }
+
+  @Override
+  public void onClick(View view) {
+
+    if (!Util.hasInternetConnection(LoginActivity.this)) {
+      Toast.makeText(LoginActivity.this, R.string.has_no_connection, Toast.LENGTH_SHORT).show();
+      return;
+    }
+
+    mProgressDialog = ProgressDialog.show(LoginActivity.this, "Login", this.getString(R.string.executing_sign_in));
+
+    switch (view.getId()) {
+
+			/*
+      case R.id.login_button_fb:
 				if(authentication == null || !(authentication instanceof FacebookAuth))
 					authentication = new FacebookAuth(LoginActivity.this, LoginActivity.this, keyManager);
 			break;
@@ -172,24 +173,25 @@ public class LoginActivity extends AppCompatActivity implements OnAuthListener, 
 				if(authentication == null || !(authentication instanceof GoogleAuth))
 					authentication = new GoogleAuth(LoginActivity.this, LoginActivity.this, keyManager);
 			break;
+			*/
 
-			case R.id.login_button:
-				if(isEditFilled()) {
-					if(Util.isEmailValid(edtEmail.getText().toString())) {
-						authentication = new AppAuth(LoginActivity.this, edtEmail.getText().toString(), edtPassword.getText().toString(), LoginActivity.this);
-					} else {
-						dismissPDialog();
-						Toast.makeText(LoginActivity.this, getApplicationContext().getString(R.string.invalid_email), Toast.LENGTH_SHORT).show();
-					}
-				} else {
-					dismissPDialog();
-					Toast.makeText(LoginActivity.this, getApplicationContext().getString(R.string.fill_login), Toast.LENGTH_SHORT).show();
+      case R.id.login_button:
+        if (isEditFilled()) {
+          if (Util.isEmailValid(edtEmail.getText().toString())) {
+            authentication = new AppAuth(LoginActivity.this, edtEmail.getText().toString(), edtPassword.getText().toString(), LoginActivity.this);
+          } else {
+            dismissPDialog();
+            Toast.makeText(LoginActivity.this, getApplicationContext().getString(R.string.invalid_email), Toast.LENGTH_SHORT).show();
+          }
+        } else {
+          dismissPDialog();
+          Toast.makeText(LoginActivity.this, getApplicationContext().getString(R.string.fill_login), Toast.LENGTH_SHORT).show();
 
-					return;
-				}
-				break;
-		}
+          return;
+        }
+        break;
+    }
 
-		authentication.login();
-	}
+    authentication.login();
+  }
 }
