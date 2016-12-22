@@ -35,7 +35,7 @@ public class LandingActivity extends AppCompatActivity {
       @Override
       public void onStop() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.setCustomAnimations(R.anim.slide_in_up, R.anim.nothing);
+        transaction.setCustomAnimations(R.anim.slide_in_up, R.anim.fade_out);
         transaction.add(R.id.login_container, new LoginFragment()).commit();
       }
     };
@@ -52,6 +52,9 @@ public class LandingActivity extends AppCompatActivity {
   }
 
   public void showEmailLoginFragment() {
+    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+    transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out, R.anim.nothing, R.anim.fade_out);
+    transaction.replace(R.id.login_container, new EmailLoginFragment()).addToBackStack(null).commit();
 
   }
 
@@ -64,6 +67,15 @@ public class LandingActivity extends AppCompatActivity {
   }
 
 
+  @Override
+  public void onBackPressed() {
+    int count = getFragmentManager().getBackStackEntryCount();
 
-
+    if (count == 0) {
+      super.onBackPressed();
+      //additional code
+    } else {
+      getFragmentManager().popBackStack();
+    }
+  }
 }

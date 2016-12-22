@@ -40,29 +40,9 @@ public class LoginFragment extends Fragment {
 
   @BindView(R.id.login_facebook_widget) LoginButton mFbButton;
 
-  private CallbackManager mCallbackManager;
-  private FirebaseAuth mAuth;
-  private FirebaseAuth.AuthStateListener mAuthListener;
-
-
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    mAuth = FirebaseAuth.getInstance();
-    mAuthListener = new FirebaseAuth.AuthStateListener() {
-      @Override
-      public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-        if (user != null) {
-          // User is signed in
-          Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-        } else {
-          // User is signed out
-          Log.d(TAG, "onAuthStateChanged:signed_out");
-        }
-        // ...
-      }
-    };
   }
 
   @Override
@@ -70,79 +50,17 @@ public class LoginFragment extends Fragment {
                            Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.login_fragment, container, false);
     ButterKnife.bind(this, view);
-
-    setFacebookButton();
-
     return view;
   }
 
-  @Override
-  public void onStart() {
-    super.onStart();
-    mAuth.addAuthStateListener(mAuthListener);
-  }
-
-  @Override
-  public void onStop() {
-    super.onStop();
-    if (mAuthListener != null) {
-      mAuth.removeAuthStateListener(mAuthListener);
-    }
-  }
-
-  private void setFacebookButton() {
-    mCallbackManager = CallbackManager.Factory.create();
-    mFbButton.setReadPermissions("email", "public_profile");
-    mFbButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
-      @Override
-      public void onSuccess(LoginResult loginResult) {
-        Log.d(TAG, "facebook:onSuccess:" + loginResult);
-        handleFacebookAccessToken(loginResult.getAccessToken());
-      }
-
-      @Override
-      public void onCancel() {
-        Log.d(TAG, "facebook:onCancel");
-      }
-
-      @Override
-      public void onError(FacebookException error) {
-        Log.d(TAG, "facebook:onError", error);
-      }
-    });
-  }
-
-  private void handleFacebookAccessToken(AccessToken token) {
-    Log.d(TAG, "handleFacebookAccessToken:" + token);
-
-    AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
-    mAuth.signInWithCredential(credential)
-      .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
-        @Override
-        public void onComplete(@NonNull Task<AuthResult> task) {
-          Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
-          if (!task.isSuccessful()) {
-            Log.w(TAG, "signInWithCredential", task.getException());
-            Toast.makeText(getActivity(), "Authentication failed.",
-              Toast.LENGTH_SHORT).show();
-          }
-        }
-      });
-  }
-
-  @Override
-  public void onActivityResult(int requestCode, int resultCode, Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
-    mCallbackManager.onActivityResult(requestCode, resultCode, data);
-  }
-
-
-
-  @OnClick({R.id.login_facebook_button})
+  @OnClick({R.id.login_facebook_button, R.id.login_button})
   public void onClick(View view){
     switch (view.getId()) {
       case R.id.login_facebook_button:
         mFbButton.performClick();
+        break;
+      case R.id.login_button:
+        ((LandingActivity) getActivity()).showEmailLoginFragment();
         break;
     }
   }

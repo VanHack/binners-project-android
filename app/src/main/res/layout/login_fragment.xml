@@ -36,10 +36,10 @@
 
 
   <android.support.v7.widget.AppCompatButton
+    android:id="@+id/login_google_button"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
-
     app:backgroundTint="@color/google"
     android:text="@string/login_google"
     android:textColor="@color/white"
