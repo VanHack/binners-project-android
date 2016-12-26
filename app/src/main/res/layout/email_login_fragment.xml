@@ -1,78 +1,88 @@
-<LinearLayout
+<FrameLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
-  android:layout_height="300dp"
+  android:layout_height="wrap_content"
   android:orientation="vertical"
-  android:padding="16dp"
-  tools:background="@color/green_400"
   tools:context="ca.com.androidbinnersproject.activities.signin.EmailLoginFragment"
   >
-
-  <android.support.design.widget.TextInputLayout
-    android:id="@+id/login_input_email"
+  <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp"
-    app:hintTextAppearance="@style/TextAppearance.AppCompat.Inverse"
-    android:textColorHint="@color/white"
+    android:layout_gravity="bottom"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:background="@color/green_400"
     >
-
-    <android.support.v7.widget.AppCompatEditText
-      android:id="@+id/login_email"
+    <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:hint="@string/email"
-      android:inputType="textEmailAddress"
-      app:backgroundTint="@color/white"
-      android:textColor="@color/white"
-      />
-  </android.support.design.widget.TextInputLayout>
+      android:orientation="vertical"
+      >
+
+      <android.support.design.widget.TextInputLayout
+        android:id="@+id/login_input_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        >
+
+        <android.support.design.widget.TextInputEditText
+          android:id="@+id/login_email"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:hint="@string/email"
+          android:inputType="textEmailAddress"
+          />
+      </android.support.design.widget.TextInputLayout>
 
 
-  <android.support.design.widget.TextInputLayout
-    android:id="@+id/login_input_password"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp"
-    android:layout_marginTop="8dp"
-    app:hintTextAppearance="@style/TextAppearance.AppCompat.Inverse"
-    android:textColorHint="@color/white"
-    >
+      <android.support.design.widget.TextInputLayout
+        android:id="@+id/login_input_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        >
 
-    <android.support.v7.widget.AppCompatEditText
-      android:id="@+id/login_password"
+        <android.support.design.widget.TextInputEditText
+          android:id="@+id/login_password"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:hint="@string/password"
+          android:inputType="textPassword"
+          />
+
+      </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+
+
+    <android.support.v7.widget.AppCompatButton
+      android:id="@+id/login_button"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:hint="@string/password"
-      android:inputType="textPassword"
+      android:layout_marginBottom="16dp"
+      android:layout_marginTop="16dp"
+      android:text="@string/login"
       android:textColor="@color/white"
+      app:backgroundTint="@color/blue_500"
       />
 
-  </android.support.design.widget.TextInputLayout>
+    <TextView
+      android:id="@+id/login_forgot"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:padding="8dp"
+      android:text="@string/forgot_password"
+      android:textAlignment="center"
+      android:alpha="0.83"
+      android:layout_gravity="center_horizontal"
+      />
 
-  <android.support.v7.widget.AppCompatButton
-    android:id="@+id/login_button"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="16dp"
-    android:layout_marginTop="16dp"
-    android:text="@string/login"
-    android:textColor="@color/green_700"
-    app:backgroundTint="@color/white"
-    />
+  </LinearLayout>
 
-  <TextView
-    android:id="@+id/email_login_forgot"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:padding="8dp"
-    android:text="@string/forgot_password"
-    android:textAlignment="center"
-    android:textColor="@color/white"
-    android:alpha="0.83"
-    android:layout_gravity="center_horizontal"
-    />
-
-</LinearLayout>
+</FrameLayout>

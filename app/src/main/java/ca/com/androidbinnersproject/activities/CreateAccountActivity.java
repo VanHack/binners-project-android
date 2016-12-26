@@ -67,6 +67,7 @@ public class CreateAccountActivity extends Activity implements ResponseListener<
             return false;
         }
 
+        /*
         if(name.length() <= 0) {
             edtName.setError(getString(R.string.create_user_validation_name));
             result = false;
@@ -78,7 +79,7 @@ public class CreateAccountActivity extends Activity implements ResponseListener<
         if(password.length() < 6) {
             edtPassword.setError(getString(R.string.create_user_validation_password));
             result = false;
-        }
+        }*/
 
         return result;
     }

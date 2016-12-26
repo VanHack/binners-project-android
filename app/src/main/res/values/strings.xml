@@ -11,6 +11,7 @@
   <string name="open">Open</string>
   <string name="home">Home</string>
   <string name="close">Close</string>
+  <string name="back">Back</string>
   <string name="help">Help</string>
   <string name="logout">Logout</string>
   <string name="binners">Binners</string>
@@ -22,7 +23,7 @@
   <string name="login_facebook">Connect with Facebook</string>
   <string name="signup">Sign Up</string>
   <string name="signin">Sign In</string>
-  <string name="forgot_password">Forgot Password?</string>
+  <string name="forgot_password">Forgot password?</string>
   <string name="reset_password">Reset password</string>
   <string name="password">Password</string>
   <string name="create_password">Create password</string>
@@ -63,11 +64,11 @@
   <string name="invalid_email">Please write a valid e-mail</string>
   <string name="create_user_without_permission">We will never post without your permission.</string>
   <string name="create_user_terms_privacy">By signing up I agree to the Binner\'s Project Service Terms and Privacy Policy</string>
-  <string name="create_user_validation_name">Name should not be empty</string>
-  <string name="create_user_validation_email">Email should be valid</string>
-  <string name="create_user_validation_password">Password need at least 6 characters</string>
+  <string name="validation_name">Name should not be empty</string>
+  <string name="validation_password">Password should have at least 5 characters</string>
   <string name="forgot_password_title">Forgot your password?</string>
-  <string name="forgot_password_body">Enter your email address and we\'ll send you a link to set a new one</string>
+  <string name="forgot_password_message">Enter your email address and we\'ll send you a link to set a new one</string>
+  <string name="forgot_password_success">Check your email inbox</string>
 
   <string-array name="months">
     <item>January</item>

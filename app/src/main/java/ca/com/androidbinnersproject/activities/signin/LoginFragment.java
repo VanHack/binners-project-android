@@ -1,34 +1,14 @@
 package ca.com.androidbinnersproject.activities.signin;
 
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.Toast;
 
-import com.facebook.AccessToken;
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FacebookAuthProvider;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,7 +33,7 @@ public class LoginFragment extends Fragment {
     return view;
   }
 
-  @OnClick({R.id.login_facebook_button, R.id.login_button})
+  @OnClick({R.id.login_facebook_button, R.id.login_button, R.id.login_signup_button})
   public void onClick(View view){
     switch (view.getId()) {
       case R.id.login_facebook_button:
@@ -61,6 +41,9 @@ public class LoginFragment extends Fragment {
         break;
       case R.id.login_button:
         ((LandingActivity) getActivity()).showEmailLoginFragment();
+        break;
+      case R.id.login_signup_button:
+        ((LandingActivity) getActivity()).showCreateAccountFragment();
         break;
     }
   }

@@ -7,24 +7,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import ca.com.androidbinnersproject.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class createAccountFragment extends Fragment {
-
-
-  public createAccountFragment() {
-    // Required empty public constructor
-  }
-
+public class CreateAccountFragment extends Fragment {
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
-    // Inflate the layout for this fragment
-    return inflater.inflate(R.layout.signup_fragment, container, false);
+    View view = inflater.inflate(R.layout.create_account_fragment, container, false);
+    ButterKnife.bind(this, view);
+    return view;
+  }
+
+  @OnClick({R.id.signup_button})
+  public void onClick(View view) {
+    switch (view.getId()) {
+      case R.id.signup_button:
+        ((LandingActivity) getActivity()).showForgotPasswordFragment();
+        break;
+    }
   }
 
 }
