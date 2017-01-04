@@ -191,7 +191,5 @@ public class LoginActivity extends AppCompatActivity implements OnAuthListener, 
         }
         break;
     }
-
-    authentication.login();
   }
 }

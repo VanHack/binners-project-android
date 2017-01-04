@@ -7,6 +7,7 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,8 +36,7 @@ public class EmailLoginFragment extends Fragment {
   @BindView(R.id.login_password)
   TextInputEditText mPasswordEditText;
 
-  private Authentication authentication;
-
+  private LandingActivity activity;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,23 +44,23 @@ public class EmailLoginFragment extends Fragment {
     View view = inflater.inflate(R.layout.email_login_fragment, container, false);
     ButterKnife.bind(this, view);
 
-    mEmailEditText.addTextChangedListener(new LoginTextWatcher(new Callback() {
-      @Override
-      public void callback() {
-        ((LandingActivity) getActivity()).validateEmail(mEmailEditText, mEmailLayout);
-      }
-    }));
+    activity = (LandingActivity) getActivity();
 
     return view;
   }
 
-  @OnClick({R.id.login_forgot})
+  @OnClick({R.id.login_forgot, R.id.login_button})
   public void onClick(View view) {
     switch (view.getId()) {
       case R.id.login_forgot:
         ((LandingActivity) getActivity()).showForgotPasswordFragment();
         break;
       case R.id.login_button:
+
+        if (activity.validateEmail(mEmailEditText, mEmailLayout) &&
+          activity.validatePassword(mPasswordEditText, mPasswordLayout)) {
+          activity.login(mEmailEditText.getText().toString(), mPasswordEditText.getText().toString());
+        }
 
         break;
     }

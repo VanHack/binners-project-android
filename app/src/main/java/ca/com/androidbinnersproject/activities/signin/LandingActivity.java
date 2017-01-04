@@ -1,19 +1,13 @@
 package ca.com.androidbinnersproject.activities.signin;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.util.AttributeSet;
-import android.view.View;
-import android.widget.FrameLayout;
+import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -26,7 +20,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ca.com.androidbinnersproject.R;
 import ca.com.androidbinnersproject.activities.CreateAccountActivity;
+import ca.com.androidbinnersproject.activities.MainActivity;
 import ca.com.androidbinnersproject.activities.login.LoginActivity;
+import ca.com.androidbinnersproject.auth.AppAuth;
 import ca.com.androidbinnersproject.auth.Authentication;
 import ca.com.androidbinnersproject.auth.FacebookAuth;
 import ca.com.androidbinnersproject.auth.GoogleAuth;
@@ -41,6 +37,7 @@ import ca.com.androidbinnersproject.util.BinnersSettings;
  */
 
 public class LandingActivity extends AppCompatActivity implements OnAuthListener{
+  private static final String TAG = "LandingActivity";
 
   @BindView(R.id.login_logo_layout) LinearLayout mLogoLayout;
 
@@ -105,12 +102,10 @@ public class LandingActivity extends AppCompatActivity implements OnAuthListener
 
   @Override
   public void onLoginSuccess(Profile profile) {
-
     saveAuthenticatedUser(profile);
-
-    setResult(RESULT_OK);
-
-    finish();
+    Intent intent = new Intent();
+    intent.setClass(this, MainActivity.class);
+    startActivity(intent);
   }
 
   @Override
@@ -142,7 +137,6 @@ public class LandingActivity extends AppCompatActivity implements OnAuthListener
       if (resultCode == RESULT_OK) {
         //String token = data.getStringExtra("TOKEN");
         Profile profile = (Profile) data.getSerializableExtra("PROFILE");
-
         onLoginSuccess(profile);
       }
     }
@@ -159,6 +153,11 @@ public class LandingActivity extends AppCompatActivity implements OnAuthListener
     return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
   }
 
+  public void login(String email, String password) {
+    authentication = new AppAuth(this, email, password, this);
+    authentication.login();
+  }
+
   public boolean validateName(TextInputEditText editText, TextInputLayout textInputLayout) {
     if (editText.getText().toString().trim().isEmpty()) {
       textInputLayout.setError(getString(R.string.validation_name));
@@ -166,9 +165,8 @@ public class LandingActivity extends AppCompatActivity implements OnAuthListener
       return false;
     } else {
       textInputLayout.setErrorEnabled(false);
+      return true;
     }
-
-    return true;
   }
 
   public boolean validateEmail(TextInputEditText editText, TextInputLayout textInputLayout) {
@@ -180,9 +178,8 @@ public class LandingActivity extends AppCompatActivity implements OnAuthListener
       return false;
     } else {
       textInputLayout.setErrorEnabled(false);
+      return true;
     }
-
-    return true;
   }
 
   public boolean validatePassword(TextInputEditText editText, TextInputLayout textInputLayout) {
@@ -192,9 +189,8 @@ public class LandingActivity extends AppCompatActivity implements OnAuthListener
       return false;
     } else {
       textInputLayout.setErrorEnabled(false);
+      return true;
     }
-
-    return true;
   }
 
 }
