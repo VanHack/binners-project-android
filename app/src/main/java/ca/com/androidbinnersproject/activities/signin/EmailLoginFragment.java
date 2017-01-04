@@ -17,6 +17,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
 import ca.com.androidbinnersproject.R;
+import ca.com.androidbinnersproject.auth.Authentication;
 import ca.com.androidbinnersproject.interfaces.Callback;
 
 /**
@@ -33,6 +34,8 @@ public class EmailLoginFragment extends Fragment {
   TextInputEditText mEmailEditText;
   @BindView(R.id.login_password)
   TextInputEditText mPasswordEditText;
+
+  private Authentication authentication;
 
 
   @Override
@@ -56,6 +59,9 @@ public class EmailLoginFragment extends Fragment {
     switch (view.getId()) {
       case R.id.login_forgot:
         ((LandingActivity) getActivity()).showForgotPasswordFragment();
+        break;
+      case R.id.login_button:
+
         break;
     }
   }

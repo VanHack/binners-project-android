@@ -1,6 +1,7 @@
 package ca.com.androidbinnersproject.activities.signin;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.design.widget.TextInputEditText;
@@ -14,21 +15,37 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.github.florent37.viewanimator.AnimationListener;
 import com.github.florent37.viewanimator.ViewAnimator;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ca.com.androidbinnersproject.R;
+import ca.com.androidbinnersproject.activities.CreateAccountActivity;
+import ca.com.androidbinnersproject.activities.login.LoginActivity;
+import ca.com.androidbinnersproject.auth.Authentication;
+import ca.com.androidbinnersproject.auth.FacebookAuth;
+import ca.com.androidbinnersproject.auth.GoogleAuth;
+import ca.com.androidbinnersproject.auth.TwitterAuth;
+import ca.com.androidbinnersproject.auth.keys.KeyManager;
+import ca.com.androidbinnersproject.listeners.OnAuthListener;
+import ca.com.androidbinnersproject.models.Profile;
+import ca.com.androidbinnersproject.util.BinnersSettings;
 
 /**
  * Created by leodeleon on 20/12/2016.
  */
 
-public class LandingActivity extends AppCompatActivity {
+public class LandingActivity extends AppCompatActivity implements OnAuthListener{
 
   @BindView(R.id.login_logo_layout) LinearLayout mLogoLayout;
+
+  private KeyManager keyManager;
+  private Authentication authentication;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -84,6 +101,58 @@ public class LandingActivity extends AppCompatActivity {
     } else {
       getFragmentManager().popBackStack();
     }
+  }
+
+  @Override
+  public void onLoginSuccess(Profile profile) {
+
+    saveAuthenticatedUser(profile);
+
+    setResult(RESULT_OK);
+
+    finish();
+  }
+
+  @Override
+  public void onLoginError(String message) {
+    Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+  }
+
+  @Override
+  public void onLoginCancel() {
+  }
+
+  @Override
+  public void onRevoke() {
+  }
+
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    if (requestCode == GoogleAuth.GOOGLE_SIGN_IN) {
+      GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+      ((GoogleAuth) authentication).handleSignInResult(result);
+    } else if (authentication instanceof FacebookAuth) {
+      if (resultCode == RESULT_OK)
+        ((FacebookAuth) authentication).getFacebookCallbackManager().onActivityResult(requestCode, resultCode, data);
+    } else if (authentication instanceof TwitterAuth) {
+      ((TwitterAuth) authentication).authClient.onActivityResult(requestCode, resultCode, data);
+    }
+
+    if (requestCode == CreateAccountActivity.CREATE_ACCOUNT_RESULT) {
+      if (resultCode == RESULT_OK) {
+        //String token = data.getStringExtra("TOKEN");
+        Profile profile = (Profile) data.getSerializableExtra("PROFILE");
+
+        onLoginSuccess(profile);
+      }
+    }
+  }
+
+  private void saveAuthenticatedUser(Profile profile) {
+    BinnersSettings.setToken(profile.getToken());
+    BinnersSettings.setProfileName(profile.getName());
+    BinnersSettings.setProfileEmail(profile.getEmail());
+    BinnersSettings.setProfileId(profile.getId());
   }
 
   private static boolean isValidEmail(String email) {
