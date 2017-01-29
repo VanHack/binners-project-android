@@ -133,7 +133,7 @@
             android:id="@+id/fragment_pickup_review_txtLabelCanBottles"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/pickup_review_label_canAndBottles"
+            android:text="@string/pickup_review_label_location"
             android:textAppearance="?android:attr/textAppearanceMedium"/>
 
           <EditText
@@ -149,7 +149,7 @@
             android:id="@+id/fragment_pickup_review_txtLabelInstruction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/pickup_review_label_instructions"
+            android:text="@string/instructions"
             android:textAppearance="?android:attr/textAppearanceMedium"/>
 
           <View

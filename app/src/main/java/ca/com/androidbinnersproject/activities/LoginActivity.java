@@ -2,18 +2,23 @@ package ca.com.androidbinnersproject.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.design.widget.BottomSheetBehavior;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatEditText;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import ca.com.androidbinnersproject.R;
 import ca.com.androidbinnersproject.activities.onboarding.OnboardingActivity;
 import ca.com.androidbinnersproject.auth.AppAuth;
@@ -36,15 +41,18 @@ public class LoginActivity extends AppCompatActivity implements OnAuthListener, 
 
 	private Authentication authentication;
 
-	private Button btnGoogle;
-	private Button btnFacebook;
-	private Button btnTwitter;
-	private Button btnLogin;
-	private Button btnCreateAccount;
-	private Button btnForgotPassword;
+	private BottomSheetBehavior sheetBehavior;
 
-	private EditText edtEmail;
-	private EditText edtPassword;
+
+	@BindView(R.id.login_email)
+  AppCompatEditText edtEmail;
+	@BindView(R.id.login_password)
+  AppCompatEditText edtPassword;
+  @BindView(R.id.login_email_layout)
+  LinearLayout loginEmailLayout;
+  @BindView(R.id.login_facebook_widget)
+  LoginButton fbWidgetButton;
+
 
 	private ProgressDialog mProgressDialog;
 
@@ -52,35 +60,19 @@ public class LoginActivity extends AppCompatActivity implements OnAuthListener, 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
-
-		btnGoogle = (Button) findViewById(R.id.login_button_google);
-		btnFacebook = (Button) findViewById(R.id.login_button_fb);
-		btnTwitter = (Button) findViewById(R.id.login_button_twitter);
-		btnLogin = (Button) findViewById(R.id.login_login_button);
-		btnCreateAccount = (Button) findViewById(R.id.login_btnCreateAccount);
-		btnForgotPassword = (Button) findViewById(R.id.login_btnForgotPassword);
-
-		edtEmail = (EditText) findViewById(R.id.login_email_field);
-		edtPassword = (EditText) findViewById(R.id.login_password_field);
-
-		Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/oxygen.otf");
-
-		if(typeface != null)
-		{
-			TextView residentLabel = (TextView) findViewById(R.id.login_binners_resident_label);
-
-			if(residentLabel != null)
-				residentLabel.setTypeface(typeface);
-		}
+    ButterKnife.bind(this);
 
 		keyManager = new KeyManager(getResources());
 
 		if(!keyManager.RetrieveKeys())
 			Logger.Error("Failed to retrieve keys");
 
-		initListeners();
+		//showOnboarding();
 
-		showAboutAppUI();
+    sheetBehavior = BottomSheetBehavior.from(loginEmailLayout);
+    sheetBehavior.setHideable(true);
+    sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+
 	}
 
 	@Override
@@ -89,36 +81,9 @@ public class LoginActivity extends AppCompatActivity implements OnAuthListener, 
 		dismissPDialog();
 	}
 
-	/**
-	 * The intent OnboardingActivity will be shown before the login UI
-	 */
-	private void showAboutAppUI() {
+	private void showOnboarding() {
 		Intent intent = new Intent(this, OnboardingActivity.class);
 		startActivity(intent);
-	}
-
-	private void initListeners() {
-
-		btnGoogle.setOnClickListener(this);
-		btnFacebook.setOnClickListener(this);
-		btnTwitter.setOnClickListener(this);
-		btnLogin.setOnClickListener(this);
-
-		btnCreateAccount.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				Intent createUserIntent = new Intent(LoginActivity.this, CreateAccountActivity.class);
-				startActivityForResult(createUserIntent, CreateAccountActivity.CREATE_ACCOUNT_RESULT);
-			}
-		});
-
-		btnForgotPassword.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent forgotPasswordIntent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
-				startActivityForResult(forgotPasswordIntent, 0);
-			}
-		});
 	}
 
 	@Override
@@ -128,6 +93,9 @@ public class LoginActivity extends AppCompatActivity implements OnAuthListener, 
 		saveAuthenticatedUser(profile);
 
 		setResult(RESULT_OK);
+
+    Intent intent = new Intent(this, MainActivity.class);
+    startActivity(intent);
 
 		finish();
 	}
@@ -160,7 +128,12 @@ public class LoginActivity extends AppCompatActivity implements OnAuthListener, 
 		BinnersSettings.setProfileId(profile.getId());
 	}
 
-	@Override
+  @Override
+  public void onBackPressed() {
+    sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+  }
+
+  @Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if(requestCode == GoogleAuth.GOOGLE_SIGN_IN) {
 			GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
@@ -186,7 +159,7 @@ public class LoginActivity extends AppCompatActivity implements OnAuthListener, 
 		return edtEmail.getText().toString().length() > 0 && edtPassword.getText().toString().length() > 0;
 	}
 
-	@Override
+	@OnClick({R.id.login_login_button, R.id.login_signin_button, R.id.login_forgot_button, R.id.login_facebook_button})
 	public void onClick(View view) {
 
 		if(!Util.hasInternetConnection(LoginActivity.this)) {
@@ -194,42 +167,48 @@ public class LoginActivity extends AppCompatActivity implements OnAuthListener, 
 			return;
 		}
 
-		mProgressDialog = ProgressDialog.show(LoginActivity.this, "Login", this.getString(R.string.executing_sign_in));
-
 		switch(view.getId()) {
 
-			case R.id.login_button_fb:
+			case R.id.login_facebook_button:
+        fbWidgetButton.performClick();
 				if(authentication == null || !(authentication instanceof FacebookAuth))
 					authentication = new FacebookAuth(LoginActivity.this, LoginActivity.this, keyManager);
 			break;
 
-			case R.id.login_button_twitter:
-				if(authentication == null || !(authentication instanceof TwitterAuth))
-					authentication = new TwitterAuth(LoginActivity.this, LoginActivity.this, keyManager);
-			break;
+//			case R.id.login_button_twitter:
+//				if(authentication == null || !(authentication instanceof TwitterAuth))
+//					authentication = new TwitterAuth(LoginActivity.this, LoginActivity.this, keyManager);
+//			break;
+//
+//			case R.id.login_button_google:
+//				if(authentication == null || !(authentication instanceof GoogleAuth))
+//					authentication = new GoogleAuth(LoginActivity.this, LoginActivity.this, keyManager);
+//			break;
 
-			case R.id.login_button_google:
-				if(authentication == null || !(authentication instanceof GoogleAuth))
-					authentication = new GoogleAuth(LoginActivity.this, LoginActivity.this, keyManager);
-			break;
+      case R.id.login_signin_button:
+        sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        break;
 
 			case R.id.login_login_button:
-				if(isEditFilled()) {
+        mProgressDialog = ProgressDialog.show(LoginActivity.this, "Login", getString(R.string.executing_sign_in));
+
+        if(isEditFilled()) {
 					if(Util.isEmailValid(edtEmail.getText().toString())) {
 						authentication = new AppAuth(LoginActivity.this, edtEmail.getText().toString(), edtPassword.getText().toString(), LoginActivity.this);
-					} else {
+            authentication.login();
+          } else {
 						dismissPDialog();
-						Toast.makeText(LoginActivity.this, getApplicationContext().getString(R.string.invalid_email), Toast.LENGTH_SHORT).show();
+						Toast.makeText(LoginActivity.this, getString(R.string.invalid_email), Toast.LENGTH_SHORT).show();
 					}
 				} else {
 					dismissPDialog();
-					Toast.makeText(LoginActivity.this, getApplicationContext().getString(R.string.fill_login), Toast.LENGTH_SHORT).show();
+					Toast.makeText(LoginActivity.this, getString(R.string.fill_login), Toast.LENGTH_SHORT).show();
 
 					return;
 				}
 				break;
 		}
 
-		authentication.login();
+
 	}
 }

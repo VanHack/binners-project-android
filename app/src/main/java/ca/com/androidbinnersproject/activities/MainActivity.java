@@ -7,8 +7,10 @@ import android.support.customtabs.CustomTabsIntent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -32,8 +34,8 @@ import ca.com.androidbinnersproject.activities.ongoing.OngoingPickupsFragment;
 public class MainActivity extends AppCompatActivity {
   @BindView(R.id.binners_toolbar)
   Toolbar mToolbar;
-  @BindView(R.id.main_container_body)
-  FrameLayout mContainerBody;
+  @BindView(R.id.view_pager)
+  ViewPager mViewPager;
   @BindView(R.id.bottom_navigation_bar)
   AHBottomNavigation mBottomNavigationBar;
   @BindView(R.id.drawer_layout)
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
   NavigationView mNavigationView;
 
   private ActionBarDrawerToggle mActionBarDrawerToggle;
-  private FragNavController mFragController;
+  private PagerAdapter mPagerAdapter;
   private Resources res;
   private AHBottomNavigationAdapter mBottomNavigationAdapter;
 
@@ -50,9 +52,6 @@ public class MainActivity extends AppCompatActivity {
   public static final int POSITION_ONGOING = 1;
   public static final int POSITION_PICKUP = 2;
   public static final int POSITION_DONATE = 3;
-  private final int INDEX_HISTORY = FragNavController.TAB1;
-  private final int INDEX_ONGOING = FragNavController.TAB2;
-  private final int INDEX_PICKUP = FragNavController.TAB3;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -79,26 +78,15 @@ public class MainActivity extends AppCompatActivity {
     fragments.add(OngoingPickupsFragment.newInstance(this));
     fragments.add(MapPickupFragment.newInstance());
 
-    mFragController = new FragNavController(getSupportFragmentManager(), R.id.main_container_body, fragments);
+    mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), fragments);
+    mViewPager.setAdapter(mPagerAdapter);
+    mViewPager.setOffscreenPageLimit(2);
 
     mBottomNavigationBar.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
       @Override
       public boolean onTabSelected(int position, boolean wasSelected) {
-        switch (position) {
-          case POSITION_HISTORY:
-            mFragController.switchTab(INDEX_HISTORY);
-            break;
-          case POSITION_ONGOING:
-            mFragController.switchTab(INDEX_ONGOING);
-            break;
-          case POSITION_PICKUP:
-            mFragController.switchTab(INDEX_PICKUP);
-            break;
-          case POSITION_DONATE:
-            mBottomNavigationBar.setSelected(false);
-
-            break;
-        }
+        if (position < 3)
+          mViewPager.setCurrentItem(position);
         return true;
       }
     });
@@ -167,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
       }
 
       FragmentManager fragmentManager = getSupportFragmentManager();
-      fragmentManager.beginTransaction().replace(R.id.main_container_body, fragment).commit();
+      //fragmentManager.beginTransaction().replace(R.id.main_container_body, fragment).commit();
     }
 
 
@@ -177,6 +165,31 @@ public class MainActivity extends AppCompatActivity {
     setTitle(menuItem.getTitle());
     // Close the navigation drawer
     mDrawerLayout.closeDrawers();
+  }
+
+  class PagerAdapter extends FragmentPagerAdapter {
+    ArrayList<Fragment> fragments;
+
+    PagerAdapter(FragmentManager manager, ArrayList<Fragment> fragments) {
+      super(manager);
+      this.fragments = fragments;
+    }
+
+    @Override
+    public Fragment getItem(int position) {
+      return fragments.get(position);
+    }
+
+    @Override
+    public int getCount() {
+      return fragments.size();
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+      return super.getPageTitle(position);
+    }
+
   }
 
 

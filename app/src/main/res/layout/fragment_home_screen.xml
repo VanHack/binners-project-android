@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  >
+
+  <com.google.android.gms.maps.MapView
+    android:id="@+id/pickup_map_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-  >
-        <fragment
-          android:id="@+id/fragment_home_screen_map"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:name="com.google.android.gms.maps.SupportMapFragment"/>
+    />
 
-        <com.arlib.floatingsearchview.FloatingSearchView
-          android:id="@+id/pickup_search_bar"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          app:floatingSearch_showSearchKey="true"
-          app:floatingSearch_searchHint="@string/search_hint"
-          app:floatingSearch_dimBackground="false"
-          app:floatingSearch_searchBarMarginLeft="16dp"
-          app:floatingSearch_searchBarMarginRight="16dp"
-          app:floatingSearch_searchBarMarginTop="16dp"
-          app:floatingSearch_leftActionMode="showSearch"
-          />
+  <com.arlib.floatingsearchview.FloatingSearchView
+    android:id="@+id/pickup_search_bar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:floatingSearch_dimBackground="false"
+    app:floatingSearch_leftActionMode="showSearch"
+    app:floatingSearch_searchBarMarginLeft="16dp"
+    app:floatingSearch_searchBarMarginRight="16dp"
+    app:floatingSearch_searchBarMarginTop="16dp"
+    app:floatingSearch_searchHint="@string/search_hint"
+    app:floatingSearch_showSearchKey="true"
+    />
 </FrameLayout>

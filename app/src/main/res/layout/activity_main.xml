@@ -23,8 +23,8 @@
           app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
           app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
-        <FrameLayout
-            android:id="@+id/main_container_body"
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:layout_weight="1"

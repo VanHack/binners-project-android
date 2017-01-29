@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -30,7 +30,6 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:calendarViewStyle">@style/Widget.CalendarView.Custom</item>
-        <item name="editTextStyle">@style/EditTextStyle</item>
     </style>
 
     <style name="Widget.CalendarView.Custom" parent="android:Widget.Holo.CalendarView">
@@ -39,15 +38,26 @@
         <item name="android:selectedDateVerticalBar">@color/green_500</item>
     </style>
 
-    <style name="EditTextStyle" parent="@android:style/Widget.EditText">
-        <item name="android:background">@color/white</item>
-        <item name="android:textColor">@color/transparent_black</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:paddingTop">5sp</item>
-        <item name="android:paddingBottom">5sp</item>
-    </style>
-
     <style name="AppTheme.CustomTabText" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">@dimen/tablayout_bottom_textsize</item>
     </style>
+
+  <style name="Widget.Design.TextInputLayout" parent="AppTheme" tools:override="true">
+    <item name="hintTextAppearance">@style/AppTheme.TextFloatLabelAppearance</item>
+    <item name="errorTextAppearance">@style/AppTheme.TextErrorAppearance</item>
+    <item name="counterTextAppearance">@style/TextAppearance.Design.Counter</item>
+    <item name="counterOverflowTextAppearance">@style/TextAppearance.Design.Counter.Overflow</item>
+  </style>
+
+  <style name="AppTheme.TextFloatLabelAppearance" parent="TextAppearance.Design.Hint">
+    <!-- Floating label appearance here -->
+    <item name="android:textColor">@color/black</item>
+    <item name="android:textSize">12sp</item>
+  </style>
+
+  <style name="AppTheme.TextErrorAppearance" parent="TextAppearance.Design.Error">
+    <!-- Error message appearance here -->
+    <item name="android:textColor">#ff0000</item>
+    <item name="android:textSize">20sp</item>
+  </style>
 </resources>

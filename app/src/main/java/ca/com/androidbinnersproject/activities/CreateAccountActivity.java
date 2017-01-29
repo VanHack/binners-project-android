@@ -69,15 +69,15 @@ public class CreateAccountActivity extends Activity implements ResponseListener<
         }
 
         if(name.length() <= 0) {
-            edtName.setError(getString(R.string.create_user_validation_name));
+//            edtName.setError(getString(R.string.create_user_validation_name));
             result = false;
         }
         if(email.length() <= 0 || !Util.isEmailValid(email)) {
-            edtEmail.setError(getString(R.string.create_user_validation_email));
+//            edtEmail.setError(getString(R.string.create_user_validation_email));
             result = false;
         }
         if(password.length() < 6) {
-            edtPassword.setError(getString(R.string.create_user_validation_password));
+//            edtPassword.setError(getString(R.string.create_user_validation_password));
             result = false;
         }
 

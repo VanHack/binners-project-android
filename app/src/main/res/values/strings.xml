@@ -2,13 +2,42 @@
     <string name="app_name">Binners\' Project</string>
     <string name="api_endpoint" translatable="false">"http://binners.herokuapp.com/api/v1.0/"</string>
     <string name="url_donate" translatable="false">"https://www.gifttool.com/donations/Donate?ID=1453&amp;AID=503&amp;PID=4805"</string>
-
-
     <string name="packageName">ca.com.androidbinnersproject</string>
-    <string name="onboarding_1_top">binner \\\`bin-ner\\ – noun</string>
-    <string name="onboarding_1_bottom">A person who collects redeemable containers and other things form bins to sustain their livelihood and to divert waste from landfills; a dumpster diver</string>
+
+    <!-- Strings -->
     <string name="increase">Increase</string>
     <string name="decrease">Decrease</string>
+    <string name="details">Details</string>
+    <string name="open">Open</string>
+    <string name="home">Home</string>
+    <string name="close">Close</string>
+    <string name="back">Back</string>
+    <string name="help">Help</string>
+    <string name="logout">Logout</string>
+    <string name="binners">Binners</string>
+    <string name="account">Account</string>
+    <string name="create_account">Create Account</string>
+    <string name="my_profile">My profile</string>
+    <string name="login">Log In</string>
+    <string name="login_google">Connect with Google</string>
+    <string name="login_facebook">Connect with Facebook</string>
+    <string name="signup">Sign Up</string>
+    <string name="signin">Sign In</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="reset_password">Reset password</string>
+    <string name="password">Password</string>
+    <string name="create_password">Create password</string>
+    <string name="email">Email</string>
+    <string name="name">Name</string>
+    <string name="request_pickup">Request pickup here</string>
+    <string name="history">History</string>
+    <string name="ongoing">Ongoing</string>
+    <string name="pickup">Pickup</string>
+    <string name="donate">Donate</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_1_top">binner \\\`bin-ner\\ – noun</string>
+    <string name="onboarding_1_bottom">A person who collects redeemable containers and other things form bins to sustain their livelihood and to divert waste from landfills; a dumpster diver</string>
     <string name="onboarding_2_top">Informal/semi-formal work opportunities</string>
     <string name="onboarding_2_bottom">Stigma surrounding binning</string>
     <string name="onboarding_3_top">The pickup service will connect you to a local binner</string>
@@ -18,12 +47,10 @@
     <string name="onboarding_3_item_3">Increase diversion rates</string>
 
 
-    <string name="login">Log In</string>
+
+
     <string name="txtLoginWith">Log in with</string>
     <string name="createAccount">Create an Account</string>
-    <string name="forgotPassword">Forgot Password?</string>
-    <string name="password_label">Password</string>
-    <string name="email_label">Email</string>
     <string name="recycler_app_label">RECYCLER</string>
     <string name="recycler_app_logo_contente_description">Binner\'s Project Logo</string>
 
@@ -37,11 +64,11 @@
     <string name="invalid_email">Please write a valid e-mail</string>
     <string name="create_user_without_permission">We will never post without your permission.</string>
     <string name="create_user_terms_privacy">By signing up I agree to the Binner\'s Project Service Terms and Privacy Policy</string>
-    <string name="create_user_validation_name">Name should not be empty</string>
-    <string name="create_user_validation_email">Email should be valid</string>
-    <string name="create_user_validation_password">Password need at least 6 characters</string>
-    <string name="forgotPasswordTitle">Forgot your password?</string>
-    <string name="forgotPasswordBody">Enter your email address and we\'ll send you a link to set a new one</string>
+    <string name="validation_name">Name should not be empty</string>
+    <string name="validation_password">Password should have at least 5 characters</string>
+    <string name="forgot_password_title">Forgot your password?</string>
+    <string name="forgot_password_message">Enter your email address and we\'ll send you a link to set a new one</string>
+    <string name="forgot_password_success">Check your email inbox</string>
 
     <string-array name="months">
         <item>January</item>
@@ -77,14 +104,6 @@
     </string-array>
 
 
-    <string name="open">Open</string>
-    <string name="home">Home</string>
-    <string name="close">Close</string>
-    <string name="help">Help</string>
-    <string name="binners">Binners</string>
-    <string name="account">Account</string>
-    <string name="my_profile">My profile</string>
-
     <string name="pickup_calendar_info">Please provide your preferred date for a pick-up.</string>
     <string name="pickup_additional_notes_infoOne">Please provide any further instructions for the binner.</string>
     <string name="pickup_additional_notes_infoTwo">"Let\'s make it easy for your local binner to find \nyour bottles and cans! Leave them any \nnotes about where to get the pick-up."</string>
@@ -101,12 +120,9 @@
     <string name="pickup_bottles_takepicture">Take a picture</string>
     <string name="pickup_bottles_uploadpicture">Upload a picture</string>
 
-    <string name="request_pickup">Request pickup here</string>
-    <string name="history">History</string>
-    <string name="ongoing">Ongoing</string>
-    <string name="pickup">Pickup</string>
+
     <string name="home_screen_toolbar_notifications_title">Notifications</string>
-    <string name="donate">Donate</string>
+
     <string name="search_hint">Search on Google Maps</string>
     <string name="pickup_activity_title_date">Set Date</string>
     <string name="pickup_activity_title_time">Set Time</string>
@@ -117,8 +133,8 @@
     <string name="label_time">Time</string>
     <string name="label_date">Date</string>
     <string name="label_binner">Binner</string>
-    <string name="pickup_review_label_canAndBottles">Number of Cans and Bottles</string>
-    <string name="pickup_review_label_instructions">Instructions</string>
+    <string name="number_cans_bottles"># Cans &amp; bottles</string>
+    <string name="instructions">Instructions</string>
     <string name="pickup_review_post_pickup">Finish your Pick-Up!</string>
     <string name="new_pickup_progress_title" type="id">New Pick-Up</string>
     <string name="new_pickup_progress_message" type="id">Saving Pick-Up</string>
@@ -132,4 +148,7 @@
     <!-- End Rate the Pickup -->
 
     <string name="label_retry">Retry</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
